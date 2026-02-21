@@ -2,7 +2,8 @@
 
 shadcn/ui 并非传统意义上的 UI 组件库，它代表了一种全新的 Web UI 组件分发理念。这是一套经过精雕细琢、遵循无障碍标准且高度可定制的 UI 组件模板集合。
 
-![hero](apps/v4/public/opengraph-image.png)
+
+![hero](https://github.com/shadcn-ui/ui/blob/main/apps/v4/public/opengraph-image.png)
 
 ## 核心定义：不是库，是拥有的代码
 
