@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shadcn/ui 中文文档 | 极简架构与组件所有权</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#000000',
+                        foreground: '#FFFFFF',
+                        muted: '#666666',
+                        border: '#222222',
+                        surface: '#0A0A0A',
+                        accent: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'PingFang SC', 'Microsoft YaHei', 'sans-serif'],
+                        mono: ['"Space Grotesk"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #FFFFFF;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        .sidebar-link {
+            transition: all 0.2s;
+            border-left: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .sidebar-link:hover {
+            color: #FFFFFF;
+            background: #111111;
+        }
+
+        .sidebar-link.active {
+            color: #FFFFFF;
+            border-left-color: #FFFFFF;
+            background: #0A0A0A;
+            font-weight: 700;
+        }
+
+        .prose h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #222222;
+            padding-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .prose h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-top: 4rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #FFFFFF;
+            padding-left: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .prose h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: #FFFFFF;
+        }
+
+        .prose p {
+            color: #A1A1A1;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .prose ul {
+            list-style: none;
+            padding-left: 0;
+            color: #A1A1A1;
+            margin-bottom: 2rem;
+        }
+
+        .prose li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .prose li::before {
+            content: '■';
+            position: absolute;
+            left: 0;
+            top: 0.2em;
+            font-size: 0.8em;
+            color: #444444;
+        }
+
+        .prose strong {
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+
+        .code-block {
+            background: #0A0A0A;
+            border: 1px solid #222222;
+            padding: 1.5rem;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.875rem;
+            color: #EEEEEE;
+            position: relative;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .code-block::before {
+            content: 'CODE';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #000000;
+            padding: 0 10px;
+            font-size: 10px;
+            color: #444444;
+            letter-spacing: 2px;
+        }
+
+        .kbd {
+            background: #111111;
+            border: 1px solid #222222;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: monospace;
+        }
+
+        .table-auto {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .table-auto th {
+            border: 1px solid #222;
+            padding: 1rem;
+            text-align: left;
+            background: #0A0A0A;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        .table-auto td {
+            border: 1px solid #222;
+            padding: 1rem;
+            color: #A1A1A1;
+            font-size: 0.875rem;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #222222;
+        }
+
+        .section-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .section-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <!-- Top Bar -->
+    <header class="fixed top-0 w-full z-50 bg-black border-b border-border">
+        <div class="px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-10">
+                <a href="index.html" class="text-sm font-black tracking-[0.2em] uppercase">shadcn/ui <span
+                        class="text-muted ml-3 font-light tracking-normal lowercase">docs/zh-cn</span></a>
+            </div>
+            <div class="flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-muted">
+                <a href="https://github.com/shadcn-ui/ui" class="hover:text-white transition-colors">GitHub</a>
+                <a href="https://twitter.com/shadcn" class="hover:text-white transition-colors">Twitter</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex pt-16">
+        <!-- Sidebar Navigation -->
+        <aside class="fixed w-72 h-[calc(100vh-64px)] overflow-y-auto border-r border-border bg-black hidden lg:block">
+            <div class="p-10 space-y-12">
+                <div>
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-muted mb-6">起步指南</h4>
+                    <div class="flex flex-col gap-1">
+                        <div onclick="switchTab('introduction')" id="link-introduction"
+                            class="sidebar-link active block h-10 px-4 flex items-center text-sm text-muted">简介</div>
+                        <div onclick="switchTab('installation')" id="link-installation"
+                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">安装</div>
+                        <div onclick="switchTab('cli')" id="link-cli"
+                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">CLI 命令行</div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-muted mb-6">核心配置</h4>
+                    <div class="flex flex-col gap-1">
+                        <div onclick="switchTab('theming')" id="link-theming"
+                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">主题定制</div>
+                        <div onclick="switchTab('dark-mode')" id="link-dark-mode"
+                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">暗黑模式</div>
+                        <div onclick="switchTab('typography')" id="link-typography"
+                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">排版规范</div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-muted mb-6">常用组件</h4>
+                    <div class="flex flex-col gap-1">
+                        <div onclick="switchTab('accordion')" id="link-accordion"
+                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">Accordion 手风琴
+                        </div>
+                        <div onclick="switchTab('button')" id="link-button"
+                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">Button 按钮</div>
+                        <div onclick="switchTab('dialog')" id="link-dialog"
+                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">Dialog 对话框</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="lg:ml-72 w-full p-10 md:p-20">
+            <div class="container max-w-4xl mx-auto prose">
+
+                <!-- Section: Introduction -->
+                <div id="content-introduction" class="section-content active">
+                    <h1>简介</h1>
+                    <p>设计精美的组件，你可以直接复制并粘贴到你的应用程序中。<strong>无障碍支持。可高度定制。完全开源。</strong></p>
+
+                    <h2>什么是 shadcn/ui？</h2>
+                    <p>这<strong>不是</strong>一个组件库。它是一套可重用的组件集合，你可以通过复制粘贴将其集成到你的项目中。</p>
+
+                    <h3>“不是组件库”是什么意思？</h3>
+                    <p>这意味着你不需要将其作为依赖项安装。它不通过 npm 或 yarn 分发。</p>
+                    <p>你只需要挑选你需要的组件。将代码复制并粘贴到你的项目中，并根据你的需要进行定制。<strong>代码是属于你的。</strong></p>
+
+                    <h2>为什么要这样做？</h2>
+                    <p>我们相信开发者应该拥有对代码的绝对所有权和控制权。这让你能够决定组件是如何构建和装饰的，而不是受制于第三方库的 API 限制。</p>
+                    <ul>
+                        <li>基于 <strong>Radix UI</strong> 构建交互原语。</li>
+                        <li>使用 <strong>Tailwind CSS</strong> 处理样式。</li>
+                        <li><strong>透明度</strong>：每一行代码都在你眼前，没有黑盒。</li>
+                        <li><strong>AI 友好</strong>：由于代码就在你的项目中，LLM 可以轻松阅读、理解并根据需求进行改进。</li>
+                    </ul>
+                </div>
+
+                <!-- Section: Installation -->
+                <div id="content-installation" class="section-content">
+                    <h1>安装</h1>
+                    <p>shadcn/ui 支持多种框架和工具。推荐的方式是使用 CLI 工具来初始化你的项目。</p>
+
+                    <h2>项目初始化</h2>
+                    <p>在你的终端中运行以下命令：</p>
+                    <div class="code-block">
+                        npx shadcn@latest init
+                    </div>
+
+                    <p>该命令会引导你完成 `components.json` 的配置：</p>
+                    <ul>
+                        <li>是否使用 TypeScript？ (yes/no)</li>
+                        <li>你希望使用哪种样式风格？ (Default / New York)</li>
+                        <li>基础色系选择 (Slate / Gray / Zinc / Neutral / Stone)</li>
+                        <li>全局 CSS 文件的位置？</li>
+                        <li>是否使用 CSS 变量来处理颜色？</li>
+                    </ul>
+
+                    <h2>支持的框架</h2>
+                    <p>不论你使用的是哪种现代 React 框架，我们都提供了适配方案：</p>
+                    <ul>
+                        <li><strong>Next.js</strong>：大多数应用的首选推荐。</li>
+                        <li><strong>Vite</strong>：适用于不含 SSR 的 React 项目。</li>
+                        <li><strong>Astro</strong>：内容驱动型网站的绝佳选择。</li>
+                        <li><strong>Remix</strong>：全栈 React 应用。</li>
+                    </ul>
+                </div>
+
+                <!-- Section: CLI -->
+                <div id="content-cli" class="section-content">
+                    <h1>CLI 命令行工具</h1>
+                    <p>使用 CLI 轻松添加组件并管理你的项目配置。</p>
+
+                    <h2>常用命令</h2>
+                    <h3>init</h3>
+                    <p>初始化项目并创建 `components.json` 配置文件。</p>
+                    <div class="code-block">
+                        npx shadcn@latest init
+                    </div>
+
+                    <h3>add</h3>
+                    <p>向项目中添加特定组件。例如添加按钮组件：</p>
+                    <div class="code-block">
+                        npx shadcn@latest add button
+                    </div>
+
+                    <h2>常用选项</h2>
+                    <ul>
+                        <li><strong>-y, --yes</strong>：跳过确认提示，直接执行。</li>
+                        <li><strong>-o, --overwrite</strong>：覆盖已存在的组件文件。</li>
+                        <li><strong>-c, --cwd &lt;path&gt;</strong>：指定工作目录。</li>
+                    </ul>
+                </div>
+
+                <!-- Section: Theming -->
+                <div id="content-theming" class="section-content">
+                    <h1>主题定制</h1>
+                    <p>shadcn/ui 使用 CSS 变量 (CSS Variables) 进行主题化管理。这让你可以直接改变全局外观而无需修改单个组件逻辑。</p>
+
+                    <h2>CSS 变量配置</h2>
+                    <p>我们在全局 CSS 文件中使用 `:root` 定义颜色变量。所有的变量都采用 HSL 格式以便于 Tailwind 进行透明度处理。</p>
+
+                    <div class="code-block">
+                        :root {
+                        --background: 0 0% 100%;
+                        --foreground: 222.2 47.4% 11.2%;
+                        --primary: 222.2 47.4% 11.2%;
+                        --border: 214.3 31.8% 91.4%;
+                        /* ...其他变量 */
+                        }
+                    </div>
+
+                    <h2>定制约定</h2>
+                    <ul>
+                        <li><strong>HSL 格式</strong>：所有颜色必须遵循 HSL 定义（如 0 0% 100%）。</li>
+                        <li><strong>无障碍性</strong>：在定制主色调时，请务必检查背景与前景的对比度。</li>
+                        <li><strong>圆角半径</strong>：通过 <kbd class="kbd">--radius</kbd> 变量统一控制全站组件圆角。</li>
+                    </ul>
+                </div>
+
+                <!-- Section: Dark Mode -->
+                <div id="content-dark-mode" class="section-content">
+                    <h1>暗黑模式</h1>
+                    <p>通过 `next-themes` 或原生的 Tailwind `class` 策略为你的站点添加暗黑模式支持。</p>
+
+                    <h2>Next.js 实现步骤</h2>
+                    <ol class="list-decimal pl-6 space-y-4 text-muted">
+                        <li>安装依赖：<kbd class="kbd">npm install next-themes</kbd></li>
+                        <li>在根布局中使用 <code class="text-white">ThemeProvider</code> 包裹子组件。</li>
+                        <li>添加一个模式切换按钮 (Mode Toggle)。</li>
+                    </ol>
+
+                    <div class="code-block">
+                        import { ThemeProvider } from "next-themes"
+
+                        export function Providers({ children }) {
+                        return (
+                        &lt;ThemeProvider attribute="class" defaultTheme="system" enableSystem&gt;
+                        {children}
+                        &lt;/ThemeProvider&gt;
+                        )
+                        }
+                    </div>
+                </div>
+
+                <!-- Section: Typography -->
+                <div id="content-typography" class="section-content">
+                    <h1>排版规范</h1>
+                    <p>我们为标题、段落、列表等元素预设了一系列一致的排版样式。</p>
+
+                    <h2>常用基础样式</h2>
+                    <div class="space-y-8 mt-10">
+                        <div class="border-b border-border pb-6">
+                            <h3 class="mb-4 text-white">一级标题 (H1)</h3>
+                            <div class="code-block text-xs">scroll-m-20 text-4xl font-extrabold tracking-tight
+                                lg:text-5xl</div>
+                        </div>
+                        <div class="border-b border-border pb-6">
+                            <h3 class="mb-4 text-white">二级标题 (H2)</h3>
+                            <div class="code-block text-xs">scroll-m-20 border-b pb-2 text-3xl font-semibold
+                                tracking-tight</div>
+                        </div>
+                        <div class="border-b border-border pb-6">
+                            <h3 class="mb-4 text-white">正文段落 (P)</h3>
+                            <div class="code-block text-xs">leading-7 [&:not(:first-child)]:mt-6</div>
+                        </div>
+                    </div>
+
+                    <h2 class="mt-12">调用示例</h2>
+                    <div class="code-block text-xs">
+                        export function TypographyH1() {
+                        return (
+                        &lt;h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"&gt;
+                        这是一个极致极简的文档标题
+                        &lt;/h1&gt;
+                        )
+                        }
+                    </div>
+                </div>
+
+                <!-- Section: Accordion -->
+                <div id="content-accordion" class="section-content">
+                    <h1>Accordion 手风琴</h1>
+                    <p>一组垂直堆叠的交互式标题，每个标题都能展示一个内容区域。</p>
+
+                    <h2>说明</h2>
+                    <p>此组件基于 Radix UI 的 Accordion 原语构建，并由 Tailwind CSS 定义样式。它完全支持键盘导航和屏幕阅读器。</p>
+
+                    <h2>安装</h2>
+                    <div class="code-block">
+                        npx shadcn@latest add accordion
+                    </div>
+
+                    <h2>用法示例</h2>
+                    <div class="code-block text-xs">
+                        import {
+                        Accordion,
+                        AccordionContent,
+                        AccordionItem,
+                        AccordionTrigger,
+                        } from "@/components/ui/accordion"
+
+                        export function AccordionDemo() {
+                        return (
+                        &lt;Accordion type="single" collapsible defaultValue="item-1"&gt;
+                        &lt;AccordionItem value="item-1"&gt;
+                        &lt;AccordionTrigger&gt;它是否支持无障碍？&lt;/AccordionTrigger&gt;
+                        &lt;AccordionContent&gt;
+                        是的。它完全遵循 WAI-ARIA 设计模式。
+                        &lt;/AccordionContent&gt;
+                        &lt;/AccordionItem&gt;
+                        &lt;/Accordion&gt;
+                        )
+                        }
+                    </div>
+
+                    <h2>API 参考</h2>
+                    <ul>
+                        <li><strong>Accordion</strong> 根容器。类型可选 <code>single</code> 或 <code>multiple</code>。</li>
+                        <li><strong>AccordionItem</strong> 包含触点和内容的包装器。</li>
+                        <li><strong>AccordionTrigger</strong> 触发展开/关闭的标题部分。</li>
+                        <li><strong>AccordionContent</strong> 被折叠的面板内容。</li>
+                    </ul>
+                </div>
+
+                <!-- Section: Button -->
+                <div id="content-button" class="section-content">
+                    <h1>Button 按钮</h1>
+                    <p>具有多种样式变体和尺寸的通用按钮。支持加载状态、图标集成以及作为子元素分发。</p>
+
+                    <h2>安装</h2>
+                    <div class="code-block">
+                        npx shadcn@latest add button
+                    </div>
+
+                    <h2>用法</h2>
+                    <div class="code-block text-xs">
+                        import { Button } from "@/components/ui/button"
+
+                        export function ButtonDemo() {
+                        return &lt;Button variant="outline"&gt;确定&lt;/Button&gt;
+                        }
+                    </div>
+
+                    <h2>属性 (Props)</h2>
+                    <table class="table-auto">
+                        <thead>
+                            <tr>
+                                <th>属性</th>
+                                <th>类型</th>
+                                <th>默认值</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>variant</td>
+                                <td>default | outline | ghost...</td>
+                                <td>default</td>
+                                <td>视觉变体</td>
+                            </tr>
+                            <tr>
+                                <td>size</td>
+                                <td>default | sm | lg | icon</td>
+                                <td>default</td>
+                                <td>尺寸步阶</td>
+                            </tr>
+                            <tr>
+                                <td>asChild</td>
+                                <td>boolean</td>
+                                <td>false</td>
+                                <td>是否渲染为子元素容器</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Section: Dialog -->
+                <div id="content-dialog" class="section-content">
+                    <h1>Dialog 对话框</h1>
+                    <p>覆盖在主窗口之上的模态弹出框。通常用于关键性确认或输入任务。</p>
+
+                    <h2>说明</h2>
+                    <p>对话框会在打开时锁定背景滚动，并提供完整的焦点捕获（Focus Trap）与无障碍属性（Aria-labelledby / describedby）。</p>
+
+                    <h2>安装</h2>
+                    <div class="code-block">
+                        npx shadcn@latest add dialog
+                    </div>
+
+                    <h2>用法示例</h2>
+                    <div class="code-block text-xs">
+                        import {
+                        Dialog,
+                        DialogContent,
+                        DialogDescription,
+                        DialogHeader,
+                        DialogTitle,
+                        DialogTrigger,
+                        } from "@/components/ui/dialog"
+
+                        export function DialogDemo() {
+                        return (
+                        &lt;Dialog&gt;
+                        &lt;DialogTrigger&gt;打开对话框&lt;/DialogTrigger&gt;
+                        &lt;DialogContent&gt;
+                        &lt;DialogHeader&gt;
+                        &lt;DialogTitle&gt;确认此操作？&lt;/DialogTitle&gt;
+                        &lt;DialogDescription&gt;
+                        此操作无法撤销。系统将永久删除相关的用户记录。
+                        &lt;/DialogDescription&gt;
+                        &lt;/DialogHeader&gt;
+                        &lt;/DialogContent&gt;
+                        &lt;/Dialog&gt;
+                        )
+                        }
+                    </div>
+
+                    <h2>核心组件</h2>
+                    <ul>
+                        <li><strong>Dialog</strong> 主容器，通过 Context 共享状态。</li>
+                        <li><strong>DialogTrigger</strong> 交互触发器，通常为一个按钮。</li>
+                        <li><strong>DialogContent</strong> 实际渲染在 Portal 中的弹出内容。</li>
+                        <li><strong>DialogHeader / Footer</strong> 预置的结构化布局。</li>
+                    </ul>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            const sections = document.querySelectorAll('.section-content');
+            const links = document.querySelectorAll('.sidebar-link');
+
+            sections.forEach(s => s.classList.remove('active'));
+            links.forEach(l => l.classList.remove('active'));
+
+            const activeSection = document.getElementById('content-' + tabId);
+            const activeLink = document.getElementById('link-' + tabId);
+
+            if (activeSection && activeLink) {
+                activeSection.classList.add('active');
+                activeLink.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+    </script>
+</body>
+
+</html>
