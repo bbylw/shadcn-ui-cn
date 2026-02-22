@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN" class="dark">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shadcn/ui 中文文档 | 极简架构与组件所有权</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -33,179 +30,37 @@
         }
     </script>
     <style>
-        body {
-            background-color: #000000;
-            color: #FFFFFF;
-            -webkit-font-smoothing: antialiased;
-            scroll-behavior: smooth;
-        }
-
-        .sidebar-link {
-            transition: all 0.2s;
-            border-left: 2px solid transparent;
-            cursor: pointer;
-        }
-
-        .sidebar-link:hover {
-            color: #FFFFFF;
-            background: #111111;
-        }
-
-        .sidebar-link.active {
-            color: #FFFFFF;
-            border-left-color: #FFFFFF;
-            background: #0A0A0A;
-            font-weight: 700;
-        }
-
-        .prose h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            letter-spacing: -0.05em;
-            margin-bottom: 2.5rem;
-            border-bottom: 1px solid #222222;
-            padding-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .prose h2 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-top: 4rem;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid #FFFFFF;
-            padding-left: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .prose h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            color: #FFFFFF;
-        }
-
-        .prose p {
-            color: #A1A1A1;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-
-        .prose ul {
-            list-style: none;
-            padding-left: 0;
-            color: #A1A1A1;
-            margin-bottom: 2rem;
-        }
-
-        .prose li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .prose li::before {
-            content: '■';
-            position: absolute;
-            left: 0;
-            top: 0.2em;
-            font-size: 0.8em;
-            color: #444444;
-        }
-
-        .prose strong {
-            color: #FFFFFF;
-            font-weight: 700;
-        }
-
-        .code-block {
-            background: #0A0A0A;
-            border: 1px solid #222222;
-            padding: 1.5rem;
-            font-family: 'Space Grotesk', monospace;
-            font-size: 0.875rem;
-            color: #EEEEEE;
-            position: relative;
-            margin: 2rem 0;
-            overflow-x: auto;
-        }
-
-        .code-block::before {
-            content: 'CODE';
-            position: absolute;
-            top: -10px;
-            right: 20px;
-            background: #000000;
-            padding: 0 10px;
-            font-size: 10px;
-            color: #444444;
-            letter-spacing: 2px;
-        }
-
-        .kbd {
-            background: #111111;
-            border: 1px solid #222222;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-family: monospace;
-        }
-
-        .table-auto {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-        }
-
-        .table-auto th {
-            border: 1px solid #222;
-            padding: 1rem;
-            text-align: left;
-            background: #0A0A0A;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: #666;
-        }
-
-        .table-auto td {
-            border: 1px solid #222;
-            padding: 1rem;
-            color: #A1A1A1;
-            font-size: 0.875rem;
-        }
-
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #222222;
-        }
-
-        .section-content {
-            display: none;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-
-        .section-content.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
+        body { background-color: #000000; color: #FFFFFF; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+        .sidebar-link { transition: all 0.2s; border-left: 2px solid transparent; cursor: pointer; }
+        .sidebar-link:hover { color: #FFFFFF; background: #111111; }
+        .sidebar-link.active { color: #FFFFFF; border-left-color: #FFFFFF; background: #0A0A0A; font-weight: 700; }
+        .prose h1 { font-size: 3.5rem; font-weight: 900; letter-spacing: -0.05em; margin-bottom: 2.5rem; border-bottom: 1px solid #222222; padding-bottom: 1.5rem; text-transform: uppercase; }
+        .prose h2 { font-size: 1.75rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.5rem; border-left: 4px solid #FFFFFF; padding-left: 1.5rem; letter-spacing: -0.02em; }
+        .prose h3 { font-size: 1.25rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: #FFFFFF; }
+        .prose p { color: #A1A1A1; line-height: 1.8; margin-bottom: 1.5rem; font-size: 1.05rem; }
+        .prose ul { list-style: none; padding-left: 0; color: #A1A1A1; margin-bottom: 2rem; }
+        .prose li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+        .prose li::before { content: '■'; position: absolute; left: 0; top: 0.2em; font-size: 0.8em; color: #444444; }
+        .prose strong { color: #FFFFFF; font-weight: 700; }
+        .code-block { background: #0A0A0A; border: 1px solid #222222; padding: 1.5rem; font-family: 'Space Grotesk', monospace; font-size: 0.875rem; color: #EEEEEE; position: relative; margin: 2rem 0; overflow-x: auto; white-space: pre-wrap; }
+        .code-block::before { content: 'CODE'; position: absolute; top: -10px; right: 20px; background: #000000; padding: 0 10px; font-size: 10px; color: #444444; letter-spacing: 2px; }
+        .kbd { background: #111111; border: 1px solid #222222; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-family: monospace; }
+        .table-auto { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+        .table-auto th { border: 1px solid #222; padding: 1rem; text-align: left; background: #0A0A0A; font-size: 0.75rem; text-transform: uppercase; color: #666; }
+        .table-auto td { border: 1px solid #222; padding: 1rem; color: #A1A1A1; font-size: 0.875rem; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #222222; }
+        .section-content { display: none; opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease, transform 0.4s ease; }
+        .section-content.active { display: block; opacity: 1; transform: translateY(0); }
+        .component-card { border: 1px solid #222; padding: 1rem; cursor: pointer; transition: all 0.2s; }
+        .component-card:hover { background: #0A0A0A; border-color: #444; }
     </style>
 </head>
-
 <body class="min-h-screen">
-    <!-- Top Bar -->
     <header class="fixed top-0 w-full z-50 bg-black border-b border-border">
         <div class="px-8 h-16 flex items-center justify-between">
             <div class="flex items-center gap-10">
-                <a href="index.html" class="text-sm font-black tracking-[0.2em] uppercase">shadcn/ui <span
-                        class="text-muted ml-3 font-light tracking-normal lowercase">docs/zh-cn</span></a>
+                <a href="index.html" class="text-sm font-black tracking-[0.2em] uppercase">shadcn/ui <span class="text-muted ml-3 font-light tracking-normal lowercase">docs/zh-cn</span></a>
             </div>
             <div class="flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-muted">
                 <a href="https://github.com/shadcn-ui/ui" class="hover:text-white transition-colors">GitHub</a>
@@ -213,64 +68,98 @@
             </div>
         </div>
     </header>
-
     <div class="flex pt-16">
-        <!-- Sidebar Navigation -->
         <aside class="fixed w-72 h-[calc(100vh-64px)] overflow-y-auto border-r border-border bg-black hidden lg:block">
-            <div class="p-10 space-y-12">
-                <div>
-                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-muted mb-6">起步指南</h4>
-                    <div class="flex flex-col gap-1">
-                        <div onclick="switchTab('introduction')" id="link-introduction"
-                            class="sidebar-link active block h-10 px-4 flex items-center text-sm text-muted">简介</div>
-                        <div onclick="switchTab('installation')" id="link-installation"
-                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">安装</div>
-                        <div onclick="switchTab('cli')" id="link-cli"
-                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">CLI 命令行</div>
+            <div class="p-4 space-y-4">
+                <div class="sidebar-group">
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-muted mb-2 px-4">章节</h4>
+                    <div class="flex flex-col gap-0.5">
+                        <div onclick="switchTab('introduction')" id="link-introduction" class="sidebar-link active block h-9 px-4 flex items-center text-sm text-muted">简介</div>
+                        <div onclick="switchTab('components')" id="link-components" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">组件概览</div>
+                        <div onclick="switchTab('installation')" id="link-installation" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">安装</div>
+                        <div onclick="switchTab('directory')" id="link-directory" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">目录结构</div>
+                        <div onclick="switchTab('rtl')" id="link-rtl" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">RTL 支持<span class="ml-1 inline-block w-1.5 h-1.5 bg-blue-500 rounded-full"></span></div>
+                        <div onclick="switchTab('mcp')" id="link-mcp" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">MCP Server</div>
+                        <div onclick="switchTab('registry')" id="link-registry" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Registry</div>
+                        <div onclick="switchTab('forms')" id="link-forms" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">表单</div>
+                        <div onclick="switchTab('changelog')" id="link-changelog" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">更新日志<span class="ml-1 inline-block w-1.5 h-1.5 bg-blue-500 rounded-full"></span></div>
                     </div>
                 </div>
-                <div>
-                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-muted mb-6">核心配置</h4>
-                    <div class="flex flex-col gap-1">
-                        <div onclick="switchTab('theming')" id="link-theming"
-                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">主题定制</div>
-                        <div onclick="switchTab('dark-mode')" id="link-dark-mode"
-                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">暗黑模式</div>
-                        <div onclick="switchTab('typography')" id="link-typography"
-                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">排版规范</div>
+                <div class="sidebar-group">
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-muted mb-2 px-4">起步指南</h4>
+                    <div class="flex flex-col gap-0.5">
+                        <div onclick="switchTab('cli')" id="link-cli" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">CLI 命令行</div>
+                        <div onclick="switchTab('monorepo')" id="link-monorepo" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Monorepo</div>
+                        <div onclick="switchTab('javascript')" id="link-javascript" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">JavaScript</div>
                     </div>
                 </div>
-                <div>
-                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-muted mb-6">常用组件</h4>
-                    <div class="flex flex-col gap-1">
-                        <div onclick="switchTab('accordion')" id="link-accordion"
-                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">Accordion 手风琴
-                        </div>
-                        <div onclick="switchTab('button')" id="link-button"
-                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">Button 按钮</div>
-                        <div onclick="switchTab('dialog')" id="link-dialog"
-                            class="sidebar-link block h-10 px-4 flex items-center text-sm text-muted">Dialog 对话框</div>
+                <div class="sidebar-group">
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-muted mb-2 px-4">核心配置</h4>
+                    <div class="flex flex-col gap-0.5">
+                        <div onclick="switchTab('theming')" id="link-theming" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">主题定制</div>
+                        <div onclick="switchTab('dark-mode')" id="link-dark-mode" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">暗黑模式</div>
+                        <div onclick="switchTab('typography')" id="link-typography" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">排版规范</div>
+                    </div>
+                </div>
+                <div class="sidebar-group">
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-muted mb-2 px-4">组件</h4>
+                    <div class="flex flex-col gap-0.5">
+                        <div onclick="switchTab('accordion')" id="link-accordion" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Accordion</div>
+                        <div onclick="switchTab('alert')" id="link-alert" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Alert</div>
+                        <div onclick="switchTab('alert-dialog')" id="link-alert-dialog" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Alert Dialog</div>
+                        <div onclick="switchTab('avatar')" id="link-avatar" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Avatar</div>
+                        <div onclick="switchTab('badge')" id="link-badge" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Badge</div>
+                        <div onclick="switchTab('breadcrumb')" id="link-breadcrumb" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Breadcrumb</div>
+                        <div onclick="switchTab('button')" id="link-button" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Button</div>
+                        <div onclick="switchTab('calendar')" id="link-calendar" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Calendar</div>
+                        <div onclick="switchTab('card')" id="link-card" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Card</div>
+                        <div onclick="switchTab('carousel')" id="link-carousel" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Carousel</div>
+                        <div onclick="switchTab('chart')" id="link-chart" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Chart</div>
+                        <div onclick="switchTab('checkbox')" id="link-checkbox" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Checkbox</div>
+                        <div onclick="switchTab('combobox')" id="link-combobox" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Combobox</div>
+                        <div onclick="switchTab('command')" id="link-command" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Command</div>
+                        <div onclick="switchTab('data-table')" id="link-data-table" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Data Table</div>
+                        <div onclick="switchTab('date-picker')" id="link-date-picker" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Date Picker</div>
+                        <div onclick="switchTab('dialog')" id="link-dialog" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Dialog</div>
+                        <div onclick="switchTab('drawer')" id="link-drawer" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Drawer</div>
+                        <div onclick="switchTab('dropdown-menu')" id="link-dropdown-menu" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Dropdown Menu</div>
+                        <div onclick="switchTab('hover-card')" id="link-hover-card" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Hover Card</div>
+                        <div onclick="switchTab('input')" id="link-input" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Input</div>
+                        <div onclick="switchTab('label')" id="link-label" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Label</div>
+                        <div onclick="switchTab('menubar')" id="link-menubar" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Menubar</div>
+                        <div onclick="switchTab('pagination')" id="link-pagination" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Pagination</div>
+                        <div onclick="switchTab('popover')" id="link-popover" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Popover</div>
+                        <div onclick="switchTab('progress')" id="link-progress" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Progress</div>
+                        <div onclick="switchTab('radio-group')" id="link-radio-group" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Radio Group</div>
+                        <div onclick="switchTab('scroll-area')" id="link-scroll-area" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Scroll Area</div>
+                        <div onclick="switchTab('select')" id="link-select" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Select</div>
+                        <div onclick="switchTab('separator')" id="link-separator" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Separator</div>
+                        <div onclick="switchTab('sheet')" id="link-sheet" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Sheet</div>
+                        <div onclick="switchTab('sidebar')" id="link-sidebar" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Sidebar</div>
+                        <div onclick="switchTab('skeleton')" id="link-skeleton" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Skeleton</div>
+                        <div onclick="switchTab('slider')" id="link-slider" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Slider</div>
+                        <div onclick="switchTab('sonner')" id="link-sonner" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Sonner</div>
+                        <div onclick="switchTab('switch')" id="link-switch" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Switch</div>
+                        <div onclick="switchTab('table')" id="link-table" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Table</div>
+                        <div onclick="switchTab('tabs')" id="link-tabs" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Tabs</div>
+                        <div onclick="switchTab('textarea')" id="link-textarea" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Textarea</div>
+                        <div onclick="switchTab('toast')" id="link-toast" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Toast</div>
+                        <div onclick="switchTab('toggle')" id="link-toggle" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Toggle</div>
+                        <div onclick="switchTab('tooltip')" id="link-tooltip" class="sidebar-link block h-9 px-4 flex items-center text-sm text-muted">Tooltip</div>
                     </div>
                 </div>
             </div>
         </aside>
-
-        <!-- Main Content Area -->
         <main class="lg:ml-72 w-full p-10 md:p-20">
             <div class="container max-w-4xl mx-auto prose">
-
-                <!-- Section: Introduction -->
+                <!-- Introduction -->
                 <div id="content-introduction" class="section-content active">
                     <h1>简介</h1>
                     <p>设计精美的组件，你可以直接复制并粘贴到你的应用程序中。<strong>无障碍支持。可高度定制。完全开源。</strong></p>
-
                     <h2>什么是 shadcn/ui？</h2>
                     <p>这<strong>不是</strong>一个组件库。它是一套可重用的组件集合，你可以通过复制粘贴将其集成到你的项目中。</p>
-
-                    <h3>“不是组件库”是什么意思？</h3>
-                    <p>这意味着你不需要将其作为依赖项安装。它不通过 npm 或 yarn 分发。</p>
-                    <p>你只需要挑选你需要的组件。将代码复制并粘贴到你的项目中，并根据你的需要进行定制。<strong>代码是属于你的。</strong></p>
-
+                    <h3>"不是组件库"是什么意思？</h3>
+                    <p>这意味着你不需要将其作为依赖项安装。它不通过 npm 或 yarn 分发。你只需要挑选你需要的组件，将代码复制并粘贴到你的项目中，并根据你的需要进行定制。<strong>代码是属于你的。</strong></p>
                     <h2>为什么要这样做？</h2>
                     <p>我们相信开发者应该拥有对代码的绝对所有权和控制权。这让你能够决定组件是如何构建和装饰的，而不是受制于第三方库的 API 限制。</p>
                     <ul>
@@ -279,19 +168,50 @@
                         <li><strong>透明度</strong>：每一行代码都在你眼前，没有黑盒。</li>
                         <li><strong>AI 友好</strong>：由于代码就在你的项目中，LLM 可以轻松阅读、理解并根据需求进行改进。</li>
                     </ul>
+                    <h2>功能特性</h2>
+                    <ul>
+                        <li><strong>复制粘贴</strong>：组件直接添加到你的项目中，你可以随意修改。</li>
+                        <li><strong>可访问性</strong>：基于 Radix UI 构建，支持键盘导航和屏幕阅读器。</li>
+                        <li><strong>类型安全</strong>：完全用 TypeScript 编写，提供完整的类型定义。</li>
+                        <li><strong>主题定制</strong>：使用 CSS 变量轻松定制主题。</li>
+                        <li><strong>暗黑模式</strong>：内置暗黑模式支持。</li>
+                    </ul>
                 </div>
-
-                <!-- Section: Installation -->
+                <!-- Components Overview -->
+                <div id="content-components" class="section-content">
+                    <h1>组件概览</h1>
+                    <p>这里是所有可用组件的完整列表。我们正在持续添加更多组件。</p>
+                    <h2>可用组件</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+                        <div onclick="switchTab('accordion')" class="component-card"><h3 class="text-sm font-bold mb-1">Accordion</h3><p class="text-xs text-muted">手风琴折叠组件</p></div>
+                        <div onclick="switchTab('alert')" class="component-card"><h3 class="text-sm font-bold mb-1">Alert</h3><p class="text-xs text-muted">警告提示组件</p></div>
+                        <div onclick="switchTab('alert-dialog')" class="component-card"><h3 class="text-sm font-bold mb-1">Alert Dialog</h3><p class="text-xs text-muted">警告对话框</p></div>
+                        <div onclick="switchTab('avatar')" class="component-card"><h3 class="text-sm font-bold mb-1">Avatar</h3><p class="text-xs text-muted">头像组件</p></div>
+                        <div onclick="switchTab('badge')" class="component-card"><h3 class="text-sm font-bold mb-1">Badge</h3><p class="text-xs text-muted">徽章标签</p></div>
+                        <div onclick="switchTab('button')" class="component-card"><h3 class="text-sm font-bold mb-1">Button</h3><p class="text-xs text-muted">按钮组件</p></div>
+                        <div onclick="switchTab('calendar')" class="component-card"><h3 class="text-sm font-bold mb-1">Calendar</h3><p class="text-xs text-muted">日历组件</p></div>
+                        <div onclick="switchTab('card')" class="component-card"><h3 class="text-sm font-bold mb-1">Card</h3><p class="text-xs text-muted">卡片容器</p></div>
+                        <div onclick="switchTab('carousel')" class="component-card"><h3 class="text-sm font-bold mb-1">Carousel</h3><p class="text-xs text-muted">轮播图组件</p></div>
+                        <div onclick="switchTab('chart')" class="component-card"><h3 class="text-sm font-bold mb-1">Chart</h3><p class="text-xs text-muted">图表组件</p></div>
+                        <div onclick="switchTab('checkbox')" class="component-card"><h3 class="text-sm font-bold mb-1">Checkbox</h3><p class="text-xs text-muted">复选框</p></div>
+                        <div onclick="switchTab('dialog')" class="component-card"><h3 class="text-sm font-bold mb-1">Dialog</h3><p class="text-xs text-muted">对话框</p></div>
+                        <div onclick="switchTab('input')" class="component-card"><h3 class="text-sm font-bold mb-1">Input</h3><p class="text-xs text-muted">输入框</p></div>
+                        <div onclick="switchTab('select')" class="component-card"><h3 class="text-sm font-bold mb-1">Select</h3><p class="text-xs text-muted">选择器</p></div>
+                        <div onclick="switchTab('table')" class="component-card"><h3 class="text-sm font-bold mb-1">Table</h3><p class="text-xs text-muted">表格组件</p></div>
+                        <div onclick="switchTab('tabs')" class="component-card"><h3 class="text-sm font-bold mb-1">Tabs</h3><p class="text-xs text-muted">标签页</p></div>
+                        <div onclick="switchTab('toast')" class="component-card"><h3 class="text-sm font-bold mb-1">Toast</h3><p class="text-xs text-muted">消息提示</p></div>
+                        <div onclick="switchTab('tooltip')" class="component-card"><h3 class="text-sm font-bold mb-1">Tooltip</h3><p class="text-xs text-muted">工具提示</p></div>
+                    </div>
+                    <h2>找不到需要的组件？</h2>
+                    <p>可以尝试访问 <a href="https://ui.shadcn.com/docs/directory" class="text-white underline">Registry Directory</a> 查找社区维护的组件。</p>
+                </div>
+                <!-- Installation -->
                 <div id="content-installation" class="section-content">
                     <h1>安装</h1>
                     <p>shadcn/ui 支持多种框架和工具。推荐的方式是使用 CLI 工具来初始化你的项目。</p>
-
                     <h2>项目初始化</h2>
                     <p>在你的终端中运行以下命令：</p>
-                    <div class="code-block">
-                        npx shadcn@latest init
-                    </div>
-
+                    <div class="code-block">npx shadcn@latest init</div>
                     <p>该命令会引导你完成 `components.json` 的配置：</p>
                     <ul>
                         <li>是否使用 TypeScript？ (yes/no)</li>
@@ -300,291 +220,567 @@
                         <li>全局 CSS 文件的位置？</li>
                         <li>是否使用 CSS 变量来处理颜色？</li>
                     </ul>
-
                     <h2>支持的框架</h2>
-                    <p>不论你使用的是哪种现代 React 框架，我们都提供了适配方案：</p>
                     <ul>
                         <li><strong>Next.js</strong>：大多数应用的首选推荐。</li>
                         <li><strong>Vite</strong>：适用于不含 SSR 的 React 项目。</li>
                         <li><strong>Astro</strong>：内容驱动型网站的绝佳选择。</li>
                         <li><strong>Remix</strong>：全栈 React 应用。</li>
+                        <li><strong>Gatsby</strong>：静态站点生成器。</li>
+                        <li><strong>Laravel</strong>：PHP 全栈框架集成。</li>
                     </ul>
                 </div>
-
-                <!-- Section: CLI -->
+                <!-- Directory -->
+                <div id="content-directory" class="section-content">
+                    <h1>目录结构</h1>
+                    <p>了解 shadcn/ui 推荐的项目目录结构，帮助你组织组件和配置文件。</p>
+                    <h2>推荐结构</h2>
+                    <div class="code-block">.
+├── app/
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   └── ui/
+│       ├── button.tsx
+│       └── ...
+├── lib/
+│   └── utils.ts
+├── styles/
+│   └── globals.css
+└── components.json</div>
+                    <h2>关键文件说明</h2>
+                    <ul>
+                        <li><strong>components/ui/</strong>：存放所有 UI 组件的目录。</li>
+                        <li><strong>lib/utils.ts</strong>：包含 `cn` 工具函数用于合并 Tailwind 类名。</li>
+                        <li><strong>styles/globals.css</strong>：全局样式文件，包含 CSS 变量定义。</li>
+                        <li><strong>components.json</strong>：CLI 配置文件，定义组件安装路径。</li>
+                    </ul>
+                </div>
+                <!-- RTL -->
+                <div id="content-rtl" class="section-content">
+                    <h1>RTL 支持</h1>
+                    <p>shadcn/ui 完全支持从右到左（RTL）的文本布局，适用于阿拉伯语、希伯来语等语言。</p>
+                    <h2>启用 RTL</h2>
+                    <p>在项目根目录添加 `dir="rtl"` 属性：</p>
+                    <div class="code-block">&lt;html dir="rtl" lang="ar"&gt;...&lt;/html&gt;</div>
+                    <h2>组件适配</h2>
+                    <ul>
+                        <li>使用 Tailwind 的逻辑属性（如 `ms-` 代替 `ml-`）</li>
+                        <li>图标和箭头会自动翻转方向</li>
+                        <li>间距和对齐会自动调整</li>
+                    </ul>
+                </div>
+                <!-- MCP Server -->
+                <div id="content-mcp" class="section-content">
+                    <h1>MCP Server</h1>
+                    <p>Model Context Protocol (MCP) 服务器让 AI 助手能够访问 shadcn/ui 的组件文档和代码。</p>
+                    <h2>什么是 MCP？</h2>
+                    <p>MCP 是一种协议，允许 AI 模型与外部工具和数据源进行交互。通过 shadcn/ui 的 MCP 服务器，AI 助手可以获取组件文档、查找特定组件的安装命令、获取组件的完整源代码。</p>
+                    <h2>配置使用</h2>
+                    <div class="code-block">{
+  "mcpServers": {
+    "shadcn": {
+      "command": "npx",
+      "args": ["-y", "@shadcn/mcp-server"]
+    }
+  }
+}</div>
+                </div>
+                <!-- Registry -->
+                <div id="content-registry" class="section-content">
+                    <h1>Registry</h1>
+                    <p>Registry 是 shadcn/ui 的组件分发系统，允许你从各种来源安装组件。</p>
+                    <h2>什么是 Registry？</h2>
+                    <p>Registry 是一个 JSON 文件，描述了组件的位置、依赖和文件结构。它让 CLI 能够知道如何正确安装组件。</p>
+                    <h2>从 URL 安装</h2>
+                    <div class="code-block">npx shadcn@latest add https://example.com/registry/my-component.json</div>
+                </div>
+                <!-- Forms -->
+                <div id="content-forms" class="section-content">
+                    <h1>表单</h1>
+                    <p>shadcn/ui 提供了与主流表单库的集成方案，帮助你构建复杂的表单应用。</p>
+                    <h2>React Hook Form</h2>
+                    <p>推荐使用 React Hook Form 处理表单状态和验证：</p>
+                    <div class="code-block">npm install react-hook-form @hookform/resolvers zod</div>
+                    <h2>TanStack Form</h2>
+                    <p>如果你更喜欢 TanStack Form，我们也提供了相应的集成方案，具有完全类型安全的表单处理和异步验证支持。</p>
+                </div>
+                <!-- Changelog -->
+                <div id="content-changelog" class="section-content">
+                    <h1>更新日志</h1>
+                    <p>查看 shadcn/ui 的最新更新和改进。</p>
+                    <div class="border-b border-border pb-6 mb-6">
+                        <h3 class="text-white">v2.1.0</h3>
+                        <ul>
+                            <li>新增 <strong>Button Group</strong> 组件</li>
+                            <li>新增 <strong>Input OTP</strong> 组件</li>
+                            <li>改进 <strong>Sidebar</strong> 组件的响应式行为</li>
+                            <li>修复 <strong>Dialog</strong> 组件的焦点捕获问题</li>
+                        </ul>
+                    </div>
+                    <div class="border-b border-border pb-6 mb-6">
+                        <h3 class="text-white">v2.0.0</h3>
+                        <ul>
+                            <li>全新的 <strong>CLI</strong> 工具</li>
+                            <li>支持 <strong>New York</strong> 样式风格</li>
+                            <li>改进的 <strong>Theming</strong> 系统</li>
+                            <li>新增 <strong>Chart</strong> 组件</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- CLI -->
                 <div id="content-cli" class="section-content">
                     <h1>CLI 命令行工具</h1>
                     <p>使用 CLI 轻松添加组件并管理你的项目配置。</p>
-
                     <h2>常用命令</h2>
                     <h3>init</h3>
-                    <p>初始化项目并创建 `components.json` 配置文件。</p>
-                    <div class="code-block">
-                        npx shadcn@latest init
-                    </div>
-
+                    <div class="code-block">npx shadcn@latest init</div>
                     <h3>add</h3>
-                    <p>向项目中添加特定组件。例如添加按钮组件：</p>
-                    <div class="code-block">
-                        npx shadcn@latest add button
-                    </div>
-
+                    <div class="code-block">npx shadcn@latest add button</div>
+                    <h3>diff</h3>
+                    <div class="code-block">npx shadcn@latest diff</div>
                     <h2>常用选项</h2>
                     <ul>
-                        <li><strong>-y, --yes</strong>：跳过确认提示，直接执行。</li>
-                        <li><strong>-o, --overwrite</strong>：覆盖已存在的组件文件。</li>
-                        <li><strong>-c, --cwd &lt;path&gt;</strong>：指定工作目录。</li>
+                        <li><strong>-y, --yes</strong>：跳过确认提示</li>
+                        <li><strong>-o, --overwrite</strong>：覆盖已存在的组件文件</li>
+                        <li><strong>-c, --cwd</strong>：指定工作目录</li>
+                        <li><strong>--all</strong>：添加所有可用组件</li>
                     </ul>
                 </div>
-
-                <!-- Section: Theming -->
+                <!-- Monorepo -->
+                <div id="content-monorepo" class="section-content">
+                    <h1>Monorepo 支持</h1>
+                    <p>在 Monorepo 项目中使用 shadcn/ui 的配置指南。</p>
+                    <h2>Turborepo 配置</h2>
+                    <div class="code-block">packages/
+└── ui/
+    ├── components/ui/
+    ├── lib/utils.ts
+    └── package.json</div>
+                    <h2>注意事项</h2>
+                    <ul>
+                        <li>确保 Tailwind CSS 配置在所有应用中共享</li>
+                        <li>在应用的 `tailwind.config.ts` 中添加共享包路径</li>
+                        <li>使用 workspace 协议安装本地包</li>
+                    </ul>
+                </div>
+                <!-- JavaScript -->
+                <div id="content-javascript" class="section-content">
+                    <h1>JavaScript 支持</h1>
+                    <p>虽然 shadcn/ui 默认使用 TypeScript，但也支持纯 JavaScript 项目。</p>
+                    <h2>初始化 JavaScript 项目</h2>
+                    <div class="code-block">npx shadcn@latest init
+# 在提示中选择：Would you like to use TypeScript? no</div>
+                    <h2>注意事项</h2>
+                    <ul>
+                        <li>无法获得类型提示和自动补全</li>
+                        <li>IDE 支持可能不如 TypeScript 完善</li>
+                        <li>建议新项目使用 TypeScript</li>
+                    </ul>
+                </div>
+                <!-- Theming -->
                 <div id="content-theming" class="section-content">
                     <h1>主题定制</h1>
                     <p>shadcn/ui 使用 CSS 变量 (CSS Variables) 进行主题化管理。这让你可以直接改变全局外观而无需修改单个组件逻辑。</p>
-
                     <h2>CSS 变量配置</h2>
-                    <p>我们在全局 CSS 文件中使用 `:root` 定义颜色变量。所有的变量都采用 HSL 格式以便于 Tailwind 进行透明度处理。</p>
-
-                    <div class="code-block">
-                        :root {
-                        --background: 0 0% 100%;
-                        --foreground: 222.2 47.4% 11.2%;
-                        --primary: 222.2 47.4% 11.2%;
-                        --border: 214.3 31.8% 91.4%;
-                        /* ...其他变量 */
-                        }
-                    </div>
-
-                    <h2>定制约定</h2>
+                    <div class="code-block">:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 47.4% 11.2%;
+  --primary: 222.2 47.4% 11.2%;
+  --border: 214.3 31.8% 91.4%;
+  --radius: 0.5rem;
+}</div>
+                    <h2>基础色系</h2>
                     <ul>
-                        <li><strong>HSL 格式</strong>：所有颜色必须遵循 HSL 定义（如 0 0% 100%）。</li>
-                        <li><strong>无障碍性</strong>：在定制主色调时，请务必检查背景与前景的对比度。</li>
-                        <li><strong>圆角半径</strong>：通过 <kbd class="kbd">--radius</kbd> 变量统一控制全站组件圆角。</li>
+                        <li><strong>Zinc</strong>：中性灰色系（推荐）</li>
+                        <li><strong>Slate</strong>：带蓝调的灰色</li>
+                        <li><strong>Gray</strong>：纯灰色</li>
+                        <li><strong>Neutral</strong>：不带色调的灰色</li>
+                        <li><strong>Stone</strong>：带暖调的灰色</li>
                     </ul>
                 </div>
-
-                <!-- Section: Dark Mode -->
+                <!-- Dark Mode -->
                 <div id="content-dark-mode" class="section-content">
                     <h1>暗黑模式</h1>
                     <p>通过 `next-themes` 或原生的 Tailwind `class` 策略为你的站点添加暗黑模式支持。</p>
-
                     <h2>Next.js 实现步骤</h2>
-                    <ol class="list-decimal pl-6 space-y-4 text-muted">
-                        <li>安装依赖：<kbd class="kbd">npm install next-themes</kbd></li>
-                        <li>在根布局中使用 <code class="text-white">ThemeProvider</code> 包裹子组件。</li>
-                        <li>添加一个模式切换按钮 (Mode Toggle)。</li>
-                    </ol>
+                    <div class="code-block">import { ThemeProvider } from "next-themes"
 
-                    <div class="code-block">
-                        import { ThemeProvider } from "next-themes"
-
-                        export function Providers({ children }) {
-                        return (
-                        &lt;ThemeProvider attribute="class" defaultTheme="system" enableSystem&gt;
-                        {children}
-                        &lt;/ThemeProvider&gt;
-                        )
-                        }
-                    </div>
+export function Providers({ children }) {
+  return (
+    &lt;ThemeProvider attribute="class" defaultTheme="system" enableSystem&gt;
+      {children}
+    &lt;/ThemeProvider&gt;
+  )
+}</div>
                 </div>
-
-                <!-- Section: Typography -->
+                <!-- Typography -->
                 <div id="content-typography" class="section-content">
                     <h1>排版规范</h1>
                     <p>我们为标题、段落、列表等元素预设了一系列一致的排版样式。</p>
-
                     <h2>常用基础样式</h2>
-                    <div class="space-y-8 mt-10">
-                        <div class="border-b border-border pb-6">
-                            <h3 class="mb-4 text-white">一级标题 (H1)</h3>
-                            <div class="code-block text-xs">scroll-m-20 text-4xl font-extrabold tracking-tight
-                                lg:text-5xl</div>
-                        </div>
-                        <div class="border-b border-border pb-6">
-                            <h3 class="mb-4 text-white">二级标题 (H2)</h3>
-                            <div class="code-block text-xs">scroll-m-20 border-b pb-2 text-3xl font-semibold
-                                tracking-tight</div>
-                        </div>
-                        <div class="border-b border-border pb-6">
-                            <h3 class="mb-4 text-white">正文段落 (P)</h3>
-                            <div class="code-block text-xs">leading-7 [&:not(:first-child)]:mt-6</div>
-                        </div>
-                    </div>
-
-                    <h2 class="mt-12">调用示例</h2>
-                    <div class="code-block text-xs">
-                        export function TypographyH1() {
-                        return (
-                        &lt;h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"&gt;
-                        这是一个极致极简的文档标题
-                        &lt;/h1&gt;
-                        )
-                        }
-                    </div>
+                    <div class="code-block">scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl</div>
                 </div>
-
-                <!-- Section: Accordion -->
+                <!-- Component: Accordion -->
                 <div id="content-accordion" class="section-content">
-                    <h1>Accordion 手风琴</h1>
+                    <h1>Accordion</h1>
                     <p>一组垂直堆叠的交互式标题，每个标题都能展示一个内容区域。</p>
-
-                    <h2>说明</h2>
-                    <p>此组件基于 Radix UI 的 Accordion 原语构建，并由 Tailwind CSS 定义样式。它完全支持键盘导航和屏幕阅读器。</p>
-
                     <h2>安装</h2>
-                    <div class="code-block">
-                        npx shadcn@latest add accordion
-                    </div>
-
+                    <div class="code-block">npx shadcn@latest add accordion</div>
                     <h2>用法示例</h2>
-                    <div class="code-block text-xs">
-                        import {
-                        Accordion,
-                        AccordionContent,
-                        AccordionItem,
-                        AccordionTrigger,
-                        } from "@/components/ui/accordion"
+                    <div class="code-block">import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
-                        export function AccordionDemo() {
-                        return (
-                        &lt;Accordion type="single" collapsible defaultValue="item-1"&gt;
-                        &lt;AccordionItem value="item-1"&gt;
-                        &lt;AccordionTrigger&gt;它是否支持无障碍？&lt;/AccordionTrigger&gt;
-                        &lt;AccordionContent&gt;
-                        是的。它完全遵循 WAI-ARIA 设计模式。
-                        &lt;/AccordionContent&gt;
-                        &lt;/AccordionItem&gt;
-                        &lt;/Accordion&gt;
-                        )
-                        }
-                    </div>
-
-                    <h2>API 参考</h2>
-                    <ul>
-                        <li><strong>Accordion</strong> 根容器。类型可选 <code>single</code> 或 <code>multiple</code>。</li>
-                        <li><strong>AccordionItem</strong> 包含触点和内容的包装器。</li>
-                        <li><strong>AccordionTrigger</strong> 触发展开/关闭的标题部分。</li>
-                        <li><strong>AccordionContent</strong> 被折叠的面板内容。</li>
-                    </ul>
+export function AccordionDemo() {
+  return (
+    &lt;Accordion type="single" collapsible&gt;
+      &lt;AccordionItem value="item-1"&gt;
+        &lt;AccordionTrigger&gt;是否支持无障碍？&lt;/AccordionTrigger&gt;
+        &lt;AccordionContent&gt;是的。它完全遵循 WAI-ARIA 设计模式。&lt;/AccordionContent&gt;
+      &lt;/AccordionItem&gt;
+    &lt;/Accordion&gt;
+  )
+}</div>
                 </div>
-
-                <!-- Section: Button -->
-                <div id="content-button" class="section-content">
-                    <h1>Button 按钮</h1>
-                    <p>具有多种样式变体和尺寸的通用按钮。支持加载状态、图标集成以及作为子元素分发。</p>
-
+                <!-- Component: Alert -->
+                <div id="content-alert" class="section-content">
+                    <h1>Alert</h1>
+                    <p>用于向用户展示简短重要信息的组件，支持多种视觉变体。</p>
                     <h2>安装</h2>
-                    <div class="code-block">
-                        npx shadcn@latest add button
-                    </div>
+                    <div class="code-block">npx shadcn@latest add alert</div>
+                    <h2>用法示例</h2>
+                    <div class="code-block">import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
-                    <h2>用法</h2>
-                    <div class="code-block text-xs">
-                        import { Button } from "@/components/ui/button"
-
-                        export function ButtonDemo() {
-                        return &lt;Button variant="outline"&gt;确定&lt;/Button&gt;
-                        }
-                    </div>
-
-                    <h2>属性 (Props)</h2>
+export function AlertDemo() {
+  return (
+    &lt;Alert&gt;
+      &lt;AlertTitle&gt;提示&lt;/AlertTitle&gt;
+      &lt;AlertDescription&gt;这是一条重要的提示信息。&lt;/AlertDescription&gt;
+    &lt;/Alert&gt;
+  )
+}</div>
+                </div>
+                <!-- Component: Alert Dialog -->
+                <div id="content-alert-dialog" class="section-content">
+                    <h1>Alert Dialog</h1>
+                    <p>用于需要用户确认的关键操作对话框，如删除操作。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add alert-dialog</div>
+                </div>
+                <!-- Component: Avatar -->
+                <div id="content-avatar" class="section-content">
+                    <h1>Avatar</h1>
+                    <p>用户头像组件，支持图片、回退文字和图标。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add avatar</div>
+                </div>
+                <!-- Component: Badge -->
+                <div id="content-badge" class="section-content">
+                    <h1>Badge</h1>
+                    <p>用于显示标签、状态或分类的小型徽章组件。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add badge</div>
+                </div>
+                <!-- Component: Breadcrumb -->
+                <div id="content-breadcrumb" class="section-content">
+                    <h1>Breadcrumb</h1>
+                    <p>面包屑导航组件，显示当前页面在站点层级中的位置。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add breadcrumb</div>
+                </div>
+                <!-- Component: Button -->
+                <div id="content-button" class="section-content">
+                    <h1>Button</h1>
+                    <p>具有多种样式变体和尺寸的通用按钮。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add button</div>
+                    <h2>变体</h2>
                     <table class="table-auto">
-                        <thead>
-                            <tr>
-                                <th>属性</th>
-                                <th>类型</th>
-                                <th>默认值</th>
-                                <th>说明</th>
-                            </tr>
-                        </thead>
+                        <thead><tr><th>属性</th><th>类型</th><th>默认值</th></tr></thead>
                         <tbody>
-                            <tr>
-                                <td>variant</td>
-                                <td>default | outline | ghost...</td>
-                                <td>default</td>
-                                <td>视觉变体</td>
-                            </tr>
-                            <tr>
-                                <td>size</td>
-                                <td>default | sm | lg | icon</td>
-                                <td>default</td>
-                                <td>尺寸步阶</td>
-                            </tr>
-                            <tr>
-                                <td>asChild</td>
-                                <td>boolean</td>
-                                <td>false</td>
-                                <td>是否渲染为子元素容器</td>
-                            </tr>
+                            <tr><td>variant</td><td>default | outline | ghost | link | destructive | secondary</td><td>default</td></tr>
+                            <tr><td>size</td><td>default | sm | lg | icon</td><td>default</td></tr>
+                            <tr><td>asChild</td><td>boolean</td><td>false</td></tr>
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Section: Dialog -->
-                <div id="content-dialog" class="section-content">
-                    <h1>Dialog 对话框</h1>
-                    <p>覆盖在主窗口之上的模态弹出框。通常用于关键性确认或输入任务。</p>
-
-                    <h2>说明</h2>
-                    <p>对话框会在打开时锁定背景滚动，并提供完整的焦点捕获（Focus Trap）与无障碍属性（Aria-labelledby / describedby）。</p>
-
+                <!-- Component: Calendar -->
+                <div id="content-calendar" class="section-content">
+                    <h1>Calendar</h1>
+                    <p>日历组件，用于日期选择和展示。</p>
                     <h2>安装</h2>
-                    <div class="code-block">
-                        npx shadcn@latest add dialog
-                    </div>
-
-                    <h2>用法示例</h2>
-                    <div class="code-block text-xs">
-                        import {
-                        Dialog,
-                        DialogContent,
-                        DialogDescription,
-                        DialogHeader,
-                        DialogTitle,
-                        DialogTrigger,
-                        } from "@/components/ui/dialog"
-
-                        export function DialogDemo() {
-                        return (
-                        &lt;Dialog&gt;
-                        &lt;DialogTrigger&gt;打开对话框&lt;/DialogTrigger&gt;
-                        &lt;DialogContent&gt;
-                        &lt;DialogHeader&gt;
-                        &lt;DialogTitle&gt;确认此操作？&lt;/DialogTitle&gt;
-                        &lt;DialogDescription&gt;
-                        此操作无法撤销。系统将永久删除相关的用户记录。
-                        &lt;/DialogDescription&gt;
-                        &lt;/DialogHeader&gt;
-                        &lt;/DialogContent&gt;
-                        &lt;/Dialog&gt;
-                        )
-                        }
-                    </div>
-
-                    <h2>核心组件</h2>
+                    <div class="code-block">npx shadcn@latest add calendar</div>
+                </div>
+                <!-- Component: Card -->
+                <div id="content-card" class="section-content">
+                    <h1>Card</h1>
+                    <p>卡片容器组件，用于组织和展示内容块。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add card</div>
+                </div>
+                <!-- Component: Carousel -->
+                <div id="content-carousel" class="section-content">
+                    <h1>Carousel</h1>
+                    <p>轮播图组件，用于横向滚动展示内容。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add carousel</div>
+                </div>
+                <!-- Component: Chart -->
+                <div id="content-chart" class="section-content">
+                    <h1>Chart</h1>
+                    <p>图表组件，基于 Recharts 构建，提供多种图表类型。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add chart</div>
+                    <h2>支持的图表类型</h2>
                     <ul>
-                        <li><strong>Dialog</strong> 主容器，通过 Context 共享状态。</li>
-                        <li><strong>DialogTrigger</strong> 交互触发器，通常为一个按钮。</li>
-                        <li><strong>DialogContent</strong> 实际渲染在 Portal 中的弹出内容。</li>
-                        <li><strong>DialogHeader / Footer</strong> 预置的结构化布局。</li>
+                        <li><strong>Area Chart</strong>：面积图</li>
+                        <li><strong>Bar Chart</strong>：柱状图</li>
+                        <li><strong>Line Chart</strong>：折线图</li>
+                        <li><strong>Pie Chart</strong>：饼图</li>
                     </ul>
                 </div>
+                <!-- Component: Checkbox -->
+                <div id="content-checkbox" class="section-content">
+                    <h1>Checkbox</h1>
+                    <p>复选框组件，用于多选场景。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add checkbox</div>
+                </div>
+                <!-- Component: Combobox -->
+                <div id="content-combobox" class="section-content">
+                    <h1>Combobox</h1>
+                    <p>组合框组件，结合输入框和下拉列表，支持搜索和筛选。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add popover command</div>
+                </div>
+                <!-- Component: Command -->
+                <div id="content-command" class="section-content">
+                    <h1>Command</h1>
+                    <p>命令面板组件，用于快速搜索和执行命令。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add command</div>
+                </div>
+                <!-- Component: Data Table -->
+                <div id="content-data-table" class="section-content">
+                    <h1>Data Table</h1>
+                    <p>高级数据表格组件，基于 TanStack Table 构建。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add table</div>
+                </div>
+                <!-- Component: Date Picker -->
+                <div id="content-date-picker" class="section-content">
+                    <h1>Date Picker</h1>
+                    <p>日期选择器组件。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add calendar popover</div>
+                </div>
+                <!-- Component: Dialog -->
+                <div id="content-dialog" class="section-content">
+                    <h1>Dialog</h1>
+                    <p>覆盖在主窗口之上的模态弹出框。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add dialog</div>
+                    <h2>用法示例</h2>
+                    <div class="code-block">import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 
+export function DialogDemo() {
+  return (
+    &lt;Dialog&gt;
+      &lt;DialogTrigger&gt;打开对话框&lt;/DialogTrigger&gt;
+      &lt;DialogContent&gt;
+        &lt;DialogHeader&gt;
+          &lt;DialogTitle&gt;确认此操作？&lt;/DialogTitle&gt;
+        &lt;/DialogHeader&gt;
+      &lt;/DialogContent&gt;
+    &lt;/Dialog&gt;
+  )
+}</div>
+                </div>
+                <!-- Component: Drawer -->
+                <div id="content-drawer" class="section-content">
+                    <h1>Drawer</h1>
+                    <p>抽屉组件，从屏幕边缘滑入的面板。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add drawer</div>
+                </div>
+                <!-- Component: Dropdown Menu -->
+                <div id="content-dropdown-menu" class="section-content">
+                    <h1>Dropdown Menu</h1>
+                    <p>下拉菜单组件，用于显示操作选项列表。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add dropdown-menu</div>
+                </div>
+                <!-- Component: Hover Card -->
+                <div id="content-hover-card" class="section-content">
+                    <h1>Hover Card</h1>
+                    <p>悬停卡片组件，鼠标悬停时显示额外信息。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add hover-card</div>
+                </div>
+                <!-- Component: Input -->
+                <div id="content-input" class="section-content">
+                    <h1>Input</h1>
+                    <p>文本输入框组件。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add input</div>
+                </div>
+                <!-- Component: Label -->
+                <div id="content-label" class="section-content">
+                    <h1>Label</h1>
+                    <p>表单标签组件。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add label</div>
+                </div>
+                <!-- Component: Menubar -->
+                <div id="content-menubar" class="section-content">
+                    <h1>Menubar</h1>
+                    <p>菜单栏组件，通常用于应用程序顶部。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add menubar</div>
+                </div>
+                <!-- Component: Pagination -->
+                <div id="content-pagination" class="section-content">
+                    <h1>Pagination</h1>
+                    <p>分页组件，用于导航多页内容。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add pagination</div>
+                </div>
+                <!-- Component: Popover -->
+                <div id="content-popover" class="section-content">
+                    <h1>Popover</h1>
+                    <p>弹出层组件，在点击或悬停时显示内容。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add popover</div>
+                </div>
+                <!-- Component: Progress -->
+                <div id="content-progress" class="section-content">
+                    <h1>Progress</h1>
+                    <p>进度条组件，显示任务完成进度。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add progress</div>
+                </div>
+                <!-- Component: Radio Group -->
+                <div id="content-radio-group" class="section-content">
+                    <h1>Radio Group</h1>
+                    <p>单选按钮组组件。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add radio-group</div>
+                </div>
+                <!-- Component: Scroll Area -->
+                <div id="content-scroll-area" class="section-content">
+                    <h1>Scroll Area</h1>
+                    <p>自定义滚动区域组件。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add scroll-area</div>
+                </div>
+                <!-- Component: Select -->
+                <div id="content-select" class="section-content">
+                    <h1>Select</h1>
+                    <p>下拉选择器组件。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add select</div>
+                </div>
+                <!-- Component: Separator -->
+                <div id="content-separator" class="section-content">
+                    <h1>Separator</h1>
+                    <p>分隔线组件，用于视觉上分隔内容。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add separator</div>
+                </div>
+                <!-- Component: Sheet -->
+                <div id="content-sheet" class="section-content">
+                    <h1>Sheet</h1>
+                    <p>侧边面板组件，从屏幕边缘滑入。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add sheet</div>
+                </div>
+                <!-- Component: Sidebar -->
+                <div id="content-sidebar" class="section-content">
+                    <h1>Sidebar</h1>
+                    <p>侧边栏组件，用于导航和内容组织。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add sidebar</div>
+                </div>
+                <!-- Component: Skeleton -->
+                <div id="content-skeleton" class="section-content">
+                    <h1>Skeleton</h1>
+                    <p>骨架屏组件，用于内容加载占位。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add skeleton</div>
+                </div>
+                <!-- Component: Slider -->
+                <div id="content-slider" class="section-content">
+                    <h1>Slider</h1>
+                    <p>滑块组件，用于选择数值范围。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add slider</div>
+                </div>
+                <!-- Component: Sonner -->
+                <div id="content-sonner" class="section-content">
+                    <h1>Sonner</h1>
+                    <p>通知组件，基于 Sonner 库构建。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add sonner</div>
+                </div>
+                <!-- Component: Switch -->
+                <div id="content-switch" class="section-content">
+                    <h1>Switch</h1>
+                    <p>开关组件，用于切换状态。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add switch</div>
+                </div>
+                <!-- Component: Table -->
+                <div id="content-table" class="section-content">
+                    <h1>Table</h1>
+                    <p>表格组件，用于展示数据。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add table</div>
+                </div>
+                <!-- Component: Tabs -->
+                <div id="content-tabs" class="section-content">
+                    <h1>Tabs</h1>
+                    <p>标签页组件，用于切换不同内容面板。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add tabs</div>
+                </div>
+                <!-- Component: Textarea -->
+                <div id="content-textarea" class="section-content">
+                    <h1>Textarea</h1>
+                    <p>多行文本输入框组件。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add textarea</div>
+                </div>
+                <!-- Component: Toast -->
+                <div id="content-toast" class="section-content">
+                    <h1>Toast</h1>
+                    <p>消息提示组件，用于显示临时通知。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add toast</div>
+                </div>
+                <!-- Component: Toggle -->
+                <div id="content-toggle" class="section-content">
+                    <h1>Toggle</h1>
+                    <p>切换按钮组件，用于开关状态。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add toggle</div>
+                </div>
+                <!-- Component: Tooltip -->
+                <div id="content-tooltip" class="section-content">
+                    <h1>Tooltip</h1>
+                    <p>工具提示组件，鼠标悬停时显示额外信息。</p>
+                    <h2>安装</h2>
+                    <div class="code-block">npx shadcn@latest add tooltip</div>
+                </div>
             </div>
         </main>
     </div>
-
     <script>
         function switchTab(tabId) {
             const sections = document.querySelectorAll('.section-content');
             const links = document.querySelectorAll('.sidebar-link');
-
             sections.forEach(s => s.classList.remove('active'));
             links.forEach(l => l.classList.remove('active'));
-
             const activeSection = document.getElementById('content-' + tabId);
             const activeLink = document.getElementById('link-' + tabId);
-
             if (activeSection && activeLink) {
                 activeSection.classList.add('active');
                 activeLink.classList.add('active');
@@ -593,5 +789,4 @@
         }
     </script>
 </body>
-
 </html>
