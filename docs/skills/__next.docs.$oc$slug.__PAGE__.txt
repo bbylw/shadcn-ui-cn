@@ -1,0 +1,57 @@
+1:"$Sreact.fragment"
+2:I[78926,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js","/_next/static/chunks/07xm6rf915-l6.js","/_next/static/chunks/2uvb9zwanfrjf.js"],"DocPageClient"]
+4:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+3:Ta27,为你的 AI 助手提供关于 shadcn/ui 组件、模式和最佳实践的深入知识。
+
+Skills 让 AI 助手（如 Claude Code）获得项目感知的 shadcn/ui 上下文。安装后，你的 AI 助手知道如何为你的项目查找、安装、组合和自定义组件，使用正确的 API 和模式。
+
+例如，你可以让 AI 助手执行以下操作：
+
+- "添加一个包含邮箱和密码字段的登录表单。"
+- "创建一个设置页面，包含用于更新个人资料信息的表单。"
+- "构建一个带有侧边栏、统计卡片和数据表格的仪表盘。"
+- "切换到 --preset [CODE] 预设"
+- "你能从 @tailark 添加一个 hero 组件吗？"
+
+该技能读取项目的 `components.json`，为助手提供你的框架、别名、已安装组件、图标库和基础库信息，使其能首次就生成正确的代码。
+
+### 安装
+
+```bash
+npx shadcn@latest skills install
+```
+
+这会将 shadcn 技能安装到你的项目中。安装后，你的 AI 助手在处理 shadcn/ui 组件时会自动加载它。了解更多关于技能的信息，请访问 [skills.sh](https://skills.sh/)。
+
+### 包含内容
+
+#### 项目上下文
+
+每次交互时，技能会运行 `shadcn info --json` 来获取项目配置：框架、Tailwind 版本、别名、基础库（`base` 或 `radix`）、图标库、已安装组件和解析后的文件路径。
+
+#### CLI 命令
+
+所有 CLI 命令的完整参考：`init`、`add`、`search`、`view`、`docs`、`diff`、`info` 和 `build`。包含 flags、dry-run 模式、智能合并工作流、预设和模板。
+
+#### 主题与自定义
+
+CSS 变量、OKLCH 颜色、暗色模式、自定义颜色、圆角和组件变体的工作原理。包含 Tailwind v3 和 v4 的指导。
+
+#### 注册表创作
+
+如何构建和发布自定义组件注册表：`registry.json` 格式、项目类型、文件对象、依赖、CSS 变量、构建、托管和用户配置。
+
+#### MCP 服务器
+
+shadcn MCP 服务器的设置和工具，让 AI 助手能够搜索、浏览和安装注册表中的组件。
+
+### 工作原理
+
+1. **项目检测** — 技能在项目中找到 `components.json` 文件时自动激活。
+2. **上下文注入** — 运行 `shadcn info --json` 读取项目配置并将结果注入助手的上下文中。
+3. **模式执行** — 助手遵循 shadcn/ui 组合规则：使用 `FieldGroup` 构建表单、使用 `ToggleGroup` 处理选项集、语义化颜色以及正确的基础库特定 API。
+4. **组件发现** — 助手在生成代码前使用 `shadcn docs`、`shadcn search` 或 MCP 工具查找组件及其文档。
+
+---0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"skills","section":{"title":"Skills（AI 技能）","slug":"skills","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Aj_MfPLlKtGLgM6fuKE4X"}
+6:null

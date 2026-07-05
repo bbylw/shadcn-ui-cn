@@ -1,0 +1,73 @@
+1:"$Sreact.fragment"
+2:I[78926,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js","/_next/static/chunks/07xm6rf915-l6.js","/_next/static/chunks/2uvb9zwanfrjf.js"],"DocPageClient"]
+4:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+3:Tadf,### scroll-fade
+
+为滚动容器的边缘添加淡出效果的实用工具类。当 `npx shadcn@latest init` 初始化项目时，`scroll-fade` 已随 `shadcn` 包内置。
+
+#### 使用
+
+| 类名 | 样式 |
+|------|------|
+| `scroll-fade` / `scroll-fade-y` | 垂直滚动淡出 |
+| `scroll-fade-x` | 水平滚动淡出 |
+| `scroll-fade-t` | 仅顶部边缘淡出 |
+| `scroll-fade-b` | 仅底部边缘淡出 |
+| `scroll-fade-l` | 仅左侧边缘淡出 |
+| `scroll-fade-r` | 仅右侧边缘淡出 |
+| `scroll-fade-s` | 逻辑起始边缘淡出（RTL 下自动镜像） |
+| `scroll-fade-e` | 逻辑结束边缘淡出（RTL 下自动镜像） |
+| `scroll-fade-<数字>` | 设置淡出尺寸（基于间距比例） |
+| `scroll-fade-none` | 移除淡出效果 |
+
+将 `scroll-fade` 或 `scroll-fade-y` 添加到设置了 `overflow-y-auto` 的滚动容器上：
+
+```html
+<div class="scroll-fade overflow-y-auto h-48">
+  <!-- 列表内容 -->
+</div>
+```
+
+淡出效果通过 `mask-image` 实现，直接淡化内容本身而非叠加颜色。默认淡出深度为容器尺寸的 `12%`，上限 `40px`。使用 `scroll-fade-<数字>` 设置固定尺寸，如 `scroll-fade-[120px]`。使用 `--scroll-fade-reveal` 变量控制淡出的滚动响应距离（默认 `96px`）。
+
+在不支持 CSS 滚动驱动动画的浏览器中，回退为在两端显示静态淡出效果。
+
+`ScrollArea` 和 `MessageScroller` 组件可在其可滚动视口上使用 `scroll-fade`。
+
+---
+
+### shimmer
+
+为文本元素添加微光闪烁效果的实用工具类。当 `npx shadcn@latest init` 初始化项目时，`shimmer` 已随 `shadcn` 包内置。
+
+#### 使用
+
+| 类名 | 样式 |
+|------|------|
+| `shimmer` | 背景裁剪为文本，动画持续循环 |
+| `shimmer-once` | 仅播放一次动画 |
+| `shimmer-reverse` | 反向播放动画 |
+| `shimmer-none` | 禁用闪烁效果 |
+| `shimmer-color-<颜色>` | 设置高亮颜色 |
+| `shimmer-duration-<数字>` | 设置动画时长（毫秒） |
+| `shimmer-spread-<数字>` | 设置高亮带宽度 |
+| `shimmer-angle-<数字>` | 设置高亮带倾斜角度 |
+
+将 `shimmer` 添加到文本元素上：
+
+```html
+<h1 class="shimmer text-4xl font-bold">加载中...</h1>
+```
+
+闪烁效果基于 `currentColor` 构建，自动适配元素的文本颜色。和 `Marker` 组件搭配：`<Marker class="shimmer">思考中...</Marker>`。
+
+- **颜色**：`shimmer-color-sky-300` 或 `shimmer-color-[#ff6b6b]`
+- **时长**：`shimmer-duration-1000`（1 秒一个周期，默认 2000）
+- **宽度**：`shimmer-spread-4`（窄）或 `shimmer-spread-24`（宽），默认 `calc(3ch + 40px)`
+- **角度**：`shimmer-angle-45`（45 度，默认 20）
+
+当用户偏好减少动画时，闪烁效果会自动禁用。RTL 下动画方向自动跟随阅读方向。
+
+---0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"utilities","section":{"title":"工具类 (Utilities)","slug":"utilities","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Aj_MfPLlKtGLgM6fuKE4X"}
+6:null

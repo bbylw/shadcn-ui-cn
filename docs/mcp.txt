@@ -1,0 +1,276 @@
+1:"$Sreact.fragment"
+2:I[27423,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"ThemeProvider"]
+3:I[39756,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"default"]
+4:I[37457,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"default"]
+5:I[92825,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"ClientSegmentRoot"]
+6:I[3661,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js"],"default"]
+9:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+a:"$Sreact.suspense"
+d:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"ViewportBoundary"]
+f:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"MetadataBoundary"]
+11:I[68027,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"default",1]
+:HL["/_next/static/chunks/08ayqdazdmncg.css","style"]
+:HL["/_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"P":null,"c":["","docs","mcp"],"q":"","i":false,"f":[[["",{"children":["docs",{"children":[["slug","mcp","oc",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/08ayqdazdmncg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/1vkbx7c916shh.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/2im7c515bo69p.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh","className":"geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-full flex flex-col","children":["$","$L2",null,{"attribute":"class","defaultTheme":"system","enableSystem":true,"disableTransitionOnChange":true,"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/3nos2k1khyga6.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1nrf99vj1sqbt.js","async":true,"nonce":"$undefined"}]],["$","$L5",null,{"Component":"$6","slots":{"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]},"serverProvidedParams":{"params":{},"promises":["$@7"]}}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L8",[["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true,"nonce":"$undefined"}]],["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]]}],{},null,false,null]},null,false,"$@c"]},null,false,null]},null,false,null],["$","$1","h",{"children":[null,["$","$Ld",null,{"children":"$Le"}],["$","div",null,{"hidden":true,"children":["$","$Lf",null,{"children":["$","$a",null,{"name":"Next.Metadata","children":"$L10"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],false]],"m":"$undefined","G":["$11",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/08ayqdazdmncg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Aj_MfPLlKtGLgM6fuKE4X"}
+12:[]
+c:"$W12"
+7:"$0:f:0:1:1:children:0:props:children:1:props:serverProvidedParams:params"
+13:I[78926,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js","/_next/static/chunks/07xm6rf915-l6.js","/_next/static/chunks/2uvb9zwanfrjf.js"],"DocPageClient"]
+14:T1e5e,使用 shadcn MCP 服务器来浏览、搜索和安装来自注册表（registries）的组件。
+
+shadcn MCP Server 允许 AI 助手与注册表中的项目进行交互。您可以浏览可用组件、搜索特定组件，并通过自然语言直接将其安装到您的项目中。
+
+例如，您可以向 AI 助手提问："使用 acme 注册表中的组件构建一个着陆页" 或 "帮我从 shadcn 注册表中找一个登录表单"。
+
+注册表在项目的 `components.json` 文件中配置。
+
+```json title="components.json"
+{
+  "registries": {
+    "@acme": "https://acme.com/r/{name}.json"
+  }
+}
+```
+
+---
+
+### 什么是 MCP？
+
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io/) 是一个开放协议，使 AI 助手能够安全地连接到外部数据源和工具。使用 shadcn MCP 服务器，您的 AI 助手可以直接访问：
+
+- **浏览组件** — 列出任何已配置注册表中的所有可用组件、blocks 和模板
+- **跨注册表搜索** — 按名称或功能跨多个源查找特定组件
+- **自然语言安装** — 使用简单的对话提示添加组件，如 "添加一个登录表单"
+- **多注册表支持** — 访问公共注册表、私有公司库和第三方源
+
+---
+
+### 快速开始
+
+选择您的 MCP 客户端并按照说明配置 shadcn MCP 服务器。如果您希望手动配置，请参阅[配置](#配置)部分。
+
+#### Claude Code
+
+在您的项目中运行以下命令：
+
+```bash
+pnpm dlx shadcn@latest mcp init --client claude
+```
+
+**重新启动 Claude Code** 并尝试以下提示：
+
+- 显示 shadcn 注册表中所有可用的组件
+- 将 button、dialog 和 card 组件添加到我的项目中
+- 使用 shadcn 注册表中的组件创建一个联系表单
+
+**注意：** 您可以在 Claude Code 中使用 `/mcp` 命令来调试 MCP 服务器。
+
+#### Cursor
+
+要将 MCP 配置到 Cursor 中，将 shadcn 服务器添加到您的项目 `.cursor/mcp.json` 配置文件中：
+
+```json title=".cursor/mcp.json"
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"]
+    }
+  }
+}
+```
+
+添加配置后，在 Cursor 设置中启用 shadcn MCP 服务器。启用后，您应该会在 MCP 服务器列表中看到 shadcn 服务器旁边出现一个绿色圆点，以及可用的工具列表。
+
+有关更多详细信息，请参阅 [Cursor MCP 文档](https://docs.cursor.com/en/context/mcp#using-mcp-json)。
+
+#### VS Code
+
+要在 VS Code 中使用 GitHub Copilot 配置 MCP，将 shadcn 服务器添加到您的项目 `.vscode/mcp.json` 配置文件中：
+
+```json title=".vscode/mcp.json"
+{
+  "servers": {
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"]
+    }
+  }
+}
+```
+
+添加配置后，打开 `.vscode/mcp.json` 并点击 shadcn 服务器旁边的 **Start**。
+
+有关更多详细信息，请参阅 [VS Code MCP 文档](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)。
+
+#### Codex
+
+**注意：** `shadcn` CLI 无法自动更新 `~/.codex/config.toml`。您需要手动添加配置。
+
+要将 MCP 配置到 Codex 中，将 shadcn 服务器添加到 `~/.codex/config.toml`：
+
+```toml title="~/.codex/config.toml"
+[mcp_servers.shadcn]
+command = "npx"
+args = ["shadcn@latest", "mcp"]
+```
+
+添加配置后，重新启动 Codex 以加载 MCP 服务器。
+
+---
+
+### 工作原理
+
+MCP 服务器充当您的 AI 助手、组件注册表和 shadcn CLI 之间的桥梁。
+
+1. **注册表连接** — MCP 连接到已配置的注册表（shadcn/ui、私有注册表、第三方源）
+2. **自然语言** — 您用自然语言描述您的需求
+3. **AI 处理** — 助手将您的请求转换为注册表命令
+4. **组件交付** — 资源被获取并安装到您的项目中
+
+---
+
+### 支持的注册表
+
+shadcn MCP 服务器开箱即用，支持任何与 shadcn 兼容的注册表。
+
+- **shadcn/ui 注册表** — 包含所有 shadcn/ui 组件的默认注册表
+- **第三方注册表** — 任何遵循 shadcn 注册表规范的注册表
+- **私有注册表** — 您公司的内部组件库
+- **命名空间注册表** — 使用 `@namespace` 语法配置的多个注册表
+
+---
+
+### 配置
+
+您可以使用任何 MCP 客户端与 shadcn MCP 服务器交互。以下是最流行客户端的配置说明。
+
+#### 手动配置（通用）
+
+对于 Claude Code，将以下配置添加到项目根目录的 `.mcp.json` 文件：
+
+```json title=".mcp.json"
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"]
+    }
+  }
+}
+```
+
+添加配置后，重新启动客户端。
+
+#### 配置注册表
+
+MCP 服务器通过项目的 `components.json` 配置支持多个注册表。这允许您访问来自各种源的组件，包括私有注册表和第三方提供商。
+
+在 `components.json` 中配置额外的注册表：
+
+```json title="components.json"
+{
+  "registries": {
+    "@acme": "https://registry.acme.com/{name}.json",
+    "@internal": {
+      "url": "https://internal.company.com/{name}.json",
+      "headers": {
+        "Authorization": "Bearer ${REGISTRY_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+**注意：** 访问标准的 shadcn/ui 注册表无需额外配置。
+
+---
+
+### 认证
+
+对于需要认证的私有注册表，在 `.env.local` 中设置环境变量：
+
+```bash title=".env.local"
+REGISTRY_TOKEN=your_token_here
+API_KEY=your_api_key_here
+```
+
+有关注册表认证的更多详细信息，请参阅[认证文档](/docs/registry/authentication)。
+
+---
+
+### 示例提示词
+
+配置好 MCP 服务器后，您可以使用自然语言与注册表交互。尝试以下提示词：
+
+#### 浏览与搜索
+
+- 显示 shadcn 注册表中所有可用的组件
+- 帮我从 shadcn 注册表中找一个登录表单
+
+#### 安装项目
+
+- 将 button 组件添加到我的项目中
+- 使用 shadcn 组件创建一个登录表单
+- 从 acme 注册表安装 Cursor rules
+
+#### 使用命名空间
+
+- 显示 acme 注册表中的组件
+- 安装 @internal/auth-form
+- 使用 acme 注册表中的 hero、features 和 testimonials 部分构建一个着陆页
+
+---
+
+### 故障排除
+
+#### MCP 无响应
+
+如果 MCP 服务器未响应提示：
+
+1. **检查配置** — 验证 MCP 服务器已正确配置并在 MCP 客户端中启用
+2. **重启 MCP 客户端** — 配置更改后重新启动 MCP 客户端
+3. **验证安装** — 确保项目中已安装 `shadcn`
+4. **检查网络** — 确认您可以访问已配置的注册表
+
+#### 注册表访问问题
+
+如果组件无法从注册表加载：
+
+1. **检查 components.json** — 验证注册表 URL 是否正确
+2. **测试认证** — 确保已为私有注册表设置环境变量
+3. **验证注册表** — 确认注册表在线且可访问
+4. **检查命名空间** — 确保命名空间语法正确（`@namespace/component`）
+
+#### 安装失败
+
+如果组件安装失败：
+
+1. **检查项目设置** — 确保存在有效的 `components.json` 文件
+2. **验证路径** — 确认目标目录存在
+3. **检查权限** — 确保对组件目录有写入权限
+4. **检查依赖项** — 确认已安装所需的依赖项
+
+#### 无工具或提示
+
+如果看到 `No tools or prompts` 消息，请尝试以下操作：
+
+1. **清除 npx 缓存** — 运行 `npx clear-npx-cache`
+2. **重新启用 MCP 服务器** — 在 MCP 客户端中尝试重新启用 MCP 服务器
+3. **检查日志** — 在 Cursor 中，可以在 View -> Output 下查看日志，并在下拉菜单中选择 `MCP: project-*`
+
+---
+
+### 了解更多
+
+- [注册表文档](/docs/registry) — shadcn 注册表的完整指南
+- [命名空间](/docs/registry/namespace) — 配置多个注册表源
+- [认证](/docs/registry/authentication) — 保护您的私有注册表
+- [MCP 规范](https://modelcontextprotocol.io/) — 了解 Model Context Protocol
+
+---8:["$","$L13",null,{"activeSlug":"mcp","section":{"title":"MCP 服务器 (MCP Server)","slug":"mcp","content":"$14"}}]
+e:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+15:I[27201,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"IconMark"]
+b:null
+10:[["$","title","0",{"children":"shadcn/ui 中文文档 | 构建你自己的组件库"}],["$","meta","1",{"name":"description","content":"shadcn/ui 是一套设计精美、可访问的组件和代码分发平台。本站提供 shadcn/ui 完整中文文档参考、交互式组件演练场以及实时主题风格定制。"}],["$","link","2",{"rel":"icon","href":"/favicon.ico?favicon.2vob68tjqpejf.ico","sizes":"256x256","type":"image/x-icon"}],["$","$L15","3",{}]]

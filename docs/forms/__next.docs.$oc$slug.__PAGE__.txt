@@ -1,0 +1,219 @@
+1:"$Sreact.fragment"
+2:I[78926,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js","/_next/static/chunks/07xm6rf915-l6.js","/_next/static/chunks/2uvb9zwanfrjf.js"],"DocPageClient"]
+7:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:T1862,使用 React 和 shadcn/ui 构建表单。
+
+### 选择你的表单库
+
+shadcn/ui 支持以下表单库，每种都有不同的设计理念和 API 风格。
+
+---
+
+#### React Hook Form
+
+[React Hook Form](https://react-hook-form.com/) 是 React 生态中最流行的表单库，注重性能和灵活性。
+
+**安装**
+
+```bash
+npm install react-hook-form @hookform/resolvers zod
+```
+
+**核心模式**
+
+React Hook Form 与 shadcn/ui 结合使用时，核心组件包括：
+
+- **`<Field />`** — 表单字段容器，包含标签、描述和错误信息
+- **`<FieldGroup />`** — 字段组容器，用于对相关字段进行分组
+- **`<FieldSet />`** — fieldset 元素包装，用于字段集分组
+- **`<FieldLegend />`** — fieldset 的图例
+- **`<FieldError />`** — 显示字段验证错误信息
+
+配合 React Hook Form 的 `useForm`、`Controller` 和 `zodResolver` 使用。
+
+**基础用法**
+
+```tsx
+import { useForm, Controller } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
+import { Field, FieldGroup, FieldError } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+
+const formSchema = z.object({
+  username: z.string().min(3, "用户名至少 3 个字符"),
+})
+
+function MyForm() {
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: { username: "" },
+  })
+
+  return (
+    <form onSubmit={form.handleSubmit((data) => console.log(data))}>
+      <FieldGroup>
+        <Field label="用户名" data-invalid={!!form.formState.errors.username}>
+          <Controller
+            name="username"
+            control={form.control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                aria-invalid={!!form.formState.errors.username}
+              />
+            )}
+          />
+          {form.formState.errors.username && (
+            <FieldError>
+              {form.formState.errors.username.message}
+            </FieldError>
+          )}
+        </Field>
+      </FieldGroup>
+      <Button type="submit">提交</Button>
+    </form>
+  )
+}
+```
+
+**验证模式：** `onChange`（每次变更触发）、`onBlur`（失焦触发）、`onSubmit`（提交时触发，默认）、`onTouched`（首次失焦后每次变更触发）、`all`。使用 `useFieldArray` 钩子管理动态数组字段。
+
+---
+
+#### TanStack Form
+
+[TanStack Form](https://tanstack.com/form/latest) 是一个无头、类型安全的表单库，采用 render-prop 模式。
+
+**安装**
+
+```bash
+npm install @tanstack/react-form
+```
+
+**核心模式**
+
+- **`useForm`** — 创建表单实例
+- **`form.Field`** — 通过 render-prop 模式渲染单个字段
+- **`field.state.value` / `field.handleChange`** — 绑定值到 shadcn/ui 组件
+
+**基础用法**
+
+```tsx
+import { useForm } from "@tanstack/react-form"
+import { z } from "zod"
+import { Field, FieldError } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+
+const formSchema = z.object({
+  username: z.string().min(3, "用户名至少 3 个字符"),
+})
+
+function MyForm() {
+  const form = useForm({
+    validators: { onSubmit: formSchema },
+    defaultValues: { username: "" },
+    onSubmit: (data) => console.log(data.value),
+  })
+
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        form.handleSubmit()
+      }}
+    >
+      <form.Field name="username">
+        {(field) => (
+          <Field
+            label="用户名"
+            data-invalid={field.state.meta.errors.length > 0}
+          >
+            <Input
+              value={field.state.value}
+              onChange={(e) => field.handleChange(e.target.value)}
+              aria-invalid={field.state.meta.errors.length > 0}
+            />
+            {field.state.meta.errors.length > 0 && (
+              <FieldError>{field.state.meta.errors[0]?.message}</FieldError>
+            )}
+          </Field>
+        )}
+      </form.Field>
+      <Button type="submit">提交</Button>
+    </form>
+  )
+}
+```
+
+TanStack Form 使用 `form.Field` 组件的 render-prop 模式访问字段状态。验证支持 `onChange`、`onBlur` 和 `onSubmit` 模式。数组字段使用 `mode="array"` 属性配合 `field.pushValue()` 和 `field.removeValue()` 管理。
+
+---
+
+#### Formisch
+
+[Formisch](https://formisch.dev/) 是一个轻量级、schema 优先、完全类型安全的 React 表单库。
+
+**安装**
+
+```bash
+npm install formisch valibot
+```
+
+**核心模式**
+
+- **`useForm`** — 创建表单实例，schema 直接传入（无需 resolver）
+- **`<Form />`** — 包装原生 `<form>`，自动处理 `preventDefault` 和验证
+- **`<Field />`**（Formisch）— render-prop 模式，别名导入以避免与 shadcn/ui 的 `Field` 冲突
+
+**基础用法**
+
+```tsx
+import { useForm, Form as FormischForm, Field as FormischField } from "formisch"
+import * as v from "valibot"
+import { Field, FieldError } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+
+const formSchema = v.object({
+  username: v.pipe(v.string(), v.minLength(3, "用户名至少 3 个字符")),
+})
+
+function MyForm() {
+  const form = useForm({ schema: formSchema })
+
+  return (
+    <FormischForm form={form} onSubmit={(output) => console.log(output)}>
+      <FormischField name="username" form={form}>
+        {(field) => (
+          <Field
+            label="用户名"
+            data-invalid={field.errors.length > 0}
+          >
+            <Input
+              {...field.props}
+              value={field.input}
+              aria-invalid={field.errors.length > 0}
+            />
+            {field.errors.length > 0 && (
+              <FieldError>{field.errors[0]}</FieldError>
+            )}
+          </Field>
+        )}
+      </FormischField>
+      <Button type="submit">提交</Button>
+    </FormischForm>
+  )
+}
+```
+
+Formisch 的验证直接基于传入 `useForm` 的 Valibot schema，无需 resolver 步骤。验证通过 `validate`（首次验证时机）和 `revalidate`（后续验证时机）参数分别配置。支持 `"submit"`、`"blur"`、`"input"` 和 `"initial"` 模式。
+
+---0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"forms","section":{"title":"表单 (Forms)","slug":"forms","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Aj_MfPLlKtGLgM6fuKE4X"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}]
+5:["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]
+6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null

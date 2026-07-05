@@ -1,0 +1,111 @@
+1:"$Sreact.fragment"
+2:I[78926,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js","/_next/static/chunks/07xm6rf915-l6.js","/_next/static/chunks/2uvb9zwanfrjf.js"],"DocPageClient"]
+4:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+3:Tb51,您已使用 shadcn/ui 创建了新项目。以下是开始使用 shadcn/ui 构建的一些事项。
+
+### 添加组件
+
+使用 CLI 向项目添加组件：
+
+```bash
+npx shadcn@latest add button
+```
+
+然后在代码中导入并使用：
+
+```tsx
+// app/page.tsx
+import { Button } from "@/components/ui/button"
+
+export default function Home() {
+  return (
+    <div>
+      <Button>开始使用</Button>
+    </div>
+  )
+}
+```
+
+与传统组件库不同，shadcn/ui 将组件源代码直接添加到您的项目中的 `components/ui/` 目录。您拥有代码并可以随意自定义。
+
+您可以一次添加多个组件或添加所有可用组件：
+
+```bash
+npx shadcn@latest add button card alert dialog
+npx shadcn@latest add --all
+```
+
+浏览所有组件：[Components](https://ui.shadcn.com/docs/components) 页面。
+
+### 自定义主题
+
+您可以直接在 CSS 文件中编辑主题。了解更多关于 [Theming](https://ui.shadcn.com/docs/theming) 以及如何使用 CSS 变量或工具类的信息。
+
+如果您想尝试新的预设，可以在 [ui.shadcn.com](https://ui.shadcn.com/) 上可视化创建自定义主题，并使用预设代码将其应用到您的项目：
+
+```bash
+npx shadcn@latest apply <preset-code>
+```
+
+### 添加页面块
+
+您可以使用 CLI 向项目添加块：
+
+```bash
+npx shadcn@latest add login-03
+```
+
+这会将 `login-03` 块添加到您的项目。在代码中导入并使用：
+
+```tsx
+// app/page.tsx
+import { Login03 } from "@/components/login-03"
+
+export default function Home() {
+  return <Login03 />
+}
+```
+
+### 从注册表安装
+
+shadcn/ui 拥有不断增长的社区注册表生态系统。您可以使用 CLI 从任何注册表 URL 安装组件：
+
+```bash
+npx shadcn@latest add https://registry.example.com/button
+```
+
+浏览 [Registry Directory](https://ui.shadcn.com/docs/directory) 查看可用注册表列表。
+
+### 使用 AI 构建
+
+shadcn/ui 设计为与 AI 配合使用。您的 AI 助手可以读取项目中的组件源代码、理解 API，并组合它们来构建页面和功能。
+
+以下是一些可以尝试的示例提示词：
+
+- _"创建一个包含姓名、邮箱和密码输入框的注册页面。"_
+- _"创建一个用于更新个人资料信息的设置页面，包含表单。"_
+- _"构建一个包含头部、统计卡片和数据表格的仪表板。"_
+
+### 安装 shadcn Skills
+
+在您的 AI 助手中安装 shadcn skill。这将为您的 AI 助手提供完整的组件注册表、文档和搜索功能。
+
+```bash
+npx shadcn@latest skills install
+```
+
+了解更多关于 [skills](https://ui.shadcn.com/docs/skills) 的信息。
+
+### 连接 MCP 服务器
+
+shadcn MCP 服务器为您的 AI 助手提供完整的组件注册表、文档和搜索功能。在您的编辑器中连接它以获得最佳体验。
+
+```bash
+npx shadcn@latest mcp
+```
+
+了解更多关于 [MCP Server](https://ui.shadcn.com/docs/mcp) 的信息。
+
+---0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"getting-started","section":{"title":"新手指南 (项目就绪后)","slug":"getting-started","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Aj_MfPLlKtGLgM6fuKE4X"}
+6:null

@@ -1,0 +1,24 @@
+1:"$Sreact.fragment"
+2:I[78926,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js","/_next/static/chunks/07xm6rf915-l6.js","/_next/static/chunks/2uvb9zwanfrjf.js"],"DocPageClient"]
+4:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+3:T662,每个组件都在 Figma 中重新创建，具有可自定义的 props、排版和图标。
+
+> **注意：** Figma 文件由社区贡献。如果您有任何问题或反馈，请联系 Figma 文件维护者。
+
+### 免费资源
+
+- [shadcn/ui components](https://www.figma.com/community/file/1342715840824755935) by Sitsiilia Bergmann — 一个结构良好的组件库，与 shadcn 组件系统保持一致，定期维护。
+- [shadcn/ui design system](https://www.figma.com/community/file/1203061493325953101) by Pietro Schirano — shadcn/ui 的设计伴侣。每个组件都精心制作，以完美匹配代码实现。
+
+### 付费资源
+
+- [shadcn/ui kit](https://shadcndesign.com/) by Matt Wierzbicki — 优质、始终最新的 Figma UI 工具包，与 shadcn/ui 兼容，优化了设计到开发的交接。
+- [shadcncraft Design System](https://shadcncraft.com/) — 生产级 shadcn/ui 工具包，包含 Pro React 块和 1:1 Figma 对齐。
+- [shadcn/studio UI Kit](https://shadcnstudio.com/figma) — 与 shadcn/ui 兼容的 Figma 工具包，包含更新的组件、550+ 块、10+ 模板、20+ 主题和 AI 工具。
+- [Shadcnblocks.com](https://www.shadcnblocks.com/) — 高级 Shadcn Figma UI 工具包，包含组件、500+ Pro 块和 shadcn 主题变量。
+- [Obra shadcn/ui Pro](https://shadcn.obra.studio/products/obra-shadcn-ui-pro) by Obra Studio — 专为设计师打造的 shadcn/ui Figma 体验，包含自定义组件、Pro 块和设计到代码插件。
+- [Shadcn Space](https://shadcnspace.com/figma) — 320+ 块、9+ 模板和 250+ 组件的集合，包含与 shadcn/ui 兼容的 Figma 工具包。
+
+---0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"figma","section":{"title":"Figma","slug":"figma","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Aj_MfPLlKtGLgM6fuKE4X"}
+6:null

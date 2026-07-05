@@ -1,0 +1,71 @@
+1:"$Sreact.fragment"
+2:I[27423,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"ThemeProvider"]
+3:I[39756,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"default"]
+4:I[37457,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"default"]
+5:I[92825,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"ClientSegmentRoot"]
+6:I[3661,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js"],"default"]
+9:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+a:"$Sreact.suspense"
+d:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"ViewportBoundary"]
+f:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"MetadataBoundary"]
+11:I[68027,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"default",1]
+:HL["/_next/static/chunks/08ayqdazdmncg.css","style"]
+:HL["/_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"P":null,"c":["","docs","introduction"],"q":"","i":false,"f":[[["",{"children":["docs",{"children":[["slug","introduction","oc",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/08ayqdazdmncg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/1vkbx7c916shh.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/2im7c515bo69p.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh","className":"geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-full flex flex-col","children":["$","$L2",null,{"attribute":"class","defaultTheme":"system","enableSystem":true,"disableTransitionOnChange":true,"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/3nos2k1khyga6.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1nrf99vj1sqbt.js","async":true,"nonce":"$undefined"}]],["$","$L5",null,{"Component":"$6","slots":{"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]},"serverProvidedParams":{"params":{},"promises":["$@7"]}}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L8",[["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true,"nonce":"$undefined"}]],["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]]}],{},null,false,null]},null,false,"$@c"]},null,false,null]},null,false,null],["$","$1","h",{"children":[null,["$","$Ld",null,{"children":"$Le"}],["$","div",null,{"hidden":true,"children":["$","$Lf",null,{"children":["$","$a",null,{"name":"Next.Metadata","children":"$L10"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],false]],"m":"$undefined","G":["$11",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/08ayqdazdmncg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Aj_MfPLlKtGLgM6fuKE4X"}
+12:[]
+c:"$W12"
+7:"$0:f:0:1:1:children:0:props:children:1:props:serverProvidedParams:params"
+13:I[78926,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js","/_next/static/chunks/07xm6rf915-l6.js","/_next/static/chunks/2uvb9zwanfrjf.js"],"DocPageClient"]
+14:Tad7,大多数传统组件库的工作方式：您从 NPM 安装一个包，导入组件，然后在应用中使用它们。
+
+这种方法在您需要自定义组件以适应设计系统或需要库中未包含的组件时就会遇到问题。**您最终往往会包装库组件、编写变通方案来覆盖样式，或者混合使用来自不同库的具有不兼容 API 的组件。**
+
+这正是 shadcn/ui 旨在解决的问题。它围绕以下原则构建：
+
+### 开放代码 (Open Code)
+
+shadcn/ui 将实际的组件代码交给您。您拥有完全的控制权来自定义和扩展组件以满足需求。
+
+- **完全透明**：您可以准确看到每个组件是如何构建的。
+- **轻松自定义**：修改组件的任何部分以适应您的设计和功能需求。
+- **AI 集成**：访问代码使得 LLM 可以直接读取、理解甚至改进您的组件。
+
+> 在传统库中，如果您需要更改按钮的行为，必须覆盖样式或包装组件。而使用 shadcn/ui，您可以直接编辑按钮代码。
+
+#### 如何在开放代码方法中拉取上游更新？
+
+### 组合性 (Composition)
+
+shadcn/ui 中的每个组件都共享一个通用的、可组合的接口。**如果某个组件不存在，我们会引入它，使其可组合，并调整其样式以匹配并融入设计系统的其余部分。**
+
+> 共享的可组合接口意味着对您的团队和 LLM 来说都是可预测的。您无需为每个新组件学习不同的 API。即使是第三方组件也是如此。
+
+### 分发 (Distribution)
+
+shadcn/ui 也是一个代码分发系统。它定义了组件的 schema 和一个用于分发它们的 CLI。
+
+- **Schema**：一种扁平文件结构，定义了组件、其依赖项和属性。
+- **CLI**：一个命令行工具，用于跨项目分发和安装组件，支持多种框架。
+
+> 您可以使用 schema 将组件分发到其他项目，或让 AI 基于现有 schema 生成全新的组件。
+
+### 美观的默认样式 (Beautiful Defaults)
+
+shadcn/ui 附带大量拥有精心选择的默认样式的组件。它们被设计为独立使用时看起来很棒，并且作为一个一致的系统协同工作：
+
+- **开箱即用**：无需额外工作，您的 UI 就拥有干净、简约的外观。
+- **统一设计**：组件自然相互匹配。每个组件都旨在与其他组件保持一致，保证 UI 的一致性。
+- **易于自定义**：如果您想更改某些内容，只需覆盖和扩展默认值即可。
+
+### AI 就绪 (AI-Ready)
+
+shadcn/ui 的设计使得 AI 工具可以轻松处理您的代码。其开放的代码和一致的 API 允许 AI 模型读取、理解甚至生成新组件。
+
+> AI 模型可以学习您的组件如何工作，并建议改进或创建与您现有设计集成的新组件。
+
+---8:["$","$L13",null,{"activeSlug":"introduction","section":{"title":"介绍","slug":"introduction","content":"$14"}}]
+e:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+15:I[27201,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"IconMark"]
+b:null
+10:[["$","title","0",{"children":"shadcn/ui 中文文档 | 构建你自己的组件库"}],["$","meta","1",{"name":"description","content":"shadcn/ui 是一套设计精美、可访问的组件和代码分发平台。本站提供 shadcn/ui 完整中文文档参考、交互式组件演练场以及实时主题风格定制。"}],["$","link","2",{"rel":"icon","href":"/favicon.ico?favicon.2vob68tjqpejf.ico","sizes":"256x256","type":"image/x-icon"}],["$","$L15","3",{}]]

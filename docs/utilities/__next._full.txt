@@ -1,0 +1,91 @@
+1:"$Sreact.fragment"
+2:I[27423,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"ThemeProvider"]
+3:I[39756,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"default"]
+4:I[37457,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"default"]
+5:I[92825,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"ClientSegmentRoot"]
+6:I[3661,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js"],"default"]
+9:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+a:"$Sreact.suspense"
+d:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"ViewportBoundary"]
+f:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"MetadataBoundary"]
+11:I[68027,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"default",1]
+:HL["/_next/static/chunks/08ayqdazdmncg.css","style"]
+:HL["/_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"P":null,"c":["","docs","utilities"],"q":"","i":false,"f":[[["",{"children":["docs",{"children":[["slug","utilities","oc",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/08ayqdazdmncg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/1vkbx7c916shh.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/2im7c515bo69p.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh","className":"geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-full flex flex-col","children":["$","$L2",null,{"attribute":"class","defaultTheme":"system","enableSystem":true,"disableTransitionOnChange":true,"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/3nos2k1khyga6.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1nrf99vj1sqbt.js","async":true,"nonce":"$undefined"}]],["$","$L5",null,{"Component":"$6","slots":{"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]},"serverProvidedParams":{"params":{},"promises":["$@7"]}}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L8",[["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true,"nonce":"$undefined"}]],["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]]}],{},null,false,null]},null,false,"$@c"]},null,false,null]},null,false,null],["$","$1","h",{"children":[null,["$","$Ld",null,{"children":"$Le"}],["$","div",null,{"hidden":true,"children":["$","$Lf",null,{"children":["$","$a",null,{"name":"Next.Metadata","children":"$L10"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],false]],"m":"$undefined","G":["$11",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/08ayqdazdmncg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Aj_MfPLlKtGLgM6fuKE4X"}
+12:[]
+c:"$W12"
+7:"$0:f:0:1:1:children:0:props:children:1:props:serverProvidedParams:params"
+13:I[78926,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js","/_next/static/chunks/07xm6rf915-l6.js","/_next/static/chunks/2uvb9zwanfrjf.js"],"DocPageClient"]
+14:Tadf,### scroll-fade
+
+为滚动容器的边缘添加淡出效果的实用工具类。当 `npx shadcn@latest init` 初始化项目时，`scroll-fade` 已随 `shadcn` 包内置。
+
+#### 使用
+
+| 类名 | 样式 |
+|------|------|
+| `scroll-fade` / `scroll-fade-y` | 垂直滚动淡出 |
+| `scroll-fade-x` | 水平滚动淡出 |
+| `scroll-fade-t` | 仅顶部边缘淡出 |
+| `scroll-fade-b` | 仅底部边缘淡出 |
+| `scroll-fade-l` | 仅左侧边缘淡出 |
+| `scroll-fade-r` | 仅右侧边缘淡出 |
+| `scroll-fade-s` | 逻辑起始边缘淡出（RTL 下自动镜像） |
+| `scroll-fade-e` | 逻辑结束边缘淡出（RTL 下自动镜像） |
+| `scroll-fade-<数字>` | 设置淡出尺寸（基于间距比例） |
+| `scroll-fade-none` | 移除淡出效果 |
+
+将 `scroll-fade` 或 `scroll-fade-y` 添加到设置了 `overflow-y-auto` 的滚动容器上：
+
+```html
+<div class="scroll-fade overflow-y-auto h-48">
+  <!-- 列表内容 -->
+</div>
+```
+
+淡出效果通过 `mask-image` 实现，直接淡化内容本身而非叠加颜色。默认淡出深度为容器尺寸的 `12%`，上限 `40px`。使用 `scroll-fade-<数字>` 设置固定尺寸，如 `scroll-fade-[120px]`。使用 `--scroll-fade-reveal` 变量控制淡出的滚动响应距离（默认 `96px`）。
+
+在不支持 CSS 滚动驱动动画的浏览器中，回退为在两端显示静态淡出效果。
+
+`ScrollArea` 和 `MessageScroller` 组件可在其可滚动视口上使用 `scroll-fade`。
+
+---
+
+### shimmer
+
+为文本元素添加微光闪烁效果的实用工具类。当 `npx shadcn@latest init` 初始化项目时，`shimmer` 已随 `shadcn` 包内置。
+
+#### 使用
+
+| 类名 | 样式 |
+|------|------|
+| `shimmer` | 背景裁剪为文本，动画持续循环 |
+| `shimmer-once` | 仅播放一次动画 |
+| `shimmer-reverse` | 反向播放动画 |
+| `shimmer-none` | 禁用闪烁效果 |
+| `shimmer-color-<颜色>` | 设置高亮颜色 |
+| `shimmer-duration-<数字>` | 设置动画时长（毫秒） |
+| `shimmer-spread-<数字>` | 设置高亮带宽度 |
+| `shimmer-angle-<数字>` | 设置高亮带倾斜角度 |
+
+将 `shimmer` 添加到文本元素上：
+
+```html
+<h1 class="shimmer text-4xl font-bold">加载中...</h1>
+```
+
+闪烁效果基于 `currentColor` 构建，自动适配元素的文本颜色。和 `Marker` 组件搭配：`<Marker class="shimmer">思考中...</Marker>`。
+
+- **颜色**：`shimmer-color-sky-300` 或 `shimmer-color-[#ff6b6b]`
+- **时长**：`shimmer-duration-1000`（1 秒一个周期，默认 2000）
+- **宽度**：`shimmer-spread-4`（窄）或 `shimmer-spread-24`（宽），默认 `calc(3ch + 40px)`
+- **角度**：`shimmer-angle-45`（45 度，默认 20）
+
+当用户偏好减少动画时，闪烁效果会自动禁用。RTL 下动画方向自动跟随阅读方向。
+
+---8:["$","$L13",null,{"activeSlug":"utilities","section":{"title":"工具类 (Utilities)","slug":"utilities","content":"$14"}}]
+e:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+15:I[27201,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"IconMark"]
+b:null
+10:[["$","title","0",{"children":"shadcn/ui 中文文档 | 构建你自己的组件库"}],["$","meta","1",{"name":"description","content":"shadcn/ui 是一套设计精美、可访问的组件和代码分发平台。本站提供 shadcn/ui 完整中文文档参考、交互式组件演练场以及实时主题风格定制。"}],["$","link","2",{"rel":"icon","href":"/favicon.ico?favicon.2vob68tjqpejf.ico","sizes":"256x256","type":"image/x-icon"}],["$","$L15","3",{}]]

@@ -1,0 +1,488 @@
+1:"$Sreact.fragment"
+2:I[27423,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"ThemeProvider"]
+3:I[39756,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"default"]
+4:I[37457,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"default"]
+5:I[92825,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"ClientSegmentRoot"]
+6:I[3661,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js"],"default"]
+9:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+a:"$Sreact.suspense"
+d:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"ViewportBoundary"]
+f:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"MetadataBoundary"]
+11:I[68027,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"default",1]
+:HL["/_next/static/chunks/08ayqdazdmncg.css","style"]
+:HL["/_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"P":null,"c":["","docs","installation"],"q":"","i":false,"f":[[["",{"children":["docs",{"children":[["slug","installation","oc",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/08ayqdazdmncg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/1vkbx7c916shh.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/2im7c515bo69p.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh","className":"geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-full flex flex-col","children":["$","$L2",null,{"attribute":"class","defaultTheme":"system","enableSystem":true,"disableTransitionOnChange":true,"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/3nos2k1khyga6.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1nrf99vj1sqbt.js","async":true,"nonce":"$undefined"}]],["$","$L5",null,{"Component":"$6","slots":{"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]},"serverProvidedParams":{"params":{},"promises":["$@7"]}}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L8",[["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true,"nonce":"$undefined"}]],["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]]}],{},null,false,null]},null,false,"$@c"]},null,false,null]},null,false,null],["$","$1","h",{"children":[null,["$","$Ld",null,{"children":"$Le"}],["$","div",null,{"hidden":true,"children":["$","$Lf",null,{"children":["$","$a",null,{"name":"Next.Metadata","children":"$L10"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],false]],"m":"$undefined","G":["$11",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/08ayqdazdmncg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Aj_MfPLlKtGLgM6fuKE4X"}
+12:[]
+c:"$W12"
+7:"$0:f:0:1:1:children:0:props:children:1:props:serverProvidedParams:params"
+13:I[78926,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js","/_next/static/chunks/07xm6rf915-l6.js","/_next/static/chunks/2uvb9zwanfrjf.js"],"DocPageClient"]
+14:T28e6,如何安装依赖并构建您的应用。
+
+**新项目推荐：** 使用 [shadcn/create](https://ui.shadcn.com/create) 以可视化方式构建您的预设，并为您的框架生成正确的设置命令。
+
+有三种方式可以选择：
+
+### 使用 shadcn/create
+
+以可视化方式构建您的预设，预览您的选择，并生成特定框架的设置命令。
+
+打开 [shadcn/create](https://ui.shadcn.com/create)
+
+支持框架：Next.js、Vite、Laravel、React Router、Astro、TanStack Start。
+
+### 使用 CLI
+
+使用 CLI 直接从终端搭建新项目：
+
+```bash
+npx shadcn@latest init --template next
+```
+
+支持的模板：`next`、`vite`、`start`、`react-router`、`astro`。
+
+对于 Laravel，先使用 `laravel new` 创建应用，然后运行 `npx shadcn@latest init`。
+
+### 现有项目
+
+每个框架指南都包含 `Existing Project` 部分，其中包含该框架的手动设置步骤。
+
+### 各框架安装指南
+
+#### Next.js
+
+选择匹配您起点的设置。
+
+**使用 shadcn/create：**
+
+1. **构建您的预设**：打开 [shadcn/create](https://ui.shadcn.com/create?template=next)，以可视化方式构建您的预设。选择样式、颜色、字体、图标等。
+2. **创建项目**：点击 `Create Project`，选择包管理器，复制生成的命令。生成的命令将包含您选择的选项，如 `--base`、`--monorepo` 或 `--rtl`。
+3. **添加组件**：
+```bash
+npx shadcn@latest add card
+```
+如果是 monorepo：
+```bash
+cd apps/web && npx shadcn@latest add card
+# 或从根目录：
+npx shadcn@latest add card -w apps/web
+```
+导入使用：
+```tsx
+// app/page.tsx
+import { Card } from "@/components/ui/card"
+```
+Monorepo 则从 `@workspace/ui/components/card` 导入。
+
+**使用 CLI：**
+```bash
+npx shadcn@latest init --template next
+```
+Monorepo 使用 `--monorepo` 标志：
+```bash
+npx shadcn@latest init --template next --monorepo
+```
+
+**现有项目：**
+
+1. 如果需要新项目：
+```bash
+npx create-next-app@latest my-app --typescript --tailwind --eslint
+```
+选择推荐默认值以配置 Tailwind CSS、App Router 和 `@/*` 导入别名。
+
+使用 `--src-dir` 时 Next.js 将应用放在 `src/app`，并将 `@/*` 别名配置为指向 `./src/*`。
+
+2. 确保 `tsconfig.json` 包含 `@/*` 导入别名：
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
+}
+```
+
+3. 运行 CLI 初始化：
+```bash
+npx shadcn@latest init
+```
+
+4. 添加组件：
+```bash
+npx shadcn@latest add button
+```
+
+导入使用：
+```tsx
+// app/page.tsx
+import { Button } from "@/components/ui/button"
+```
+
+#### Vite
+
+**使用 CLI：**
+```bash
+npx shadcn@latest init --template vite
+```
+
+**现有项目：**
+
+1. 创建 Vite 项目（选择 React + TypeScript 模板）：
+```bash
+npm create vite@latest my-app -- --template react-ts
+```
+
+2. 添加 Tailwind CSS：
+```bash
+npm install tailwindcss @tailwindcss/vite
+```
+
+将 `src/index.css` 替换为：
+```css
+@import "tailwindcss";
+```
+
+3. 编辑 `tsconfig.json`：
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+4. 编辑 `tsconfig.app.json`：
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+5. 更新 `vite.config.ts`：
+```bash
+npm install -D @types/node
+```
+```ts
+import path from "path"
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react"
+import tailwindcss from "@tailwindcss/vite"
+
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+})
+```
+
+6. 运行 CLI：
+```bash
+npx shadcn@latest init
+```
+
+7. 添加组件：
+```bash
+npx shadcn@latest add button
+```
+
+#### Astro
+
+**使用 CLI：**
+```bash
+npx shadcn@latest init --template astro
+```
+
+**现有项目：**
+1. 创建 Astro 项目（设置 Tailwind CSS 和 React 集成）：
+```bash
+npm create astro@latest
+```
+
+2. 编辑 `tsconfig.json`：
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+3. 运行 CLI：
+```bash
+npx shadcn@latest init
+```
+
+4. 添加组件：
+```bash
+npx shadcn@latest add button
+```
+```tsx
+// src/pages/index.astro
+import { Button } from "@/components/ui/button"
+```
+
+#### React Router
+
+**使用 CLI：**
+```bash
+npx shadcn@latest init --template react-router
+```
+
+**现有项目：**
+1. 创建 React Router 项目：
+```bash
+npx create-react-router@latest my-app
+```
+
+2. 运行 CLI：
+```bash
+npx shadcn@latest init
+```
+
+3. 添加组件：
+```bash
+npx shadcn@latest add button
+```
+```tsx
+// app/routes/home.tsx
+import { Button } from "~/components/ui/button"
+```
+
+#### Laravel
+
+先使用 `laravel new` 创建应用，然后运行 `npx shadcn@latest init`。
+
+#### TanStack Start
+
+```bash
+npx shadcn@latest init --template start
+```
+
+#### 手动安装 (通用 React)
+
+1. **添加 Tailwind CSS**：按照 [Tailwind CSS 安装指南](https://tailwindcss.com/docs/installation) 操作。
+
+2. **添加依赖**：
+```bash
+npm install class-variance-authority clsx tailwind-merge lucide-react
+```
+
+3. **配置导入别名**：
+
+**选项 A：使用 `tsconfig.json` paths：**
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+**选项 B：使用 `package.json#imports`：**
+```json
+{
+  "imports": {
+    "#*": "./src/*"
+  }
+}
+```
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+`@` 别名是首选。您也可以使用其他别名。如果使用 `package.json#imports`，请保持 `components.json` 中的别名根目录匹配。参见 [package imports guide](https://ui.shadcn.com/docs/package-imports) 了解框架特定设置。
+
+4. **配置样式**：将以下内容添加到 `src/styles/globals.css`：
+```css
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  :root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0.042 265.755);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.965 0.001 286.375);
+    --secondary-foreground: oklch(0.205 0.042 265.755);
+    --muted: oklch(0.965 0.001 286.375);
+    --muted-foreground: oklch(0.555 0.011 285.805);
+    --accent: oklch(0.965 0.001 286.375);
+    --accent-foreground: oklch(0.205 0.042 265.755);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0.004 286.375);
+    --input: oklch(0.922 0.004 286.375);
+    --ring: oklch(0.205 0.042 265.755);
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.145 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.145 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.985 0 0);
+    --primary-foreground: oklch(0.205 0.042 265.755);
+    --secondary: oklch(0.269 0.015 285.805);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0.015 285.805);
+    --muted-foreground: oklch(0.708 0.01 285.805);
+    --accent: oklch(0.269 0.015 285.805);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.396 0.141 25.723);
+    --destructive-foreground: oklch(0.637 0.237 25.331);
+    --border: oklch(0.269 0.015 285.805);
+    --input: oklch(0.269 0.015 285.805);
+    --ring: oklch(0.439 0.023 285.805);
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+```
+
+5. **添加 cn 辅助函数**：
+```ts
+// lib/utils.ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+```
+
+6. **创建 components.json 文件**：
+```json
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/styles/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  }
+}
+```
+如果使用 `package.json#imports`：
+```json
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/styles/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "#components",
+    "utils": "#lib/utils",
+    "ui": "#components/ui",
+    "lib": "#lib",
+    "hooks": "#hooks"
+  }
+}
+```
+
+7. **完成**：您现在可以开始向项目添加组件了。
+
+---8:["$","$L13",null,{"activeSlug":"installation","section":{"title":"安装","slug":"installation","content":"$14"}}]
+e:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+15:I[27201,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"IconMark"]
+b:null
+10:[["$","title","0",{"children":"shadcn/ui 中文文档 | 构建你自己的组件库"}],["$","meta","1",{"name":"description","content":"shadcn/ui 是一套设计精美、可访问的组件和代码分发平台。本站提供 shadcn/ui 完整中文文档参考、交互式组件演练场以及实时主题风格定制。"}],["$","link","2",{"rel":"icon","href":"/favicon.ico?favicon.2vob68tjqpejf.ico","sizes":"256x256","type":"image/x-icon"}],["$","$L15","3",{}]]

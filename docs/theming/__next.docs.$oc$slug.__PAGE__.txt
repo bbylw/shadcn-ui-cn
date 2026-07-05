@@ -1,0 +1,148 @@
+1:"$Sreact.fragment"
+2:I[78926,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js","/_next/static/chunks/07xm6rf915-l6.js","/_next/static/chunks/2uvb9zwanfrjf.js"],"DocPageClient"]
+7:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:T165b,使用 CSS 变量和主题令牌。
+
+想可视化构建您的主题？使用 [shadcn/create](https://ui.shadcn.com/create) 预览颜色、圆角、字体和图标，然后为您的项目生成预设。
+
+我们使用并推荐使用 CSS 变量进行主题化。
+
+这为您提供了组件默认使用的语义化主题令牌，如 `background`、`foreground` 和 `primary`。在 CSS 中覆盖这些令牌即可改变应用的外观，而无需重写组件类。
+
+要使用 CSS 变量进行主题化，请在 `components.json` 中将 `tailwind.cssVariables` 设置为 `true`。这是默认设置。
+
+Tailwind 将这些令牌映射到工具类：`bg-background`、`text-foreground`、`border-border`、`ring-ring`。
+
+暗色模式通过在 `.dark` 选择器内覆盖相同的令牌来实现。
+
+### 令牌约定 (Token Convention)
+
+我们使用语义化的背景和前景配对。基础令牌控制表面颜色，`-foreground` 令牌控制该表面上的文本和图标颜色。
+
+表面令牌省略背景后缀。例如，`primary` 与 `primary-foreground` 配对。
+
+给定以下 CSS 变量：
+```css
+--primary: oklch(0.205 0.042 265.755);
+--primary-foreground: oklch(0.985 0 0);
+```
+
+以下组件的 `background` 颜色将是 `var(--primary)`，`foreground` 颜色将是 `var(--primary-foreground)`：
+```html
+<div class="bg-primary text-primary-foreground">Primary</div>
+```
+
+### 主题令牌 (Theme Tokens)
+
+这些令牌存在于 CSS 文件的 `:root` 和 `.dark` 下。
+
+| 令牌 | 控制内容 | 使用场景 |
+|------|---------|---------|
+| `background` / `foreground` | 默认应用背景和文本颜色 | 页面外壳、页面部分、默认文本 |
+| `card` / `card-foreground` | 提升表面及其内容 | Card、仪表板面板、设置面板 |
+| `popover` / `popover-foreground` | 浮动表面及其内容 | Popover、DropdownMenu、ContextMenu 和其他覆盖层 |
+| `primary` / `primary-foreground` | 高强调度操作和品牌表面 | 默认 Button、选中状态、徽章、活动强调 |
+| `secondary` / `secondary-foreground` | 低强调度填充操作和支持表面 | 次要按钮、次要徽章、支持性 UI |
+| `muted` / `muted-foreground` | 微妙表面和低强调度内容 | 描述、占位符、空状态、辅助文本、柔和表面 |
+| `accent` / `accent-foreground` | 交互悬停、焦点和活动表面 | Ghost 按钮、菜单高亮状态、悬停行、选中项 |
+| `destructive` | 破坏性操作和错误强调 | 破坏性按钮、无效状态、破坏性菜单项 |
+| `border` | 默认边框和分隔线 | 卡片、菜单、表格、分隔线、布局分隔 |
+| `input` | 表单控件边框和输入表面处理 | Input、Textarea、Select、轮廓样式控件 |
+| `ring` | 焦点环和轮廓 | 按钮、输入、复选框、菜单和其他可聚焦控件 |
+| `chart-1` ~ `chart-5` | 默认图表调色板 | 图表和图表驱动的仪表板块 |
+| `sidebar` / `sidebar-foreground` | 基础侧边栏表面和默认侧边栏文本 | Sidebar 容器及其默认内容 |
+| `sidebar-primary` / `sidebar-primary-foreground` | 侧边栏内高强调度操作 | 活动项、图标磁贴、徽章、侧边栏 CTA |
+| `sidebar-accent` / `sidebar-accent-foreground` | 侧边栏内悬停和选中状态 | 侧边栏菜单悬停状态、打开项、交互行 |
+| `sidebar-border` | 侧边栏特定边框和分隔线 | 侧边栏标题、组、内部分隔 |
+| `sidebar-ring` | 侧边栏特定焦点环 | 侧边栏内的焦点控件 |
+| `radius` | 基础圆角半径 | 卡片、输入、按钮、弹出框以及派生的 `radius-*` 令牌 |
+
+图表令牌在 [Chart theming docs](https://ui.shadcn.com/docs/components/chart#theming) 中有更详细的介绍。
+
+### 圆角半径 (Radius Scale)
+
+`--radius` 是主题的基础圆角令牌。
+
+我们从中派生出一个小的半径范围，以便组件可以使用一致的转角尺寸，同时仍共享单一真实来源。
+
+```css
+:root {
+  --radius: 0.625rem;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+```
+
+这意味着：
+- `radius-lg` 是基础值
+- 较小的半径从 `--radius` 缩小
+- 较大的半径从 `--radius` 放大
+- 更改 `--radius` 会更新整个半径范围
+
+### 添加新令牌 (Adding New Tokens)
+
+要添加新令牌，在 `:root` 和 `.dark` 下定义，然后通过 `@theme inline` 暴露给 Tailwind：
+
+```css
+@layer base {
+  :root {
+    --warning: oklch(0.681 0.162 75.834);
+    --warning-foreground: oklch(0.98 0.016 73.684);
+  }
+  .dark {
+    --warning: oklch(0.769 0.188 70.08);
+    --warning-foreground: oklch(0.98 0.016 73.684);
+  }
+}
+
+@theme inline {
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+}
+```
+
+然后即可在组件中使用 `bg-warning` 和 `text-warning-foreground`。
+
+### 基础颜色 (Base Colors)
+
+`tailwind.baseColor` 控制在运行 `init` 或使用预设时为项目生成的默认令牌值。
+
+可用的基础颜色：**Neutral**、**Stone**、**Zinc**、**Mauve**、**Olive**、**Mist**、**Taupe**。
+
+### 默认主题 CSS
+
+以下是完整的默认 `neutral` 主题脚手架。将其复制到您的全局 CSS 文件中，并根据需要调整令牌。
+
+（完整 CSS 见上方手动安装章节的样式配置部分）
+
+### 不使用 CSS 变量
+
+如果您不想使用 CSS 变量，CLI 可以生成使用内联 Tailwind 颜色工具类的组件：
+
+```bash
+npx shadcn@latest init --css-variables false
+```
+
+这会将 `tailwind.cssVariables` 设置为 `false`：
+
+```json
+{
+  "tailwind": {
+    "cssVariables": false
+  }
+}
+```
+
+这是一个安装时的选择。要切换现有项目，请删除并重新安装组件。
+
+---0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"theming","section":{"title":"主题化 (Theming)","slug":"theming","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Aj_MfPLlKtGLgM6fuKE4X"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}]
+5:["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]
+6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null

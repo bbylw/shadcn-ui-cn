@@ -1,0 +1,341 @@
+1:"$Sreact.fragment"
+2:I[78926,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js","/_next/static/chunks/07xm6rf915-l6.js","/_next/static/chunks/2uvb9zwanfrjf.js"],"DocPageClient"]
+7:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:T196b,`components.json` 文件保存项目的配置。我们用它来了解您的项目是如何设置的，以及如何生成为您的项目定制的组件。
+
+> **注意：** `components.json` 文件是可选的。它**仅在您使用 CLI** 添加组件时才需要。如果您使用复制粘贴方法，则不需要此文件。
+
+您可以通过运行以下命令在项目中创建 `components.json` 文件：
+```bash
+npx shadcn@latest init
+```
+
+### $schema
+
+JSON Schema 路径：https://ui.shadcn.com/schema.json
+
+```json
+{
+  "$schema": "https://ui.shadcn.com/schema.json"
+}
+```
+
+### style
+
+组件的样式。**初始化后不可更改。**
+
+```json
+{
+  "style": "new-york"
+}
+```
+
+`default` 样式已弃用，请使用 `new-york` 样式。
+
+### tailwind
+
+帮助 CLI 了解项目中 Tailwind CSS 如何设置的配置。
+
+#### tailwind.config
+
+`tailwind.config.js` 文件的路径。**对于 Tailwind CSS v4，请留空。**
+
+```json
+{
+  "tailwind": {
+    "config": "tailwind.config.ts"
+  }
+}
+```
+
+#### tailwind.css
+
+导入 Tailwind CSS 的 CSS 文件路径。
+
+```json
+{
+  "tailwind": {
+    "css": "src/app/globals.css"
+  }
+}
+```
+
+#### tailwind.baseColor
+
+用于为组件生成默认主题令牌。**初始化后不可更改。**
+
+```json
+{
+  "tailwind": {
+    "baseColor": "neutral"
+  }
+}
+```
+
+可用颜色：**Neutral**、**Stone**、**Zinc**、**Mauve**、**Olive**、**Mist**、**Taupe**。
+
+#### tailwind.cssVariables
+
+我们使用并推荐 CSS 变量进行主题化。
+
+设置为 `true` 生成语义化主题令牌（如 `background`、`foreground`、`primary`）。设置为 `false` 生成内联 Tailwind 颜色工具类。
+
+```json
+{
+  "tailwind": {
+    "cssVariables": true
+  }
+}
+```
+
+**初始化后不可更改。** 要在 CSS 变量和工具类之间切换，您必须删除并重新安装组件。
+
+#### tailwind.prefix
+
+Tailwind CSS 工具类的前缀。组件将以此前缀添加。
+
+```json
+{
+  "tailwind": {
+    "prefix": "tw-"
+  }
+}
+```
+
+### rsc
+
+是否启用 React Server Components 支持。
+
+设置为 `true` 时，CLI 会自动为客户端组件添加 `"use client"` 指令。
+
+```json
+{
+  "rsc": true
+}
+```
+
+### tsx
+
+选择 TypeScript 或 JavaScript 组件。
+
+设置为 `false` 允许组件以 JavaScript (.jsx) 扩展名添加。
+
+```json
+{
+  "tsx": true
+}
+```
+
+### aliases
+
+CLI 使用这些值将生成的组件放置在正确的位置并重写导入。
+
+您可以通过以下两种方式之一支持这些别名：
+1. `compilerOptions.paths` 在 `tsconfig.json` 或 `jsconfig.json` 中
+2. `package.json#imports` 并启用 TypeScript 包导入解析
+
+`components.json` 中的别名在 CLI 使用时仍然是必需的。它们告诉 CLI 哪些导入根目录映射到 `components`、`ui`、`lib`、`hooks` 和 `utils`。
+
+> **重要：** 如果使用包导入（package imports），请在 `tsconfig.json` 中启用 `resolvePackageJsonImports` 并使用 `moduleResolution: "bundler"`。如果使用 `paths`，请确保别名在适用时包含 `src` 目录。
+
+#### 使用 tsconfig 或 jsconfig paths
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+#### 使用 package.json#imports
+
+单包应用的推荐设置：
+
+```json
+// package.json
+{
+  "imports": {
+    "#components/*": "./src/components/*.tsx",
+    "#ui/*": "./src/components/ui/*.tsx",
+    "#lib/*": "./src/lib/*.ts",
+    "#hooks/*": "./src/hooks/*.ts"
+  }
+}
+```
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "resolvePackageJsonImports": true,
+    "moduleResolution": "bundler"
+  }
+}
+```
+
+```json
+// components.json
+{
+  "aliases": {
+    "components": "#components",
+    "ui": "#components/ui",
+    "lib": "#lib",
+    "hooks": "#hooks",
+    "utils": "#lib/utils"
+  }
+}
+```
+
+匹配的 `imports` 目标还控制生成的 `#...` 导入是否保留文件扩展名：
+
+- `"#components/*": "./src/components/*"` 保留源扩展名，生成如 `#components/button.tsx`
+- `"#components/*": "./src/components/*.tsx"` 去除源扩展名，生成如 `#components/button`
+
+**对于 monorepo：** 参见 monorepo 文档。本地工作区别名可以使用 `package.json#imports`，而共享工作区导入如 `@workspace/ui/components` 从目标包的 `exports` 解析。
+
+#### aliases.utils
+
+工具函数的导入别名。
+
+```json
+{
+  "aliases": {
+    "utils": "@/lib/utils"
+  }
+}
+```
+
+#### aliases.components
+
+组件的导入别名。
+
+```json
+{
+  "aliases": {
+    "components": "@/components"
+  }
+}
+```
+
+#### aliases.ui
+
+UI 组件的导入别名。
+
+CLI 将使用 `aliases.ui` 值来确定放置 `ui` 组件的位置。如果您想自定义 `ui` 组件的安装目录，请使用此配置。
+
+```json
+{
+  "aliases": {
+    "ui": "@/components/ui"
+  }
+}
+```
+
+#### aliases.lib
+
+`lib` 函数的导入别名，如 `format-date` 或 `generate-id`。
+
+```json
+{
+  "aliases": {
+    "lib": "@/lib"
+  }
+}
+```
+
+#### aliases.hooks
+
+`hooks` 的导入别名，如 `use-media-query` 或 `use-toast`。
+
+```json
+{
+  "aliases": {
+    "hooks": "@/hooks"
+  }
+}
+```
+
+### registries
+
+为项目配置多个资源注册表。允许您从包括私有注册表在内的各种来源安装组件、库、工具和其他资源。
+
+参见 [Namespaced Registries](https://ui.shadcn.com/docs/registry/namespace) 文档以获取详细信息。
+
+#### 基本配置
+
+使用 URL 模板配置注册表：
+
+```json
+{
+  "registries": {
+    "acme-corp": {
+      "url": "https://acme.corp/{name}.json"
+    }
+  }
+}
+```
+
+`{name}` 占位符在安装时会被替换为资源名称。
+
+#### 带认证的高级配置
+
+对于需要认证的私有注册表：
+
+```json
+{
+  "registries": {
+    "internal": {
+      "url": "https://internal.company.com/{name}.json",
+      "headers": {
+        "Authorization": "Bearer ${INTERNAL_REGISTRY_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+格式为 `${VAR_NAME}` 的环境变量会自动从环境中展开。
+
+#### 使用命名空间注册表
+
+配置后，使用命名空间语法安装资源：
+```bash
+npx shadcn@latest add acme-corp:button
+```
+
+#### 多注册表设置示例
+
+```json
+{
+  "registries": {
+    "shadcn": {
+      "url": "https://ui.shadcn.com/registry/{name}.json"
+    },
+    "acme-corp": {
+      "url": "https://acme.corp/registry/{name}.json",
+      "headers": {
+        "Authorization": "Bearer ${ACME_TOKEN}"
+      }
+    },
+    "team-alpha": {
+      "url": "https://team-alpha.dev/{name}.json?v=2"
+    }
+  }
+}
+```
+
+此配置允许您：
+- 从 shadcn/ui 安装公共组件
+- 通过认证访问私有公司 UI 组件
+- 使用带版本控制的团队特定资源
+
+---0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"components-json","section":{"title":"components.json 配置","slug":"components-json","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Aj_MfPLlKtGLgM6fuKE4X"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}]
+5:["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]
+6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null

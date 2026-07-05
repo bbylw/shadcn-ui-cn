@@ -1,0 +1,183 @@
+1:"$Sreact.fragment"
+2:I[78926,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js","/_next/static/chunks/07xm6rf915-l6.js","/_next/static/chunks/2uvb9zwanfrjf.js"],"DocPageClient"]
+7:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:T1307,在 monorepo 中使用 shadcn/ui 组件和 CLI。
+
+以前，在 monorepo 中使用 shadcn/ui 有些麻烦。您可以使用 CLI 添加组件，但必须管理组件的安装位置并手动修复导入路径。
+
+现在，CLI 能够理解 monorepo 结构，并会将组件、依赖和注册表依赖安装到正确的路径，自动为您处理导入。
+
+### 入门
+
+#### 创建新 Monorepo 项目
+
+使用 `--monorepo` 标志运行 `init` 命令：
+
+```bash
+npx shadcn@latest init --template next --monorepo
+```
+
+然后选择要使用的模板。
+
+这将创建一个包含两个工作区 `web` 和 `ui` 的 monorepo 项目，并使用 [Turborepo](https://turbo.build/repo/docs) 作为构建系统。一切已为您设置好，您可以开始向项目添加组件了。
+
+#### 向项目添加组件
+
+在应用路径中运行 `add` 命令：
+
+```bash
+cd apps/web
+npx shadcn@latest add button
+# 或从根目录：
+npx shadcn@latest add button -w apps/web
+```
+
+CLI 将识别添加的组件类型，并将正确的文件安装到正确的路径。
+
+例如，运行 `npx shadcn@latest add button`，CLI 会将 button 组件安装在 `packages/ui` 下，并更新 `apps/web` 中组件的导入路径。
+
+运行 `npx shadcn@latest add login-01`，CLI 会将 `button`、`label`、`input` 和 `card` 组件安装在 `packages/ui` 下，将 `login-form` 组件安装在 `apps/web/components` 下。
+
+#### 导入组件
+
+```tsx
+import { Button } from "@workspace/ui/components/button"
+import { cn } from "@workspace/ui/lib/utils"
+import { useToast } from "@workspace/ui/hooks/use-toast"
+```
+
+### 文件结构
+
+创建新 monorepo 项目时，CLI 会创建以下文件结构：
+
+```
+my-app/
+├── apps/
+│   └── web/
+│       ├── components.json
+│       ├── app/
+│       │   ├── layout.tsx
+│       │   ├── page.tsx
+│       │   └── globals.css
+│       └── package.json
+├── packages/
+│   └── ui/
+│       ├── components.json
+│       ├── src/
+│       │   ├── components/
+│       │   │   └── ui/
+│       │   ├── lib/
+│       │   └── hooks/
+│       └── package.json
+├── package.json
+└── turbo.json
+```
+
+### 要求
+
+1. 每个工作区必须有一个 `components.json` 文件。`package.json` 告诉 npm 如何安装依赖。`components.json` 告诉 CLI 如何及在哪里安装组件。
+
+2. `components.json` 文件必须正确定义工作区的别名。这告诉 CLI 如何导入组件、hooks、工具等。
+
+**apps/web/components.json：**
+```json
+{
+  "aliases": {
+    "ui": "@workspace/ui/components",
+    "components": "@/components",
+    "lib": "@/lib",
+    "hooks": "@/hooks",
+    "utils": "@workspace/ui/lib/utils"
+  }
+}
+```
+
+**packages/ui/components.json：**
+```json
+{
+  "aliases": {
+    "ui": "@/components/ui",
+    "components": "@/components",
+    "lib": "@/lib",
+    "hooks": "@/hooks",
+    "utils": "@/lib/utils"
+  }
+}
+```
+
+3. 确保两个 `components.json` 文件中具有相同的 `style`、`iconLibrary` 和 `baseColor`。
+
+4. **对于 Tailwind CSS v4，在 `components.json` 文件中将 `tailwind` 配置留空。**
+
+遵循这些要求，CLI 将能够将 UI 组件、块、库和 hooks 安装到正确的路径并处理导入。
+
+`package.json#imports` 适用于工作区内的本地别名，例如在 `packages/ui` 内部。对于共享工作区导入如 `@workspace/ui/components`，在 `components.json` 中保留显式别名。CLI 使用这些别名来跨工作区边界路由文件。
+
+### 使用 package.json#imports
+
+对于使用包导入且不依赖 `tsconfig.json` `paths` 的 monorepo，使用：
+- 每个工作区内部文件的本地 `#...` 别名
+- 共享导入（如 `@workspace/ui/components`）的工作区包 `exports`
+
+例如，应用工作区可以使用本地包导入：
+
+**apps/web/package.json：**
+```json
+{
+  "imports": {
+    "#components/*": "./app/components/*.tsx",
+    "#lib/*": "./app/lib/*.ts"
+  }
+}
+```
+
+**apps/web/components.json：**
+```json
+{
+  "aliases": {
+    "ui": "@workspace/ui/components",
+    "components": "#components",
+    "lib": "#lib",
+    "hooks": "#hooks",
+    "utils": "@workspace/ui/lib/utils"
+  }
+}
+```
+
+共享 UI 包通过 `exports` 暴露其安装目标：
+
+**packages/ui/package.json：**
+```json
+{
+  "exports": {
+    "./components/*": "./src/components/*",
+    "./lib/*": "./src/lib/*",
+    "./hooks/*": "./src/hooks/*"
+  }
+}
+```
+
+**packages/ui/components.json：**
+```json
+{
+  "aliases": {
+    "ui": "#components/ui",
+    "components": "#components",
+    "lib": "#lib",
+    "hooks": "#hooks",
+    "utils": "#lib/utils"
+  }
+}
+```
+
+在这种设置中：
+- 从应用添加到共享 UI 包的文件通过 `@workspace/ui/...` 路由
+- 添加在 `packages/ui` 内部的文件使用包本地 `#...` 别名
+- 共享包必须导出其他工作区引用的任何路径
+
+---0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"monorepo","section":{"title":"Monorepo 支持","slug":"monorepo","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Aj_MfPLlKtGLgM6fuKE4X"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}]
+5:["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]
+6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null

@@ -1,0 +1,326 @@
+1:"$Sreact.fragment"
+2:I[78926,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/3nos2k1khyga6.js","/_next/static/chunks/1nrf99vj1sqbt.js","/_next/static/chunks/07xm6rf915-l6.js","/_next/static/chunks/2uvb9zwanfrjf.js"],"DocPageClient"]
+7:I[97367,["/_next/static/chunks/1vkbx7c916shh.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:T1b7a,使用 shadcn CLI 将组件添加到您的项目。
+
+### init
+
+使用 `init` 命令为现有项目初始化配置和依赖，或使用 `--name` 创建新项目。
+
+`init` 命令安装依赖、添加 `cn` 工具函数并为项目配置 CSS 变量。
+
+```bash
+npx shadcn@latest init
+```
+
+创建一个新项目：
+```bash
+npx shadcn@latest init --name my-app --template next
+```
+
+`create` 命令是 `init` 的别名：
+```bash
+npx shadcn@latest create --name my-app --template next
+```
+
+**选项：**
+| 选项 | 描述 |
+|------|------|
+| `-y, --yes` | 跳过所有提示并使用默认值 |
+| `-w, --workspace <workspace>` | 目标工作区 |
+| `-o, --output <path>` | 组件输出路径 |
+| `--base <base>` | 基础目录 |
+| `--monorepo` | 创建 monorepo 项目 |
+| `--src-dir` | 使用 src 目录 |
+| `--template <template>` | 模板（next、vite、start、react-router、astro） |
+| `--css-variables <bool>` | 是否使用 CSS 变量 |
+| `--base-color <color>` | 基础颜色 |
+| `--icon-library <library>` | 图标库（lucide、radix） |
+| `--font-family <family>` | 字体家族 |
+| `--font-family-heading <family>` | 标题字体家族 |
+| `--font-family-mono <family>` | 等宽字体家族 |
+| `--yes` | 跳过提示 |
+
+### add
+
+使用 `add` 命令向项目添加组件和依赖。
+
+```bash
+npx shadcn@latest add button
+npx shadcn@latest add button card alert
+npx shadcn@latest add --all
+npx shadcn@latest add https://registry.example.com/button
+npx shadcn@latest add acme-corp:button
+npx shadcn@latest add github:username/repo/button
+```
+
+**选项：**
+| 选项 | 描述 |
+|------|------|
+| `-y, --yes` | 跳过提示 |
+| `-o, --overwrite` | 覆盖现有文件 |
+| `-p, --path <path>` | 组件安装路径 |
+
+### apply
+
+使用 `apply` 命令将预设应用到现有项目。
+
+```bash
+npx shadcn@latest apply <preset-code>
+```
+
+您可以仅应用预设中的主题或字体，而无需重新安装 UI 组件：
+```bash
+npx shadcn@latest apply <preset-code> --only theme
+npx shadcn@latest apply <preset-code> --only font
+```
+
+支持的 `--only` 值：`theme`、`font`。
+
+**选项：**
+| 选项 | 描述 |
+|------|------|
+| `--only <type>` | 仅应用指定部分（theme、font） |
+| `-y, --yes` | 跳过提示 |
+
+### preset
+
+使用 `preset` 命令检查预设代码并解析现有项目的预设。
+
+```bash
+npx shadcn@latest preset <subcommand> [options]
+```
+
+#### preset decode
+
+解码预设代码：
+```bash
+npx shadcn@latest preset decode <code>
+```
+
+**选项：** `--json`（JSON 格式输出）
+
+#### preset resolve
+
+解析当前项目的预设：
+```bash
+npx shadcn@latest preset resolve
+```
+
+`preset info` 是 `preset resolve` 的别名：
+```bash
+npx shadcn@latest preset info
+```
+
+**选项：** `--json`（JSON 格式输出）
+
+#### preset url
+
+打印预设代码的 create URL：
+```bash
+npx shadcn@latest preset url <code>
+```
+
+**选项：** `--copy`（复制到剪贴板）
+
+#### preset open
+
+在浏览器中打开预设代码：
+```bash
+npx shadcn@latest preset open <code>
+```
+
+**选项：** 无
+
+### view
+
+在安装前查看注册表中的项目：
+
+```bash
+npx shadcn@latest view button
+npx shadcn@latest view button card alert
+npx shadcn@latest view acme-corp:button
+```
+
+**选项：** 无
+
+### search
+
+搜索注册表中的项目：
+
+```bash
+npx shadcn@latest search
+npx shadcn@latest search button
+npx shadcn@latest search --registries acme-corp
+```
+
+`list` 命令是 `search` 的别名：
+```bash
+npx shadcn@latest list
+```
+
+**选项：**
+| 选项 | 描述 |
+|------|------|
+| `--registries <registries>` | 搜索特定注册表 |
+
+### build
+
+生成注册表 JSON 文件：
+
+```bash
+npx shadcn@latest build
+```
+
+此命令读取 `registry.json` 文件并在 `public/r` 目录中生成注册表 JSON 文件。
+
+**选项：**
+| 选项 | 描述 |
+|------|------|
+| `-o, --output <path>` | 输出目录（默认：public/r） |
+| `-c, --cwd <path>` | 当前工作目录 |
+
+### docs
+
+获取组件的文档和 API 参考：
+
+```bash
+npx shadcn@latest docs button
+```
+
+**选项：**
+| 选项 | 描述 |
+|------|------|
+| `--json` | JSON 格式输出 |
+
+### info
+
+获取项目信息：
+
+```bash
+npx shadcn@latest info
+```
+
+**选项：**
+| 选项 | 描述 |
+|------|------|
+| `--json` | JSON 格式输出 |
+
+### migrate
+
+对项目运行迁移。
+
+```bash
+npx shadcn@latest migrate <migration> [path]
+```
+
+**可用迁移：**
+| 迁移 | 描述 |
+|------|------|
+| `icons` | 将 UI 组件迁移到不同的图标库 |
+| `radix` | 迁移到 radix-ui |
+| `rtl` | 迁移组件以支持 RTL |
+
+**选项：**
+| 选项 | 描述 |
+|------|------|
+| `--dry-run` | 预览更改但不执行 |
+
+#### migrate rtl
+
+`rtl` 迁移转换您的组件以支持 RTL（从右到左）语言。
+
+```bash
+npx shadcn@latest migrate rtl [path]
+```
+
+这将：
+1. 更新 `components.json` 设置 `rtl: true`
+2. 将物理 CSS 属性转换为逻辑等价类（例如 `ml-4` → `ms-4`，`text-left` → `text-start`）
+3. 在需要的地方添加 `rtl:` 变体（例如 `space-x-4` → `space-x-4 rtl:space-x-reverse`）
+
+**迁移特定文件：**
+```bash
+npx shadcn@latest migrate rtl src/components/ui/**/*.tsx
+```
+
+如果不提供路径，迁移将转换 `ui` 目录（来自 `components.json`）中的所有文件。
+
+#### migrate radix
+
+`radix` 迁移将您的导入从单独的 `@radix-ui/react-*` 包更新为统一的 `radix-ui` 包。
+
+```bash
+npx shadcn@latest migrate radix [path]
+```
+
+这将：
+1. 将导入从 `@radix-ui/react-*` 转换为 `radix-ui`
+2. 将 `radix-ui` 包添加到您的 `package.json`
+
+**迁移前：**
+```tsx
+import * as Dialog from "@radix-ui/react-dialog"
+import * as Popover from "@radix-ui/react-popover"
+```
+
+**迁移后：**
+```tsx
+import * as Dialog from "radix-ui"
+import * as Popover from "radix-ui"
+```
+
+**迁移特定文件：**
+```bash
+npx shadcn@latest migrate radix src/components/ui/**/*.tsx
+```
+
+完成后，您可以从 `package.json` 中删除任何未使用的 `@radix-ui/react-*` 包。
+
+#### migrate icons
+
+将 UI 组件迁移到不同的图标库。
+
+### eject
+
+当您运行 `init` 时，shadcn 会在您的全局 CSS 文件中添加 `@import "shadcn/tailwind.css"`。此导入提供共享的 Tailwind v4 工具类，如自定义变体（`data-open:`、`data-closed:` 等）和手风琴动画。
+
+使用 `eject` 命令将 `shadcn/tailwind.css` 内联到全局 CSS 文件中，并从项目中移除 `shadcn` 依赖。
+
+> **注意：此操作不可逆。** 弹出后，未来 shadcn CLI 对 `shadcn/tailwind.css` 的更新将不会自动应用。
+
+```bash
+npx shadcn@latest eject
+```
+
+**弹出前：**
+```css
+@import "tailwindcss";
+@import "shadcn/tailwind.css";
+```
+
+**弹出后：**
+```css
+@import "tailwindcss";
+
+@custom-variant data-open (&:is([data-state=open] *));
+@custom-variant data-closed (&:is([data-state=closed] *));
+/* ...内联内容... */
+```
+
+**Monorepo：** 在包含 `components.json` 和全局 CSS 文件的工作区运行命令：
+```bash
+cd apps/web && npx shadcn@latest eject
+```
+
+**选项：**
+| 选项 | 描述 |
+|------|------|
+| `-y, --yes` | 跳过提示 |
+
+---0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"cli","section":{"title":"CLI 命令行工具","slug":"cli","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Aj_MfPLlKtGLgM6fuKE4X"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}]
+5:["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]
+6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null
