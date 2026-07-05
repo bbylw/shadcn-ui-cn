@@ -1339,7 +1339,7 @@ import { registrySchema, registryItemSchema } from "shadcn/schema"
 
 更多详细示例和完整的 JSON 代码示例，请参见 [官方示例页面](https://ui.shadcn.com/docs/registry/examples)。
 
----0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"registry","section":{"title":"注册表 (Registry)","slug":"registry","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Aj_MfPLlKtGLgM6fuKE4X"}
+---0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"registry","section":{"title":"注册表 (Registry)","slug":"registry","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"qnZk8sgjS1xVHusRUAe1q"}
 4:["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}]
 5:["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

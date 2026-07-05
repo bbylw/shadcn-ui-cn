@@ -107,5 +107,5 @@ npx shadcn@latest mcp
 
 了解更多关于 [MCP Server](https://ui.shadcn.com/docs/mcp) 的信息。
 
----0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"getting-started","section":{"title":"新手指南 (项目就绪后)","slug":"getting-started","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Aj_MfPLlKtGLgM6fuKE4X"}
+---0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"getting-started","section":{"title":"新手指南 (项目就绪后)","slug":"getting-started","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"qnZk8sgjS1xVHusRUAe1q"}
 6:null

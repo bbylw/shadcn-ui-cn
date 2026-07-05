@@ -176,7 +176,7 @@ my-app/
 - 添加在 `packages/ui` 内部的文件使用包本地 `#...` 别名
 - 共享包必须导出其他工作区引用的任何路径
 
----0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"monorepo","section":{"title":"Monorepo 支持","slug":"monorepo","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Aj_MfPLlKtGLgM6fuKE4X"}
+---0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"monorepo","section":{"title":"Monorepo 支持","slug":"monorepo","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"qnZk8sgjS1xVHusRUAe1q"}
 4:["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}]
 5:["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

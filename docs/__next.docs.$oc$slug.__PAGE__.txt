@@ -49,5 +49,5 @@ shadcn/ui 的设计使得 AI 工具可以轻松处理您的代码。其开放的
 
 > AI 模型可以学习您的组件如何工作，并建议改进或创建与您现有设计集成的新组件。
 
----0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"introduction","section":{"title":"介绍","slug":"introduction","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Aj_MfPLlKtGLgM6fuKE4X"}
+---0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"activeSlug":"introduction","section":{"title":"介绍","slug":"introduction","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/07xm6rf915-l6.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/2uvb9zwanfrjf.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"qnZk8sgjS1xVHusRUAe1q"}
 6:null
