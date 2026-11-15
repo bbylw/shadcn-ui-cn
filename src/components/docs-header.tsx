@@ -37,7 +37,7 @@ export function DocsHeader({ onMenuToggle }: DocsHeaderProps) {
           
           <Link href="/" className="flex items-center gap-2">
             <span className="font-bold text-base md:text-lg tracking-tight select-none">
-              shadcn/ui <span className="text-primary font-semibold">中文文档</span>
+              shadcn/ui
             </span>
           </Link>
 
