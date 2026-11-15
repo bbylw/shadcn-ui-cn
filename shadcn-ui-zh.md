@@ -15,6 +15,7 @@ shadcn/ui 是一套设计精美、可访问的组件和代码分发平台。可�
 - [components.json 配置](#componentsjson-配置)
 - [包导入 (Package Imports)](#包导入-package-imports)
 - [主题化 (Theming)](#主题化-theming)
+- [Typeset 排版系统](#typeset-排版系统)
 - [暗色模式 (Dark Mode)](#暗色模式-dark-mode)
 - [RTL 支持](#rtl-支持)
 - [CLI 命令行工具](#cli-命令行工具)
@@ -348,7 +349,7 @@ npx shadcn@latest init --template start
 
 2. **添加依赖**：
 ```bash
-npm install class-variance-authority clsx tailwind-merge lucide-react
+npm install shadcn class-variance-authority cn lucide-react tw-animate-css
 ```
 
 3. **配置导入别名**：
@@ -491,14 +492,12 @@ npm install class-variance-authority clsx tailwind-merge lucide-react
 ```
 
 5. **添加 cn 辅助函数**：
+
+组件直接从 `cn` 包导入 `cn`。在 `lib/utils.ts` 中重新导出它，这样你自己的代码也有一个统一的导入位置。
+
 ```ts
 // lib/utils.ts
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
+export { cn } from "cn"
 ```
 
 6. **创建 components.json 文件**：
@@ -1057,6 +1056,214 @@ npx shadcn@latest init --css-variables false
 
 ---
 
+## Typeset 排版系统
+
+为 HTML 和渲染后的 Markdown 提供排版样式，从博客文章到流式聊天都适用。一个由你拥有的 CSS 文件。
+
+渲染 Markdown 后得到的是没有样式的纯 HTML：标题、段落、列表和表格。于是你逐个元素设置字号、行高和间距——为博客做一遍，再为文档做一遍，再为聊天应用做一遍，每次都在和同样的尺寸与间距问题较劲。
+
+为此我们创建了 **shadcn/typeset**。它是一个 CSS 文件，为 `typeset` 容器内的所有内容设置样式。文件位于你的项目中，可以随时直接修改。一个 typeset 只是一个很小的预设类，你可以在应用内为不同场景使用多个 typeset。
+
+```css
+.typeset-docs {
+  --typeset-font-body: var(--font-geist);
+  --typeset-font-heading: var(--font-geist);
+  --typeset-font-mono: var(--font-geist-mono);
+  --typeset-size: 15px;
+  --typeset-leading: 1.75;
+  --typeset-flow: 1.25em;
+}
+```
+
+### 设计原则
+
+我们研究了很多排版概念：比例、字距、光学尺寸、行宽、行高，以及每个元素上下的空间。把这些全部暴露出来太复杂了，没有人愿意为了 Markdown 看起来正常而设置十几个变量。
+
+因此我们把所有内容浓缩成三个控制项：**字号（size）**、**行高（leading）** 和 **流间距（flow）**。其余内容——标题大小、列表缩进、标题下方的间距、分隔线周围的空间——都由它们推导而来。
+
+### 特性
+
+- **适应容器**：放在聊天气泡中会跟随较小的字号，放在文章中会随页面放大。在较小屏幕上会略微增大以提升可读性。
+- **使用你的主题**：颜色、字体和圆角来自应用本身，暗色模式跟随相同的令牌。
+- **易于调整**：三个值控制基础字号、行高和块间距。在预设中修改后，整篇文档都会跟随。
+- **适合流式输出**：新块到达时，Typeset 不会让之前的块改变外边距、边框或样式。
+
+### 构建 Typeset
+
+在 [typeset 构建器](https://ui.shadcn.com/typeset) 中创建你的 typeset：选择字体和节奏，然后在文档、聊天、文章等真实内容上预览。面板会给出 `typeset.css` 文件、对应框架的字体设置、带有你选择的预设类，以及需要包裹内容的容器。
+
+将 `typeset.css` 复制到主 CSS 文件旁边，并在 Tailwind 之后导入：
+
+```css
+@import "tailwindcss";
+@import "./typeset.css";
+```
+
+然后用 `typeset` 和你的预设类包裹渲染后的 Markdown：
+
+```tsx
+<div className="typeset typeset-docs">
+  <YourMarkdownRenderer>{content}</YourMarkdownRenderer>
+</div>
+```
+
+`typeset` 开启样式，`typeset-docs` 是你在构建器中创建的预设。
+
+### 自定义 Typeset
+
+文件自带默认值，因此可以单独使用 `typeset`。大部分阅读节奏来自三个值：
+
+```css
+.typeset {
+  --typeset-font-body: inherit;
+  --typeset-font-heading: var(--font-heading);
+  --typeset-font-mono: var(--font-mono);
+
+  --typeset-size: 1em; /* 正文字号 */
+  --typeset-leading: 1.75; /* 行高 */
+  --typeset-flow: 1.25em; /* 块间距 */
+}
+```
+
+- **`--typeset-size`** 设置基础文本大小。`1em` 跟随周围布局，在较小屏幕上 Typeset 会略微增大。
+- **`--typeset-leading`** 设置行与行之间的空间。
+- **`--typeset-flow`** 设置块与块之间的空间，标题和其他元素的间距都由此推导。
+
+字体变量告诉 Typeset 使用哪些字体家族；保留默认值即可跟随应用。颜色和圆角同样来自主题。
+
+Typeset 不设置最大宽度，布局负责这一点。构建器中的 Measure 控件会给容器添加 `max-width`，而不是把它隐藏到样式表中。
+
+同一个应用中可以保留多个预设。下面是一个更紧凑的聊天预设和一个更宽松的文档预设：
+
+```css
+.typeset-chat {
+  --typeset-flow: 1em;
+  --typeset-leading: 1.6;
+}
+
+.typeset-docs {
+  --typeset-size: 15px;
+  --typeset-flow: 1.5em;
+}
+```
+
+```tsx
+<div className="typeset typeset-chat">{message}</div>
+<article className="typeset typeset-docs">{page}</article>
+```
+
+如果只是临时修改，可以跳过预设，直接在容器上设置值：
+
+```tsx
+<article className="typeset [--typeset-flow:1.75em]">...</article>
+```
+
+### 自定义主题
+
+预设可以改变内容的整体感觉，而不只是间距。你可以提供衬线阅读模式、紧凑 UI 模式或任何适合产品的样式：
+
+```css
+/* 阅读：衬线字体、更大字号、宽松节奏 */
+.typeset-reading {
+  --typeset-font-body: var(--font-lora);
+  --typeset-font-heading: var(--font-lora);
+  --typeset-size: 18px;
+  --typeset-leading: 1.9;
+  --typeset-flow: 2em;
+}
+
+/* 紧凑：无衬线字体、较小字号、紧凑节奏 */
+.typeset-compact {
+  --typeset-font-body: var(--font-geist);
+  --typeset-font-heading: var(--font-geist);
+  --typeset-size: 14px;
+  --typeset-leading: 1.6;
+  --typeset-flow: 1em;
+}
+```
+
+### 无障碍与暗色模式
+
+对于偏好更大字号和更多空间的读者，可以创建一个更宽松的 typeset 并作为设置暴露：
+
+```css
+.typeset-large {
+  --typeset-size: 16px;
+  --typeset-leading: 2;
+  --typeset-flow: 2em;
+}
+```
+
+暗色模式已经跟随主题颜色。如果暗色表面上的文本显得拥挤，可以在那里放宽行高：
+
+```css
+.dark .typeset {
+  --typeset-leading: 1.9;
+}
+```
+
+### 响应式表格
+
+表格仍是真正的表格，并会换行以适应容器。若要让宽表格水平滚动，用 `typeset-scroll` 包裹：
+
+```tsx
+<div className="typeset-scroll">
+  <table>...</table>
+</div>
+```
+
+可以在渲染器的表格组件或一个小型 rehype 插件中这样做，它也适用于任何宽块而不仅是表格。
+
+### 覆盖与退出
+
+Typeset 位于 `components` 层，并使用 `:where()` 编写元素选择器，因此元素上的 Tailwind 工具类无需 `!important` 就能生效：
+
+```tsx
+<div className="typeset typeset-docs">
+  <p className="text-lg">...</p>
+</div>
+```
+
+普通 CSS 也可以使用常规选择器覆盖 Typeset。
+
+要让某个组件不受 Typeset 影响，添加 `not-typeset` 或 `data-not-typeset`：
+
+```tsx
+<div className="typeset">
+  <p>已设置样式的正文。</p>
+  <Card className="not-typeset">不受影响的组件。</Card>
+</div>
+```
+
+两种方式都会覆盖该组件及其内部所有内容；该子树内另一个 `typeset` 容器也会保持退出状态。
+
+### 流式输出
+
+Typeset 的编写方式保证新增块不会改变屏幕上已有块的样式：
+
+- 不使用前瞻性选择器。`:last-child`、`:has()` 和 `:empty` 不会出现在布局规则中，因为它们的匹配会随内容增加而变化。
+- 间距只朝一个方向流动，仅使用 `margin-block-start`。新块添加自己的空间。
+- 表格分隔线位于正在添加的单元格上，新行不会重新设置上一行的样式。
+
+仍在流式输出的文本可以正常增长和换行，Typeset 只是避免重新设置之前块的样式。
+
+### 与 @tailwindcss/typography 的区别
+
+`@tailwindcss/typography` 的 `prose` 类非常适合为纯 HTML 添加漂亮的排版默认值。Typeset 采用不同的方式：容器感知的尺寸、应用主题令牌、面向不同场景的预设，以及流式输出的稳定性。
+
+| | @tailwindcss/typography | Typeset |
+|---|---|---|
+| 尺寸 | 固定 `rem` 比例，`prose-sm` 到 `prose-2xl` | 相对于容器，任意尺寸 |
+| 暗色模式 | `prose-invert`，第二套调色板 | 主题令牌自动翻转，无需额外处理 |
+| 主题化 | Prose 颜色变量，比例固定 | 主题令牌，加字体和节奏控制 |
+| 覆盖 | `prose-a:`、`prose-headings:` 修饰符 API | 普通工具类和 CSS 即可生效 |
+| 流式输出 | 无追加稳定性约定 | 专为稳定追加设计 |
+| 分发 | npm 插件，生成的 CSS | 一个由你拥有的 CSS 文件 |
+
+Typeset 借鉴了该插件的两个最佳想法：零特异性的 `:where()` 保护模式，以及逃生舱类（`not-typeset`，灵感来自 `not-prose`）。
+
+---
+
 ## 暗色模式 (Dark Mode)
 
 为您的站点添加暗色模式。
@@ -1223,7 +1430,7 @@ npx shadcn@latest create --name my-app --template next
 | `-y, --yes` | 跳过所有提示并使用默认值 |
 | `-w, --workspace <workspace>` | 目标工作区 |
 | `-o, --output <path>` | 组件输出路径 |
-| `--base <base>` | 基础目录 |
+| `--base <base>` | 组件基础库（base、radix、aria） |
 | `--monorepo` | 创建 monorepo 项目 |
 | `--src-dir` | 使用 src 目录 |
 | `--template <template>` | 模板（next、vite、start、react-router、astro） |
@@ -1411,14 +1618,132 @@ npx shadcn@latest migrate <migration> [path]
 **可用迁移：**
 | 迁移 | 描述 |
 |------|------|
+| `cn` | 将 `clsx` 和 `tailwind-merge` 迁移到 `cn` |
 | `icons` | 将 UI 组件迁移到不同的图标库 |
+| `base-color` | 将主题迁移到不同的基础颜色 |
 | `radix` | 迁移到 radix-ui |
 | `rtl` | 迁移组件以支持 RTL |
 
 **选项：**
 | 选项 | 描述 |
 |------|------|
-| `--dry-run` | 预览更改但不执行 |
+| `-c, --cwd <cwd>` | 当前工作目录 |
+| `-l, --list` | 列出所有迁移 |
+| `-y, --yes` | 跳过确认提示 |
+| `-f, --from <name>` | 要迁移自的基础颜色或图标库 |
+| `-t, --to <name>` | 要迁移到的基础颜色或图标库 |
+
+#### migrate cn
+
+`cn` 迁移将 `clsx`、`tailwind-merge` 和 `cnfast` 替换为 [`cn`](https://github.com/shadcn-ui/cn)。
+
+```bash
+npx shadcn@latest migrate cn
+```
+
+与其他迁移不同，`migrate cn` 不需要 `components.json` 文件。它可以在任何使用 Tailwind CSS v4 的 JavaScript 或 TypeScript 包项目中运行。
+
+该命令会：
+1. 重写来自 `clsx`、`clsx/lite`、`tailwind-merge` 和 `cnfast` 的导入。
+2. 将 `twMerge(clsx(...))` 组合替换为直接调用 `cn(...)`。
+3. 将标准的 shadcn 工具函数替换为直接重新导出。
+4. 安装 `cn`，并在没有剩余引用时移除旧包。
+
+**迁移前：**
+```tsx
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+```
+
+**迁移后：**
+```tsx
+export { cn } from "cn"
+```
+
+当 `clsx` 和 `twMerge` 被独立使用时，迁移也会保留各自的 API：
+
+```diff
+- import { clsx } from "clsx"
+- import { twMerge } from "tailwind-merge"
++ import { clsx, twMerge } from "cn"
+```
+
+自定义配置 API 会移动到 `cn/config`，已有的本地名称会被保留：
+
+```diff
+- import { createTailwindMerge, getDefaultConfig } from "tailwind-merge"
++ import {
++   createTwMerge as createTailwindMerge,
++   defaultConfig as getDefaultConfig,
++ } from "cn/config"
+```
+
+> **注意：** `cn` 的合并引擎与 `tailwind-merge` v3 一样支持 Tailwind CSS v4。使用 Tailwind CSS v3 的项目应继续使用 `tailwind-merge` v2；仅迁移 `clsx` 在 Tailwind CSS v3 中是安全的。
+
+**迁移特定文件：**
+```bash
+# 迁移特定文件
+npx shadcn@latest migrate cn src/lib/utils.ts
+
+# 迁移匹配 glob 的文件
+npx shadcn@latest migrate cn "src/**/*.{ts,tsx}"
+```
+
+限定范围的迁移会安装 `cn`，但会在 `package.json` 中保留 `clsx`、`tailwind-merge` 和 `cnfast`，因为所选路径之外的文件可能仍在使用它们。
+
+命令会保留不支持的导入并报告出来供手动检查，包括 `experimentalParseClassName`、命名空间导入、动态导入形式、直接调用 `validators` 以及无法安全迁移的可变参数 `createTailwindMerge` 调用。只要旧依赖仍有引用，它就会被保留。
+
+#### migrate icons
+
+将组件从一个图标库迁移到另一个图标库。
+
+```bash
+npx shadcn@latest migrate icons
+```
+
+命令会提示你选择源图标库和目标图标库，重写 `ui` 目录中的图标导入和 JSX 用法，安装目标图标库，并更新 `components.json` 中的 `iconLibrary`，以便后续 `npx shadcn add` 使用新图标库。
+
+支持的图标库：`lucide`、`tabler`、`hugeicons`、`phosphor`、`remixicon` 和 `radix`（旧版）。
+
+**非交互模式：**
+```bash
+npx shadcn@latest migrate icons --from lucide --to phosphor --yes
+```
+
+**迁移特定文件：**
+```bash
+# 迁移特定文件
+npx shadcn@latest migrate icons src/components/ui/button.tsx --from lucide --to tabler
+
+# 迁移匹配 glob 的文件
+npx shadcn@latest migrate icons "src/components/**" --from lucide --to tabler
+```
+
+限定范围的迁移不会更新 `components.json`。目标图标库中没有对应项的图标会保持不变，并在迁移结束时报告。
+
+#### migrate base-color
+
+将主题从一个基础颜色切换到另一个基础颜色。
+
+```bash
+npx shadcn@latest migrate base-color
+```
+
+命令会提示你选择源基础颜色和目标基础颜色，重写主题 CSS 变量（`components.json` 中 `tailwind.css` 配置的 CSS 文件），并更新 `baseColor`，以便后续 `npx shadcn add` 使用新的基础颜色。
+
+支持的基础颜色：`neutral`、`zinc`、`stone`、`mauve`、`olive`、`mist` 和 `taupe`。
+
+**非交互模式：** 使用 `--to` 从 `components.json` 中的当前 `baseColor` 迁移，或同时传入 `--from` 和 `--to`。
+
+```bash
+npx shadcn@latest migrate base-color --to zinc --yes
+```
+
+不再匹配源基础颜色的主题令牌会保持不变，并在迁移结束时报告。
 
 #### migrate rtl
 
@@ -1471,10 +1796,6 @@ npx shadcn@latest migrate radix src/components/ui/**/*.tsx
 
 完成后，您可以从 `package.json` 中删除任何未使用的 `@radix-ui/react-*` 包。
 
-#### migrate icons
-
-将 UI 组件迁移到不同的图标库。
-
 ### eject
 
 当您运行 `init` 时，shadcn 会在您的全局 CSS 文件中添加 `@import "shadcn/tailwind.css"`。此导入提供共享的 Tailwind v4 工具类，如自定义变体（`data-open:`、`data-closed:` 等）和手风琴动画。
@@ -1518,6 +1839,8 @@ cd apps/web && npx shadcn@latest eject
 
 您可以在此找到库中所有可用的组件。我们正在努力添加更多组件。
 
+组件现在提供三种基础库：`base`、`radix` 以及新增的 `aria`（React Aria）。下表的链接指向 `base` 或 `radix` 文档；将路径中的基础名替换为 `aria` 即可查看对应的 React Aria 版本。
+
 ### 新增组件
 
 | 组件 | 链接 |
@@ -1527,6 +1850,9 @@ cd apps/web && npx shadcn@latest eject
 | Marker (标记) | [文档](https://ui.shadcn.com/docs/components/base/marker) |
 | Message (消息) | [文档](https://ui.shadcn.com/docs/components/base/message) |
 | Message Scroller (消息滚动器) | [文档](https://ui.shadcn.com/docs/components/base/message-scroller) |
+| Code Block (代码块) | [文档](https://ui.shadcn.com/docs/components/base/code-block) |
+| Questionnaire (问卷) | [文档](https://ui.shadcn.com/docs/components/base/questionnaire) |
+| Trace (追踪) | [文档](https://ui.shadcn.com/docs/components/base/trace) |
 
 ### 所有组件
 
@@ -1548,6 +1874,7 @@ cd apps/web && npx shadcn@latest eject
 | **Carousel (轮播)** | 水平滚动的项目集合 | [radix/carousel](https://ui.shadcn.com/docs/components/radix/carousel) |
 | **Chart (图表)** | 基于 Recharts 的数据可视化 | [radix/chart](https://ui.shadcn.com/docs/components/radix/chart) |
 | **Checkbox (复选框)** | 用于选择的复选框控件 | [base/checkbox](https://ui.shadcn.com/docs/components/base/checkbox) |
+| **Code Block (代码块)** | 展示代码、终端输出和 diff，支持标题栏、行号与复制按钮 | [base/code-block](https://ui.shadcn.com/docs/components/base/code-block) |
 | **Collapsible (可折叠)** | 可切换显示/隐藏内容的交互式面板 | [base/collapsible](https://ui.shadcn.com/docs/components/base/collapsible) |
 | **Combobox (组合框)** | 带有建议的下拉输入 | [base/combobox](https://ui.shadcn.com/docs/components/base/combobox) |
 | **Command (命令面板)** | 类似 ⌘K 的命令面板 | [base/command](https://ui.shadcn.com/docs/components/base/command) |
@@ -1576,6 +1903,7 @@ cd apps/web && npx shadcn@latest eject
 | **Pagination (分页)** | 页面导航控件 | [base/pagination](https://ui.shadcn.com/docs/components/base/pagination) |
 | **Popover (弹出框)** | 点击时弹出的浮动面板 | [base/popover](https://ui.shadcn.com/docs/components/base/popover) |
 | **Progress (进度条)** | 显示任务进度的进度指示器 | [base/progress](https://ui.shadcn.com/docs/components/base/progress) |
+| **Questionnaire (问卷)** | 支持单选、多选、自由输入和可跳过问题的多步骤问卷 | [base/questionnaire](https://ui.shadcn.com/docs/components/base/questionnaire) |
 | **Radio Group (单选组)** | 单选按钮组 | [base/radio-group](https://ui.shadcn.com/docs/components/base/radio-group) |
 | **Resizable (可调整大小)** | 可拖拽调整大小的面板 | [base/resizable](https://ui.shadcn.com/docs/components/base/resizable) |
 | **Scroll Area (滚动区域)** | 自定义滚动条的区域 | [radix/scroll-area](https://ui.shadcn.com/docs/components/radix/scroll-area) |
@@ -1585,7 +1913,7 @@ cd apps/web && npx shadcn@latest eject
 | **Sidebar (侧边栏)** | 应用侧边导航栏 | [base/sidebar](https://ui.shadcn.com/docs/components/base/sidebar) |
 | **Skeleton (骨架屏)** | 加载占位符 | [radix/skeleton](https://ui.shadcn.com/docs/components/radix/skeleton) |
 | **Slider (滑块)** | 范围选择滑块 | [base/slider](https://ui.shadcn.com/docs/components/base/slider) |
-| **Sonner (通知)** | 基于 Sonner 的 toast 通知 | [base/sonner](https://ui.shadcn.com/docs/components/base/sonner) |
+| **Sonner (通知)** | 基于 Sonner 的 toast 通知 | [aria/sonner](https://ui.shadcn.com/docs/components/aria/sonner) |
 | **Spinner (加载中)** | 加载状态指示器 | [radix/spinner](https://ui.shadcn.com/docs/components/radix/spinner) |
 | **Switch (开关)** | 切换开关控件 | [base/switch](https://ui.shadcn.com/docs/components/base/switch) |
 | **Table (表格)** | 数据表格 | [base/table](https://ui.shadcn.com/docs/components/base/table) |
@@ -1595,6 +1923,7 @@ cd apps/web && npx shadcn@latest eject
 | **Toggle (切换)** | 二选一状态切换按钮 | [base/toggle](https://ui.shadcn.com/docs/components/base/toggle) |
 | **Toggle Group (切换组)** | 可切换按钮组 | [base/toggle-group](https://ui.shadcn.com/docs/components/base/toggle-group) |
 | **Tooltip (工具提示)** | 悬停时显示的信息提示 | [base/tooltip](https://ui.shadcn.com/docs/components/base/tooltip) |
+| **Trace (追踪)** | 构建推理过程、工具调用、来源等步骤的基础组件 | [base/trace](https://ui.shadcn.com/docs/components/base/trace) |
 | **Typography (排版)** | 文本排版样式 | [base/typography](https://ui.shadcn.com/docs/components/base/typography) |
 
 找不到所需组件？试试[注册表目录](https://ui.shadcn.com/docs/directory)中的社区维护组件。
@@ -2021,7 +2350,7 @@ npx skills add shadcn/ui
 
 #### 项目上下文
 
-每次交互时，技能会运行 `shadcn info --json` 来获取项目配置：框架、Tailwind 版本、别名、基础库（`base` 或 `radix`）、图标库、已安装组件和解析后的文件路径。
+每次交互时，技能会运行 `shadcn info --json` 来获取项目配置：框架、Tailwind 版本、别名、基础库（`base`、`radix` 或 `aria`）、图标库、已安装组件和解析后的文件路径。
 
 #### CLI 命令
 
@@ -2176,6 +2505,8 @@ shadcn MCP 服务器的设置和工具，让 AI 助手能够搜索、浏览和�
 - [GitHub 注册表](https://ui.shadcn.com/docs/registry/github) - 将 GitHub 仓库转变为注册表
 - [命名空间](https://ui.shadcn.com/docs/registry/namespace) - 使用命名空间配置注册表
 - [认证](https://ui.shadcn.com/docs/registry/authentication) - 使用认证保护你的注册表
+- [注册表健康](https://ui.shadcn.com/docs/registry/health) - 了解公共注册表的监控与评分
+- [动态搜索](https://ui.shadcn.com/docs/registry/dynamic-search) - 为大型注册表实现服务端搜索
 - [示例](https://ui.shadcn.com/docs/registry/examples) - 浏览示例注册表项
 - [Schema](https://ui.shadcn.com/docs/registry/registry-json) - registry.json 的 Schema 规范
 
@@ -2471,6 +2802,8 @@ npx shadcn@latest add @acme/button
 
 如果你的注册表是开源的且公开可用，你可以将命名空间提交到官方注册表索引。这样用户可以按名称添加你的命名空间，而无需粘贴完整的 URL 模板。
 
+PR 合并后注册表会立即发布。[注册表健康](#注册表健康-registry-health)会在发布后开始监控它，收集基线数据的过程不会延迟或阻止发布。
+
 #### 指南
 
 构建注册表组件时需遵循以下指南：
@@ -2485,9 +2818,9 @@ npx shadcn@latest add @acme/button
 
 ### GitHub 注册表 (GitHub Registries)
 
-使用公共 GitHub 仓库作为注册表。
+使用 GitHub 仓库作为注册表。
 
-你现在可以将**任何公共 GitHub 仓库转变为注册表。** 在仓库根目录添加一个 `registry.json` 文件，描述你想要分享的文件，用户就可以使用 `shadcn` CLI 安装它们。
+你现在可以将**任何 GitHub 仓库转变为注册表。** 在仓库根目录添加一个 `registry.json` 文件，描述你想要分享的文件，用户就可以使用 `shadcn` CLI 安装它们。
 
 ```bash
 npx shadcn@latest add github:username/repo/item-name
@@ -2518,21 +2851,21 @@ npx shadcn@latest add github:username/repo/item-name
 
 在以下情况下使用 GitHub 注册表：
 
-- 你已经在公共 GitHub 仓库中有可重用代码。
+- 你已经在 GitHub 仓库中有可重用代码。
 - 你希望用户直接从 `owner/repo/item` 安装。
 - 你想分发配置文件、规则、文档、模板、工具或同一仓库中的任何其他文件。
-- 你不需要私有仓库访问或自定义请求认证。
+- 你不需要自定义注册表服务器或请求认证。
 
 #### 要求
 
 GitHub 注册表必须：
 
-- 是 `github.com` 上的公共仓库。
+- 是一个 `github.com` 仓库。
 - 在仓库根目录有一个 `registry.json` 文件。
 - 使用有效的 `registry.json` 和 `registry-item.json` schema。
 - 引用的源文件必须存在于仓库中。
 
-私有仓库和 GitHub Enterprise 主机目前不被 GitHub 地址支持。对于私有或经过认证的注册表，请使用[命名空间](https://ui.shadcn.com/docs/registry/namespace)配合[认证](https://ui.shadcn.com/docs/registry/authentication)。
+公共仓库无需任何配置即可使用。私有仓库通过你的 GitHub 凭据工作，详见下文[私有仓库](#私有仓库-private-repositories)。GitHub Enterprise 主机不被 GitHub 地址支持；对于带请求认证的自定义注册表服务器，请使用[命名空间](https://ui.shadcn.com/docs/registry/namespace)配合[认证](https://ui.shadcn.com/docs/registry/authentication)。
 
 #### 第一步：添加 registry.json
 
@@ -2725,9 +3058,61 @@ npx shadcn@latest add github:username/my-toolkit/button#abc123def456abc123def456
 
 Refs 可以包含斜杠。如果未提供 ref，CLI 使用仓库的默认分支。CLI 使用 Git 将分支、标签和短 ref 解析为提交 SHA，然后读取文件。完整的 40 字符提交 SHA 直接使用，不需要 Git。
 
+#### 私有仓库 (Private repositories)
+
+私有 `github.com` 仓库同样可以作为注册表。你不需要搭建服务器，也不需要在注册表内做任何配置。只要你能读取该仓库，CLI 就能从中安装。
+
+**使用 GitHub CLI：**
+
+本地开发时，先用 GitHub CLI 登录一次：
+
+```bash
+gh auth login
+```
+
+然后像其他 GitHub 注册表一样从私有仓库安装：
+
+```bash
+npx shadcn@latest add acme/private-toolkit/project-conventions
+```
+
+当仓库不可公开读取时，CLI 会通过 `gh` 使用你保存的凭据读取它。令牌始终保留在 GitHub CLI 中，不会进入 shadcn 进程。首次使用凭据时会输出提示：
+
+```txt
+✔ Using gh credentials.
+```
+
+**在 CI 中使用令牌：**
+
+在没有安装 GitHub CLI 的环境中，设置 `GH_TOKEN` 或 `GITHUB_TOKEN`：
+
+```bash
+GH_TOKEN=github_pat_xxx npx shadcn@latest add acme/private-toolkit/project-conventions
+```
+
+- `GH_TOKEN` 优先于 `GITHUB_TOKEN`。
+- 使用仅限该仓库、具有 **Contents: Read-only** 权限的细粒度个人访问令牌，这是推荐的凭据。
+- 设置令牌后，CLI 会使用它而不是 GitHub CLI，并且只会发送到 `api.github.com`。
+
+> **注意：** 在 GitHub Actions 中，内置的 `GITHUB_TOKEN` 通常只能读取拥有该工作流的仓库。要从另一个仓库的私有注册表安装，请使用细粒度个人访问令牌或 GitHub App 安装令牌。
+
+**工作原理：**
+
+- 公共仓库始终匿名读取，不使用凭据，也不会调用 GitHub CLI。
+- CLI 先尝试匿名访问，只有当仓库根目录的 `registry.json` 无法公开读取时才使用你的凭据。
+- Ref 解析会先运行 `git ls-remote`，Git 可能已经使用你配置的凭据助手（例如 `gh auth setup-git` 安装的助手）。
+- 私有文件通过 GitHub Contents API 读取，并固定到解析后的提交 SHA。
+- GitHub 对私有仓库和不存在的仓库返回相同的 not-found 响应。如果你的凭据也无法读取该仓库，CLI 无法区分这两种情况。
+
+**限制：**
+
+- 注册表源文件每个最大 5 MiB。
+- 不支持 GitHub Enterprise 主机。GitHub 地址始终解析到 `github.com`。
+- 避免在注册表源文件中使用符号链接。匿名读取会把符号链接目标路径作为文本返回，而通过 Contents API 的认证读取会返回目标文件的内容。
+
 #### 安装前审查
 
-GitHub 注册表项从公共仓库安装代码和项目文件。将 GitHub 项地址视为任何其他第三方代码依赖。
+GitHub 注册表项从 GitHub 仓库安装代码和项目文件。将 GitHub 项地址视为任何其他第三方代码依赖。
 
 在从你不控制的源安装之前：
 
@@ -3122,6 +3507,193 @@ shadcn CLI 优雅地处理认证错误：
 }
 ```
 
+### 注册表健康 (Registry Health)
+
+公共注册表在加入目录后可能发生变化或离线。注册表健康会持续检查它们，让用户了解其是否正常工作，并帮助维护者尽早发现问题。检查结果会汇总为状态和评分。
+
+> **注意：** 注册表健康目前是实验性功能。健康检查和目录规模会影响注册表目录的排序，评分模型和阈值可能随结果调整。
+
+注册表健康仅适用于已列入 shadcn/ui 注册表目录的注册表，不监控私有注册表、项目中直接配置的注册表，或通过 `owner/repo/item` 地址使用的 GitHub 注册表。
+
+#### 检查内容
+
+| 频率 | 检查 | 检查内容 |
+|------|------|---------|
+| 每小时 | 注册表索引 | 索引在线、有效且配置正确 |
+| 每天 | 注册表项 | 轮换抽样下载并验证注册表项 |
+| 每周 | CLI | 轮换抽样使用 `shadcn add --dry-run` 安装 |
+
+每项检查大约在 30 天内轮换覆盖整个目录，属于抽样检查而非逐项检查。计划任务采用尽力而为的方式执行，因此会使用每次实际观测的时间。
+
+#### 状态
+
+| 状态 | 含义 |
+|------|------|
+| **Observing（观察中）** | 正在收集最初 24 次索引检查（至少 24 小时） |
+| **Healthy（健康）** | 初始观察期结束，且最近的检查通过 |
+| **Degraded（降级）** | 注册表在线，但最近有一项或多项检查失败 |
+| **Unavailable（不可用）** | 注册表索引至少 24 小时未通过检查 |
+
+连续的索引失败、索引不符合 schema、抽样项通过率低于 90%（至少 10 次检查后）、或最近两次 CLI 检查失败，都会将注册表标记为 **Degraded**。可用性故障后，注册表需要连续两次成功的索引和 schema 检查才能恢复。每个状态都附带简短的人类可读原因，API 消费者可以使用稳定的 `statusReason.code` 或展示 `statusReason.message`。
+
+#### 评分
+
+每个注册表都会获得一个满分 **100 分**的评分，由四部分组成：
+
+| 组成部分 | 分值 | 衡量内容 |
+|---------|-----:|---------|
+| 可靠性 (Reliability) | 45 | 过去 7 天和 30 天索引的可用频率 |
+| 正确性 (Correctness) | 25 | 索引和抽样项是否符合注册表 schema |
+| 可安装性 (Installability) | 20 | 抽样项是否能与 `shadcn` CLI 配合工作 |
+| 注册表设置 (Registry setup) | 10 | HTTPS、JSON 响应、唯一项名称和匹配的注册表名称 |
+
+```text
+Reliability = 45 * (0.65 * availability7d + 0.35 * availability30d)
+Correctness = 10 * indexSchemaPassRate30d + 15 * sampledItemPassRate30d
+Installability = 20 * dryRunPassRate30d
+```
+
+新注册表的历史不足，其早期结果会与所有受监控注册表的平均值混合，随着检查增多逐渐由自身结果主导。评分衡量的是可靠性和兼容性，不代表流行度、代码质量、设计质量或项的数量。
+
+#### 目录排序
+
+健康评分最多贡献 80 分，目录规模最多贡献 20 分；规模奖励在 500 项时封顶。
+
+```text
+rankingScore = 0.8 * healthScore + 20 * min(1, log(1 + itemCount) / log(501))
+```
+
+目录按排序分排列，同分时按字母顺序。**Degraded** 的注册表仍按评分排序；**Observing**、被监控挑战阻止、目录为空或暂无排序数据的注册表排在已排序注册表之后；**Unavailable** 的注册表排在最后，但仍可搜索并通过 API 访问。
+
+#### API 中的健康与排序数据
+
+`/r/registries.json` 会为每个注册表添加可选的 `health` 对象，包含 `status`、`statusReason`、`score`、`breakdown`、`availability7d`、`availability30d`、时间戳以及 `schemaVersion`、`scoreVersion`、`monitoringLimited`、`hidden` 等字段。观测到有效索引后还会包含 `ranking` 对象：
+
+```json
+{
+  "version": 1,
+  "score": 93.248,
+  "itemCount": 100
+}
+```
+
+更高的排序不是推荐，也不是安全审查。安装第三方代码前请始终自行审查。
+
+### 动态搜索 (Dynamic Search)
+
+默认情况下，`shadcn search` 会获取整个 `registry.json` 并在本地筛选，这对大多数注册表来说已经足够。对于包含数千个项的大型注册表，可以把搜索放到注册表服务器端执行：CLI 将搜索参数转发给注册表，服务器只返回匹配的项。
+
+动态搜索是可选的，并完全向后兼容，静态注册表无需任何修改。
+
+#### 工作方式
+
+运行 `shadcn search` 时，CLI 会把搜索参数追加到目录请求：
+
+```bash
+npx shadcn@latest search @acme --query button --limit 50
+```
+
+```txt
+GET https://acme.com/r/registry.json?q=button&limit=50&offset=0
+```
+
+- **静态注册表**会忽略查询参数并返回完整的 `registry.json`，CLI 在本地筛选。
+- **动态注册表**在服务端筛选并返回匹配项以及 `pagination` 对象。CLI 一旦在响应中看到 `pagination`，就会信任结果已完成预筛选并跳过本地筛选。
+
+响应中出现 `pagination` 就是告诉 CLI 该注册表在服务端处理搜索的方式，无需任何配置或能力协商。
+
+#### 查询参数
+
+| 参数 | 描述 |
+|------|------|
+| `q` | 搜索查询字符串 |
+| `type` | 逗号分隔的项类型，例如 `registry:ui,registry:block` |
+| `limit` | 返回的最大项数 |
+| `offset` | 跳过的项数 |
+
+所有参数都是可选的。没有 `q` 或 `type` 的请求应返回所有项并分页。
+
+#### 响应格式
+
+返回常规的 `registry.json` 结构，并附加 `pagination` 对象：
+
+```json
+{
+  "name": "acme",
+  "homepage": "https://acme.com",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "description": "A button component."
+    }
+  ],
+  "pagination": {
+    "total": 12,
+    "offset": 0,
+    "limit": 2,
+    "hasMore": true
+  }
+}
+```
+
+搜索结果中的每个项只需要 `name`、`type` 和 `description`，不必包含 `files`、`dependencies` 等属性；用户运行 `shadcn add` 时 CLI 会获取完整的项定义。
+
+#### 服务端实现
+
+以下是一个使用 Next.js 路由处理程序的示例：
+
+```typescript title="app/r/registry.json/route.ts"
+import { NextRequest, NextResponse } from "next/server"
+
+export async function GET(request: NextRequest) {
+  const { searchParams } = request.nextUrl
+
+  const query = searchParams.get("q")
+  const types = searchParams.get("type")?.split(",")
+  const limit = Number(searchParams.get("limit") ?? 100)
+  const offset = Number(searchParams.get("offset") ?? 0)
+
+  // 使用数据库或搜索索引筛选项。
+  const { items, total } = await searchItems({ query, types, limit, offset })
+
+  return NextResponse.json({
+    name: "acme",
+    homepage: "https://acme.com",
+    items,
+    pagination: {
+      total,
+      offset,
+      limit,
+      hasMore: offset + limit < total,
+    },
+  })
+}
+```
+
+`searchItems` 可以由数据库查询、全文搜索索引或外部搜索服务实现。
+
+#### 多个注册表
+
+搜索单个注册表时，CLI 会转发所有参数并原样使用 `pagination` 响应。同时搜索多个注册表时，例如 `shadcn search @acme @lib`，全局 `offset` 无法拆分到各个注册表；CLI 会向每个注册表转发 `q`、`type` 以及足以填满所需页面的 `limit`（`offset + limit`），然后在本地合并并分页。服务端筛选仍然生效。
+
+#### 认证与兼容性
+
+动态搜索适用于所有[认证](https://ui.shadcn.com/docs/registry/authentication)模式。CLI 会随搜索请求发送配置的 headers 和 params，因此可以把搜索结果限定到已认证用户。
+
+- **静态注册表**无需修改；文件服务器会忽略查询参数，CLI 回退到本地筛选。
+- **旧版 CLI** 会在不带查询参数的情况下获取目录并忽略 `pagination` 字段，因此注册表应为无参数请求返回合理的默认响应（例如第一页）。
+- **排序**由你的服务器决定。注册表返回预筛选结果时，CLI 会保留你的顺序，不在本地重新排序。
+
+#### 测试
+
+```bash
+curl "https://acme.com/r/registry.json?q=button&limit=10"
+npx shadcn@latest search @acme --query button
+```
+
+确认响应包含 `pagination` 对象且只包含匹配项，即可验证服务端搜索已生效。
+
 ### MCP 服务器 (Registry MCP)
 
 注册表开发者的 MCP 支持。
@@ -3227,7 +3799,7 @@ CLI 命令本身不是公共 API 的一部分。只有下面记录的导入被�
 
 获取和解析来自已配置注册表的项。
 
-**config：** 可选，类型为 `Partial<Config>`，默认使用内置注册表。即你的 `components.json` 文件的解析内容。其 `registries` 字段将命名空间（例如 `@acme`）映射到 URL 以及访问所需的任何认证头或环境变量。
+**config：** 可选，类型为 `Partial<Config>`，默认使用内置注册表。要使用的注册表配置。其 `registries` 字段将命名空间（例如 `@acme`）映射到 URL 以及访问所需的任何认证头或环境变量。可使用 [`getRegistriesConfig`](#getregistriesconfig) 从项目加载配置。
 
 **useCache：** 类型为 `boolean`，默认 `true`。注册表响应在进程生命周期内缓存在内存中。保持启用用于一次性脚本和 CLI 运行。在长时间运行的进程（服务器、watcher、MCP 服务器）中设置为 `false`。
 
@@ -3249,11 +3821,37 @@ const items = await getRegistryItems(["@shadcn/button", "@shadcn/card"])
 [{ name: "button", type: "registry:ui", ... }, { name: "card", type: "registry:ui", ... }]
 ```
 
+**getRegistriesConfig(cwd)：** 从项目目录加载注册表配置。存在 `components.json` 时读取它，否则读取 `package.json` 顶层的 `registries` 字段。
+
+```ts
+import { getRegistriesConfig } from "shadcn/registry"
+
+const config = await getRegistriesConfig(process.cwd())
+```
+
 **resolveRegistryItems(names, config?, useCache?)：** 解析多个项及其注册表依赖，合并为单个树。与 `getRegistryItems` 不同，它会遍历每个项的 `registryDependencies` 并将所有内容（文件、依赖、CSS 变量）扁平化为一个可安装的对象。
 
 ```ts
 const resolved = await resolveRegistryItems(["@acme/dashboard"])
 ```
+
+**addRegistryItems(names, options)：** 将注册表项解析并安装到现有项目，是 `shadcn add` 的程序化等价物，会应用项声明的文件、包依赖、环境变量、CSS 和 Tailwind 配置。
+
+```ts
+import { addRegistryItems, getRegistriesConfig } from "shadcn/registry"
+
+const cwd = process.cwd()
+const config = await getRegistriesConfig(cwd)
+
+await addRegistryItems(["@acme/agent"], {
+  cwd,
+  config,
+  overwrite: false,
+  silent: true,
+})
+```
+
+`addRegistryItems` 不会自行读取项目配置文件：请传入 `getRegistriesConfig` 的结果或直接提供 `config`。当请求的项及依赖都是通用项（`registry:item` 或所有文件都声明了显式 `target` 的 `registry:file`）时，仅包含 `registries` 的配置就足够了；其他项需要完整解析后的项目配置，包括别名和 `resolvedPaths`。项或依赖引用的每个自定义注册表命名空间都必须存在于 `config` 中。该函数会抛出错误而不是退出进程，也从不提示；除非启用 `overwrite`，否则跳过现有文件。
 
 **getRegistries(config?, useCache?)：** 获取注册表目录。返回注册表条目数组。
 
@@ -3297,7 +3895,7 @@ import { registrySchema, registryItemSchema } from "shadcn/schema"
 导出的推断类型：
 
 - `Registry`、`RegistryItem`、`RegistryBaseItem`
-- `RegistryFontItem`、`Preset`、`ConfigJson`
+- `RegistryItemFile`、`RegistryFontItem`、`Preset`、`Config`、`ConfigJson`
 
 #### shadcn/preset
 
@@ -3481,6 +4079,8 @@ import { registrySchema, registryItemSchema } from "shadcn/schema"
 
 工具库。用于共享辅助函数、常量或其他非组件代码。
 
+注册表项依赖现在使用 `cn` 替代 `clsx` 和 `tailwind-merge`：`"dependencies": ["cn"]`，文件内容为 `export { cn } from "cn"`。
+
 #### registry:hook
 
 自定义 React hook。
@@ -3511,15 +4111,19 @@ import { registrySchema, registryItemSchema } from "shadcn/schema"
 
 - [shadcn/ui components](https://www.figma.com/community/file/1342715840824755935) by Sitsiilia Bergmann — 一个结构良好的组件库，与 shadcn 组件系统保持一致，定期维护。
 - [shadcn/ui design system](https://www.figma.com/community/file/1203061493325953101) by Pietro Schirano — shadcn/ui 的设计伴侣。每个组件都精心制作，以完美匹配代码实现。
+- [Obra shadcn/ui Community Edition](https://www.figma.com/community/file/1514746685758799870/) by Obra Studio — 最完整的免费 Figma shadcn/ui 工具包，包含所有组件和易用的主题系统，由设计团队维护。
+- [shadcncraft Free Starter Kit](https://www.figma.com/community/file/1534076420225325960) by shadcncraft — 为全部八种 shadcn/ui 样式提供原生 Figma 变量，可从 tweakcn 和 shadcn/ui Create 导入主题，支持图标切换，并附带匹配的 React 组件。
 
 ### 付费资源
 
 - [shadcn/ui kit](https://shadcndesign.com/) by Matt Wierzbicki — 优质、始终最新的 Figma UI 工具包，与 shadcn/ui 兼容，优化了设计到开发的交接。
-- [shadcncraft Design System](https://shadcncraft.com/) — 生产级 shadcn/ui 工具包，包含 Pro React 块和 1:1 Figma 对齐。
+- [shadcncraft – shadcn/ui Figma kit](https://shadcncraft.com/figma) — 包含全部八种 shadcn 样式和数百个 Pro 组件与块，并附带匹配的 React 代码。插件可创建新样式、加载自定义 shadcn 预设和 tweakcn 主题，并将画板导出为 React；agent skills 可通过 Figma MCP 把设计转化为代码。
 - [shadcn/studio UI Kit](https://shadcnstudio.com/figma) — 与 shadcn/ui 兼容的 Figma 工具包，包含更新的组件、550+ 块、10+ 模板、20+ 主题和 AI 工具。
 - [Shadcnblocks.com](https://www.shadcnblocks.com/) — 高级 Shadcn Figma UI 工具包，包含组件、500+ Pro 块和 shadcn 主题变量。
-- [Obra shadcn/ui Pro](https://shadcn.obra.studio/products/obra-shadcn-ui-pro) by Obra Studio — 专为设计师打造的 shadcn/ui Figma 体验，包含自定义组件、Pro 块和设计到代码插件。
+- [Obra shadcn/ui Pro](https://shadcn.obra.studio/products/obra-shadcn-ui-pro) by Obra Studio — 在 Figma 中为设计师提供最佳的 shadcn/ui 体验，包含全部 8 种样式、与 shadcn 的一致性、Pro 块和设计到代码插件。
 - [Shadcn Space](https://shadcnspace.com/figma) — 320+ 块、9+ 模板和 250+ 组件的集合，包含与 shadcn/ui 兼容的 Figma 工具包。
+- [Shadcn Design System](https://shadcnstore.com/) by ShadcnStore — 完整的 shadcn/ui Figma UI 工具包，包含组件、变体、设计令牌、生产级块和模板，适合快速工作流和像素级的设计到开发交接。
+- [Shadcn UI Kit](https://shadcnuikit.com/figma) by Toby Belhome — 包含 16 个管理仪表板、17 个应用模板和 550+ 块的 shadcn/ui Figma 工具包，使用 Figma 变量、明暗模式和与代码一致的组件。
 
 ---
 ## MCP 服务器 (MCP Server)
@@ -3894,9 +4498,12 @@ npx shadcn@latest mcp
 - [Legacy Docs](https://ui.shadcn.com/docs/legacy) — 旧版文档
 - [React 19](https://ui.shadcn.com/docs/react-19) — React 19 支持
 - [React Server Components](https://ui.shadcn.com/docs/react-19) — RSC 支持
+- [官方资源](https://ui.shadcn.com/docs/official) — 如何识别 shadcn/ui 官方站点、源码仓库、CLI 包与社交账号
+
+> 社区网站和注册表可能会使用 shadcn/ui 组件或 shadcn CLI，但除非在本页明确标识为 shadcn/ui 维护，否则它们都是独立的。安装第三方代码前请先审查。
 
 ---
 
 > 本中文文档基于 [ui.shadcn.com/docs](https://ui.shadcn.com/docs) 官方文档翻译整理
 >
-> 最后更新：2026 年 7 月
+> 最后更新：2026 年 11 月

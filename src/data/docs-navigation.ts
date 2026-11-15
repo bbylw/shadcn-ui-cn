@@ -32,6 +32,7 @@ export const sidebarNavigation: NavGroup[] = [
     groupName: "定制与功能",
     items: [
       { title: "主题化", slug: "theming" },
+      { title: "Typeset 排版", slug: "typeset" },
       { title: "暗色模式", slug: "dark-mode" },
       { title: "RTL 支持", slug: "rtl" }
     ]
