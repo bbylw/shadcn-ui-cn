@@ -25,6 +25,17 @@ export default function LandingPage() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [installCopied, setInstallCopied] = useState(false)
+  const [npmVersion, setNpmVersion] = useState<string | null>(null)
+
+  // Fetch latest shadcn version from npm registry
+  useEffect(() => {
+    fetch("https://registry.npmjs.org/shadcn/latest")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.version) setNpmVersion(data.version)
+      })
+      .catch(() => {})
+  }, [])
 
   // Prevent hydration mismatch
   useEffect(() => {
@@ -77,13 +88,16 @@ export default function LandingPage() {
           className="flex flex-col items-center max-w-4xl"
         >
           {/* Badge */}
-          <motion.div
+          <motion.a
             variants={itemVariants}
-            className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-semibold mb-6 tracking-wide"
+            href="https://www.npmjs.com/package/shadcn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-semibold mb-6 tracking-wide hover:bg-primary/10 transition-colors"
           >
             <Sparkles className="h-3.5 w-3.5 animate-pulse" />
-            <span>最新中文翻译文档已就绪</span>
-          </motion.div>
+            <span>shadcn npm v{npmVersion ?? "…"}</span>
+          </motion.a>
 
           {/* Heading */}
           <motion.h1

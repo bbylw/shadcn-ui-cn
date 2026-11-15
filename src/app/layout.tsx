@@ -16,6 +16,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "shadcn/ui 中文文档 | 构建你自己的组件库",
   description: "shadcn/ui 是一套设计精美、可访问的组件和代码分发平台。本站提供 shadcn/ui 完整中文文档参考、交互式组件演练场以及实时主题风格定制。",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
